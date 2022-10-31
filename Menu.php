@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="css.php">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
     </head>
-    <body>
+    <body class="corps">
         <header>
             <a class="logo" href="/PHPProject/Menu.php"><img src="php-logo.jpg" alt="logo" height="50" width="50" ></a>
             <nav>
@@ -21,13 +21,25 @@
             <p class="menu cta">Contact</p>
             <p class="connect">Sign In</p>
         </header>
+            <h1 class="title">WELCOME TO TASKMANAGER </h1>
         <div class="overlay">
             <a class="close">&times;</a>
             <div class="overlay__content">
                 <a href="#">Add Member Group</a>
                 <a href="#">View Group Members</a>
                 <a href="#">About US</a>
-                <a href="#" class="careful">QUIT GROUP </a>
+                <div class="box">
+                    <a href="#m2-o" class="link-1" id="m2-c">QUIT GROUP</a>
+                    <div class="modal-container" id="m2-o" style="--m-background: hsla(0, 0%, 0%, .4);">
+                        <div class="modal">
+                        <h1 class="modal__title">ARE YOU SURE TO QUIT GROUP ?</h1>
+                        <p class="modal__text">if you quit the group you will loose all your point, if youre the captain the group will be dissolved !! SO ARE YOU SUR ??</p>
+                        <button class="modal__btn">YEAH IM SURE &rarr;</button>
+                        <button class="modal__btn">NAHH NOP &rarr;</button>
+                        <a href="#m2-c" class="link-2"></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <script type="text/javascript" src="buttonpush.js"></script>
