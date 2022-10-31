@@ -1,3 +1,4 @@
+<?php session_start()?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +50,7 @@
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Sign in to your account</span>
-              <form id="stripe-login" action="Menu.php">
+              <form method="post" id="stripe-login" action="Menu.php">
               <div class="field padding-bottom--24">
                   <label for="Pseudo">Pseudo</label>
                   <input type="text" name="Pseudo">

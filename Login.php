@@ -1,3 +1,16 @@
+<?php session_start()?>
+<?php
+if (
+    !isset($_GET['login'])
+    || (!isset($_GET['email']) || !filter_var($_GET['email'], FILTER_VALIDATE_EMAIL))
+    || (!isset($_GET['message']) || empty($_GET['message']))
+    )
+{
+	?>
+    <script>alert("Vous n'avez pas rentrer d'information valide")</script>
+  <?php
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +62,7 @@
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Login to your account</span>
-              <form id="stripe-login">
+              <form method="post" action="Login.php" id="stripe-login">
                 <div class="field padding-bottom--24">
                   <label for="email">Email</label>
                   <input type="email" name="email">
@@ -74,6 +87,7 @@
                 <div class="field">
                   <a class="ssolink" href="#">Use single sign-on (Google) instead</a>
                 </div>
+                <input type="hidden" name="login" value="true">
               </form>
             </div>
           </div>
