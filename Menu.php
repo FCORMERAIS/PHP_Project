@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE php>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +10,7 @@
     </head>
     <body>
         <header>
+        
             <a class="logo" href="/PHPProject/Menu.php"><img src="images/logo.svg" alt="logo"></a>
             <nav>
                 <ul class="nav__links">
@@ -21,6 +22,8 @@
             <a class="cta" href="#">Contact</a>
             <p class="menu cta">Menu</p>
         </header>
+        <a href="bonjour.php?nom=Dupont&amp;prenom=Jean">Dis-moi bonjour !</a>
+        
         <div class="overlay">
             <a class="close">&times;</a>
             <div class="overlay__content">
