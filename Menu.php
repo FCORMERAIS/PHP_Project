@@ -10,23 +10,24 @@
     </head>
     <body>
         <header>
-            <a class="logo" href="/PHPProject/Menu.php"><img src="images/logo.svg" alt="logo"></a>
+            <a class="logo" href="/PHPProject/Menu.php"><img src="php-logo.jpg" alt="logo" height="50" width="50" ></a>
             <nav>
                 <ul class="nav__links">
                     <li><a href="#">Profil</a></li>
                     <li><a href="#">Group</a></li>
-                    <li><a href="#">About US</a></li>
                 </ul>
             </nav>
-            <a class="cta" href="#">Contact</a>
-            <p class="menu cta">Menu</p>
+            <p class="tempo">h</p>
+            <p class="menu cta">Contact</p>
+            <p class="connect">Sign In</p>
         </header>
         <div class="overlay">
             <a class="close">&times;</a>
             <div class="overlay__content">
-                <a href="#">Services</a>
-                <a href="#">Projects</a>
-                <a href="#">About</a>
+                <a href="#">Add Member Group</a>
+                <a href="#">View Group Members</a>
+                <a href="#">About US</a>
+                <a href="#" class="careful">QUIT GROUP </a>
             </div>
         </div>
         <script type="text/javascript" src="buttonpush.js"></script>
