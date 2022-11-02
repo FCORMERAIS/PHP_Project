@@ -207,20 +207,21 @@ button::-moz-focus-inner {
   border: 0;
 }
 
-
-/* box */
-.box {
+.box2 {
   display: flex;
-  margin-top : 20%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  padding: 0 4rem 2rem;
 }
 
-.box:not(:first-child) {
-  height: 45rem;
+/* box */
+.box {
+  height: 50px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 4rem 2rem;
 }
 
 .box__title {
@@ -267,11 +268,32 @@ button::-moz-focus-inner {
   background: var(--m-background);
 }
 
+.modal-container2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  /* --m-background is set as inline style */
+  background: var(--m-background);
+}
+
 /* using :target */
 /*
 when users will click/enter button(link) browser will add a #id in a url and when that happens we'll show our users the modal that contains that id.
 */
 .modal-container:target {
+  display: flex;
+}
+
+.modal-container2:target {
   display: flex;
 }
 
@@ -289,6 +311,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 }
 
 .modal__title {
+  font-size: 3.2rem;
+}
+
+.modal__title2 {
+  position: absolute;
+  top: 0%;
+  right: 38%;
   font-size: 3.2rem;
 }
 
@@ -311,7 +340,6 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   font-size: 1.4rem;
   font-family: inherit;
   letter-spacing: .2rem;
-
   transition: .2s;
   cursor: pointer;
 }
@@ -327,6 +355,31 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   transform: translateY(-.2rem);
 }
 
+.modal__btn2 {
+  margin-top: 4rem;
+  margin-left : 18rem;
+  padding: 1rem 1.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 100rem;
+  color: rgb(0, 139, 79);
+  background: transparent;
+  font-size: 1.4rem;
+  font-family: inherit;
+  letter-spacing: .2rem;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.modal__btn2:nth-of-type(1) {
+  margin-right: 1rem;
+}
+
+.modal__btn2:hover,
+.modal__btn2:focus {
+  background: var(--focus);
+  border-color: var(--focus);
+  transform: translateY(-.2rem);
+}
 
 /* link-... */
 .link-1 {
@@ -346,6 +399,29 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
 .link-1:focus {
+  box-shadow:
+    0 0 4.4rem .2rem var(--shadow-2),
+    0 0 0 .4rem var(--global-background),
+    0 0 0 .5rem var(--focus);
+}
+
+.link-12 {
+  background: var(--background);
+  box-shadow: .4rem .4rem 2.4rem .2rem var(--shadow-1);
+  border-radius: 100rem;
+}
+
+
+
+.link-12:hover,
+.link-12:focus {
+  transform: translateY(-.2rem);
+  color:rgb(0, 139, 0);
+  box-shadow: 0 0 4.4rem .2rem var(--shadow-2);
+}
+
+
+.link-12:focus {
   box-shadow:
     0 0 4.4rem .2rem var(--shadow-2),
     0 0 0 .4rem var(--global-background),
@@ -490,4 +566,30 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 .card-back a:hover {
   color: #000000;
   background-color: #fff;
+}
+
+.github{
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.github:before {
+  content: "\f099";
+}
+
+.backpage{
+  position: absolute;
+  display: flex;
+  top: 81%;
+}
+
+@media (max-width: 800px) and (min-width: 0px){
+  .backpage{
+    position: absolute;
+    display: contents;
+    top: 81%;
+  } 
 }

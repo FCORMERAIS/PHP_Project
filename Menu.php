@@ -25,17 +25,47 @@
         <div class="overlay">
             <a class="close">&times;</a>
             <div class="overlay__content">
-                <a class="btna" href="#">Add Member Group</a>
-                <a class="btna" href="#">View Group Members</a>
-                <a class="btna" href="/PHPProject/AboutUS.php">About US</a>
-                <div class="box">
-                    <a href="#m2-o" class="link-1" id="m2-c">QUIT GROUP</a>
-                    <div class="modal-container" id="m2-o" style="--m-background: hsla(0, 0%, 0%, .4);">
+                <div class="box2">
+                    <a href="#m2-o3" class="btna">Add Member Group</a>
+                    <div class="modal-container" id="m2-o3" style="--m-background: hsla(0, 0%, 0%, .4);">
                         <div class="modal">
-                        <h1 class="modal__title">ARE YOU SURE TO QUIT GROUP ?</h1>
-                        <p class="modal__text">if you quit the group you will loose all your point, if youre the captain the group will be dissolved !! SO ARE YOU SUR ??</p>
-                        <button class="modal__btn">YEAH IM SURE &rarr;</button>
-                        <a href="#m2-c" class="link-2"></a>
+                            <h1 class="modal__title2">Add a Member </h1>
+                            <form><input></form>
+                            <a href="#m2-c" class="link-2"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="box2">
+                    <a href="#m2-o2" class="btna">View Group Members</a>
+                    <div class="modal-container" id="m2-o2" style="--m-background: hsla(0, 0%, 0%, .4);">
+                        <div class="modal">
+                            <h1 class="modal__title2">LIST GROUP</h1>
+                            <a href="#m2-c" class="link-2"></a>
+                        </div>
+                    </div>
+                </div>
+                <a class="btna" href="/PHPProject/AboutUS.php" style="margin-bottom: 20%;">About US</a>
+                <div class="backpage">
+                    <div class="box">
+                        <a href="#m2-o4" class="link-12" id="m2-c4">CREATE GROUP</a>
+                        <div class="modal-container" id="m2-o4" style="--m-background: hsla(0, 0%, 0%, .4);">
+                            <div class="modal">
+                            <h1 class="modal__title">ARE YOU SURE DO YOU WANT TO CREATE A GROUP ?</h1>
+                            <p class="modal__text">if you quit the group you will loose all your point, if youre the captain the group will be dissolved !! SO ARE YOU SUR ??</p>
+                            <button class="modal__btn2">YEAH IM SURE &rarr;</button>
+                            <a href="#m2-c4" class="link-2"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <a href="#m2-o5" class="link-1" id="m2-c5">QUIT GROUP</a>
+                        <div class="modal-container" id="m2-o5" style="--m-background: hsla(0, 0%, 0%, .4);">
+                            <div class="modal">
+                            <h1 class="modal__title">ARE YOU SURE TO QUIT GROUP ?</h1>
+                            <p class="modal__text">if you quit the group you will loose all your point, if youre the captain the group will be dissolved !! SO ARE YOU SUR ??</p>
+                            <button class="modal__btn">YEAH IM SURE &rarr;</button>
+                            <a href="#m2-c5" class="link-2"></a>
+                            </div>
                         </div>
                     </div>
                 </div>
