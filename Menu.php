@@ -25,9 +25,9 @@
         <div class="overlay">
             <a class="close">&times;</a>
             <div class="overlay__content">
-                <a href="#">Add Member Group</a>
-                <a href="#">View Group Members</a>
-                <a href="#">About US</a>
+                <a class="btna" href="#">Add Member Group</a>
+                <a class="btna" href="#">View Group Members</a>
+                <a class="btna" href="/PHPProject/AboutUS.php">About US</a>
                 <div class="box">
                     <a href="#m2-o" class="link-1" id="m2-c">QUIT GROUP</a>
                     <div class="modal-container" id="m2-o" style="--m-background: hsla(0, 0%, 0%, .4);">
@@ -35,7 +35,6 @@
                         <h1 class="modal__title">ARE YOU SURE TO QUIT GROUP ?</h1>
                         <p class="modal__text">if you quit the group you will loose all your point, if youre the captain the group will be dissolved !! SO ARE YOU SUR ??</p>
                         <button class="modal__btn">YEAH IM SURE &rarr;</button>
-                        <button class="modal__btn">NAHH NOP &rarr;</button>
                         <a href="#m2-c" class="link-2"></a>
                         </div>
                     </div>
