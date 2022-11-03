@@ -30,7 +30,10 @@
                     <div class="modal-container" id="m2-o3" style="--m-background: hsla(0, 0%, 0%, .4);">
                         <div class="modal">
                             <h1 class="modal__title2">Add a Member </h1>
-                            <form><input></form>
+                                <span class="input">
+                                    <input type="text" placeholder="Please enter the pseudo or email">
+                                    <span></span>	
+                                </span>
                             <a href="#m2-c" class="link-2"></a>
                         </div>
                     </div>
@@ -51,7 +54,7 @@
                         <div class="modal-container" id="m2-o4" style="--m-background: hsla(0, 0%, 0%, .4);">
                             <div class="modal">
                             <h1 class="modal__title">ARE YOU SURE DO YOU WANT TO CREATE A GROUP ?</h1>
-                            <p class="modal__text">if you quit the group you will loose all your point, if youre the captain the group will be dissolved !! SO ARE YOU SUR ??</p>
+                            <p class="modal__text">If you create a group you will quit the group if you are already in a group.</p>
                             <button class="modal__btn2">YEAH IM SURE &rarr;</button>
                             <a href="#m2-c4" class="link-2"></a>
                             </div>

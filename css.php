@@ -593,3 +593,35 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     top: 81%;
   } 
 }
+
+.input {
+	position:relative;
+	font-size: 1.5em;
+	background: linear-gradient(21deg, #10abff, #1beabd);
+	padding: 3px;
+	display: inline-block;
+	border-radius: 9999em;
+}
+.input:focus + span {
+  opacity: 1;
+  transform: scale(1);
+}	
+
+.input > *:not(span) {
+  position: relative;
+  display: inherit;
+  border-radius: inherit;
+  margin: 0;
+  border: none;
+  outline: none;
+  padding: 0 .325em;
+  z-index: 1;
+}
+
+input {
+  border:none;
+	font-family: inherit;
+	line-height:inherit;
+	color:#2e3750;
+	min-width:12em;
+}
