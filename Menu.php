@@ -20,7 +20,7 @@
             </nav>
             <p class="tempo">h</p>
             <p class="menu cta">Contact</p>
-            <p class="connect">Sign In</p>
+            <p class="connect"><a href="Login.php">Sign in</a></p>
         </header>
             <h1 class="title">WELCOME TO TASKMANAGER </h1>
         <div class="overlay">

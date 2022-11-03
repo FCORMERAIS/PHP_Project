@@ -1,15 +1,28 @@
 <?php session_start()?>
 <?php
-if (
-    !isset($_GET['login'])
-    || (!isset($_GET['email']) || !filter_var($_GET['email'], FILTER_VALIDATE_EMAIL))
-    || (!isset($_GET['message']) || empty($_GET['message']))
-    )
-{
-	?>
-    <script>alert("Vous n'avez pas rentrer d'information valide")</script>
-  <?php
-}
+  if (
+      (isset($_POST['email']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+      || (isset($_POST['message']) &&  empty($_POST['message']))
+      )
+  {
+    ?>
+      <script>console.log("pas de login")</script>
+    <?php
+  }else{
+    if(isset($_POST['login'])){
+      //TODO Cookies HERE
+
+
+      ?>
+        <meta http-equiv="Refresh" content="0; url=Menu.php" />
+      <?php
+
+    }else{
+      ?>
+        <script>console.log("pas de login")</script>
+      <?php
+    } 
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,6 +78,7 @@ if (
               <form method="post" action="Login.php" id="stripe-login">
                 <div class="field padding-bottom--24">
                   <label for="email">Email</label>
+                  <input type="hidden" name="login" value="true">
                   <input type="email" name="email">
                 </div>
                 <div class="field padding-bottom--24">
@@ -87,7 +101,7 @@ if (
                 <div class="field">
                   <a class="ssolink" href="#">Use single sign-on (Google) instead</a>
                 </div>
-                <input type="hidden" name="login" value="true">
+                
               </form>
             </div>
           </div>
