@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<?php session_start()?>
+<!DOCTYPE php>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +20,7 @@
             </nav>
             <p class="tempo">h</p>
             <p class="menu cta">Contact</p>
-            <p class="connect">Sign In</p>
+            <p class="connect"><a href="Login.php">Sign in</a></p>
         </header>
             <h1 class="title">WELCOME TO TASKMANAGER </h1>
         <div class="overlay">
