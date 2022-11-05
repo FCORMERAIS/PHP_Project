@@ -19,7 +19,7 @@
             </nav>
             <p class="tempo">h</p>
             <p class="menu cta">Contact</p>
-            <p class="connect">Sign In</p>
+            <p class="connect"><a href="Login.php">Sign in</a></p>
         </header>
             <div class="Corps">
                 <h1 class="title"> ABOUT US : </h1>
