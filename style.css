@@ -1,7 +1,7 @@
 * {
     padding: 0;
     margin: 0;
-    color: #1a1f36;
+    color: #1A1F83;
     box-sizing: border-box;
     word-wrap: break-word;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, sans-serif;
@@ -75,7 +75,7 @@ a {
 }
 
 .box-divider--light-all-2 {
-    box-shadow: inset 0 0 0 2px #e3e8ee;
+    background-color : cadetblue;
 }
 
 .box-background--blue {
@@ -83,7 +83,7 @@ a {
 }
 
 .box-background--white {
-    background-color: #ffffff;
+    background-color: #24252a;
 }
 
 .box-background--blue800 {
@@ -116,6 +116,7 @@ a {
 
 .padding-horizontal--48 {
     padding: 48px;
+    background-color: rgba(0, 136, 169, 0.8);
 }
 
 .padding-bottom--15 {
@@ -209,6 +210,7 @@ a.ssolink {
 .footer-link span {
     font-size: 14px;
     text-align: center;
+    color : cadetblue;
 }
 
 .listing a {

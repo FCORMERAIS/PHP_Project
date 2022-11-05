@@ -194,9 +194,10 @@ display: initial;
 
 a,
 a:link {
-    margin-top:3%;
-    font-family: inherit;
-    text-decoration: none;
+  margin-top:3%;
+  font-family: inherit;
+  text-decoration: none;
+  color : white;
 }
 
 a:focus {
@@ -624,4 +625,4 @@ input {
 	line-height:inherit;
 	color:#2e3750;
 	min-width:12em;
-}
+} 
