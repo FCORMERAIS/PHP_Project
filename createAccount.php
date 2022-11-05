@@ -1,9 +1,10 @@
 <?php
 
+
 $serverName = "localhost";
-$name = "didier";
-$mail = "michel@gmailcom";
-$password = "secretmdp";
+$name = $_POST["Pseudo"];
+$mail = $_POST["email"];
+$password = $_POST["password"];
 $db = "phpproject";
 
 
