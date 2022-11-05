@@ -75,11 +75,11 @@
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Login to your account</span>
-              <form method="post" action="Login.php" id="stripe-login">
+              <form method="post" action="connectAccount.php" id="stripe-login">
                 <div class="field padding-bottom--24">
-                  <label for="email">Email</label>
+                  <label for="email">Email or Pseudo</label>
                   <input type="hidden" name="login" value="true">
-                  <input type="email" name="email">
+                  <input type="text" name="email">
                 </div>
                 <div class="field padding-bottom--24">
                   <div class="grid--50-50">

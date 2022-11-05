@@ -12,7 +12,6 @@ if(!$connexion || $name == "") {die("pb de conextion".mysqli_connect_error());}
 
 $sql = "SELECT MAX(Id) FROM user";
 $result = $connexion->query($sql);
-
 $result+=1;
 
 $sql = "INSERT INTO user(Id,Name,Password,Mail) VALUE ('$result','$name','$password','$mail')";
