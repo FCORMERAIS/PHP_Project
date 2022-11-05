@@ -107,9 +107,6 @@
           </div>
           <div class="footer-link padding-top--24">
             <span>Don't have an account? <a href="Signin.php">Sign up</a></span>
-            <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
-              <span><a href="#">© TaskManager</a></span>
-            </div>
           </div>
         </div>
       </div>

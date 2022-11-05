@@ -81,9 +81,6 @@
           </div>
           <div class="footer-link padding-top--24">
             <span>You already have an account ? <a href="Login.php">Login</a></span>
-            <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
-              <span><a href="#">© TaskManager</a></span>
-            </div>
           </div>
         </div>
       </div>
