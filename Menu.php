@@ -1,4 +1,6 @@
 <?php session_start()?>
+
+</script>
 <!DOCTYPE php>
     <head>
         <meta charset="utf-8">
@@ -33,6 +35,7 @@
                             <h1 class="modal__title2">Add a Member </h1>
                                 <span class="input">
                                     <input type="text" placeholder="Please enter the pseudo or email">
+                                    <button onclick="clickMe()">Send</button>
                                     <span></span>	
                                 </span>
                             <a href="#m2-c" class="link-2"></a>
@@ -44,6 +47,10 @@
                     <div class="modal-container" id="m2-o2" style="--m-background: hsla(0, 0%, 0%, .4);">
                         <div class="modal">
                             <h1 class="modal__title2">LIST GROUP</h1>
+                            <?php
+                            require('listUser.php');
+                            listUser();
+                            ?>
                             <a href="#m2-c" class="link-2"></a>
                         </div>
                     </div>
@@ -56,7 +63,21 @@
                             <div class="modal">
                             <h1 class="modal__title">ARE YOU SURE DO YOU WANT TO CREATE A GROUP ?</h1>
                             <p class="modal__text">If you create a group you will quit the group if you are already in a group.</p>
-                            <button class="modal__btn2">YEAH IM SURE &rarr;</button>
+                            <?php
+                                // if (""==1){  //TODO AJOUTER VERIFICATION PAR COOKIE DE LA CONNEXION
+                                    ?>
+                                    <form method="post" action="createGroups.php" id="stripe-login">
+                                    <?php
+                                // }
+                            ?>
+                            <input type="submit" class="modal__btn2" name="submit" value="YEAH IM SURE &rarr;">
+                            <?php
+                                // if (""==1){  //TODO AJOUTER VERIFICATION PAR COOKIE DE LA CONNEXION
+                                    ?>
+                                    </form>
+                                    <?php
+                                // }
+                            ?>
                             <a href="#m2-c4" class="link-2"></a>
                             </div>
                         </div>
@@ -78,3 +99,8 @@
         <script type="text/javascript" src="buttonpush.js"></script>
     </body>
 </html>
+<script>
+    function clickMe(){
+    var result ="<?php addUser(); ?>"
+    document.write(result);
+}
