@@ -10,7 +10,7 @@ catch (Exception $e)
 }
 
 // Ecriture de la requête
-$sqlQuery = 'INSERT INTO groups(score) VALUES (:score)';
+$sqlQuery = 'INSERT INTO groups(score,name) VALUES (:score,"")';
 
 // Préparation
 $insertGroups = $db->prepare($sqlQuery);
