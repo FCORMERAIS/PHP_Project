@@ -1,4 +1,49 @@
-<?php session_start()?>
+<?php 
+  session_start(); 
+  $returnmsg = "";
+  require("connectAccount.php");
+    $mail = $_POST["email"];
+    $password = $_POST["password"];
+    $pseudo = $_POST["Pseudo"];
+    if ($mail == NULL && $returnmsg == ""|| $password == NULL && $returnmsg == "" || $pseudo == NULL && $returnmsg == "") {
+      $returnmsg= "Please fill out the gaps";
+    }
+
+    if ($returnmsg == "") {
+      if(testValueUser("phpproject","localhost","Name",$pseudo) && $returnmsg == ""){
+        $returnmsg = "Sorry but the nickname is already use";
+      }
+      if (testValueUser("phpproject","localhost","Mail",$mail) && $returnmsg == "") {
+        $returnmsg =  "sorry but the email is arlready use";
+      }
+    }
+
+    if($returnmsg == ""){
+      $serverName = "localhost";
+      $name = $_POST["Pseudo"];
+      $mail = $_POST["email"];
+      $password = $_POST["password"];
+      $db = "phpproject";
+
+      $connexion = mysqli_connect($serverName,"root","",$db);
+
+      if(!$connexion || $name == "") {die("pb de conextion".mysqli_connect_error());}
+
+      $sql = "SELECT MAX(Id) FROM user";
+      $result = $connexion->query($sql);
+      $result+=1;
+
+      $sql = "INSERT INTO user(Id,Name,Password,Mail) VALUE ('$result','$name','$password','$mail')";
+
+      if(mysqli_query($connexion,$sql)){
+          echo "good";
+      }else { "error deso poto";}
+
+      mysqli_close($connexion);
+      header("Location: /PHPProject/menu.php");
+      exit();
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,15 +95,17 @@
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Sign in to your account</span>
-              <form method="post" id="stripe-login" action="createAccount.php">
+              <form method="post" id="stripe-login" action="">
               <div class="field padding-bottom--24">
                   <label for="Pseudo">Pseudo</label>
                   <input type="text" name="Pseudo">
                 </div>
+                <?php if ($returnmsg == "Sorry but the nickname is already use") {echo $returnmsg;} ?>
                 <div class="field padding-bottom--24">
                   <label for="email">Email</label>
                   <input type="email" name="email">
                 </div>
+                <?php if ($returnmsg == "sorry but the email is arlready use") {echo $returnmsg;} ?>
                 <div class="field padding-bottom--24">
                   <div class="grid--50-50">
                     <label for="password">Password</label>
@@ -70,6 +117,7 @@
                     <input type="checkbox" name="checkbox"> Stay signed in for a week
                   </label>
                 </div>
+                <?php if ($returnmsg == "Please fill out the gaps") {echo $returnmsg;}?>
                 <div class="field padding-bottom--24">
                   <input type="submit" name="submit" value="Continue">
                 </div>

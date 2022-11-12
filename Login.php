@@ -1,44 +1,73 @@
-<?php session_start()?>
-<?php
-  if (
-      (isset($_POST['email']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
-      || (isset($_POST['message']) &&  empty($_POST['message']))
-      )
-  {
-    ?>
-      <script>console.log("pas de login")</script>
-    <?php
-  }else{
-    if(isset($_POST['login'])){
-      //TODO Cookies HERE
+<?php 
+  $returnmsg = "";
+  require("connectAccount.php");
+    $mail = $_POST["email"];
+    $password = $_POST["password"];
+    if ($mail == NULL && $returnmsg == ""|| $password == NULL && $returnmsg == "") {
+      $returnmsg= "Please fill out the gaps ";
+    }
 
+    if ($returnmsg == "") {
+      if(!testValueUser("phpproject","localhost","Name",$mail) && $returnmsg == ""){
+        if (!testValueUser("phpproject","localhost","Mail",$mail) && $returnmsg == "") {
+            $returnmsg =  "sorry but the username or email is not good";
+        }
+      }
+    }
 
-      ?>
-        <meta http-equiv="Refresh" content="0; url=Menu.php" />
-      <?php
+    if ($returnmsg == "") {
+      if(!testValueUser("phpproject","localhost","Password",$password) && $returnmsg== ""){
+          $returnmsg =  "sorry but the password is not good";
+      } 
+    }
 
-    }else{
-      ?>
-        <script>console.log("pas de login")</script>
-      <?php
-    } 
-  }
+    if($returnmsg == ""){
+      header("Location: /PHPProject/menu.php");
+      exit();
+    }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Stackfindover: Sign in</title>
+  <title>Taskmanager: Login</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
+    <?php
+      // session_start();
+      if (
+          (isset($_POST['email']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+          || (isset($_POST['message']) &&  empty($_POST['message']))
+          )
+      {
+        ?>
+          <script>console.log("pas de login")</script>
+        <?php
+      }else{
+        if(isset($_POST['login'])){
+          //TODO Cookies HERE
+
+
+          ?>
+            <meta http-equiv="Refresh" content="0; url=Menu.php" />
+          <?php
+
+        }else{
+          ?>
+            <script>console.log("pas de login")</script>
+          <?php
+        } 
+      }
+    ?>
   <div class="login-root">
     <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
       <div class="loginbackground box-background--white padding-top--64">
         <div class="loginbackground-gridContainer">
           <div class="box-root flex-flex" style="grid-area: top / start / 8 / end;">
-            <div class="box-root" style="background-image: linear-gradient(white 0%, rgb(247, 250, 252) 33%); flex-grow: 1;">
+            <div class="box-root" style="background-image: linear-gradient(white 0%, rgb(147, 147, 147) 33%); flex-grow: 1;">
             </div>
           </div>
           <div class="box-root flex-flex" style="grid-area: 4 / 2 / auto / 5;">
@@ -75,7 +104,7 @@
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Login to your account</span>
-              <form method="post" action="connectAccount.php" id="stripe-login">
+              <form method="post" action="Login.php" id="stripe-login">
                 <div class="field padding-bottom--24">
                   <label for="email">Email or Pseudo</label>
                   <input type="hidden" name="login" value="true">
@@ -90,18 +119,12 @@
                   </div>
                   <input type="password" name="password">
                 </div>
-                <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
-                  <label for="checkbox">
-                    <input type="checkbox" name="checkbox"> Stay signed in for a week
-                  </label>
-                </div>
                 <div class="field padding-bottom--24">
                   <input type="submit" name="submit" value="Continue">
                 </div>
-                <div class="field">
-                  <a class="ssolink" href="#">Use single sign-on (Google) instead</a>
+                <div class="textalign">
+                  <?php echo $returnmsg; ?>
                 </div>
-                
               </form>
             </div>
           </div>
@@ -113,5 +136,5 @@
     </div>
   </div>
 </body>
-
 </html>
+
