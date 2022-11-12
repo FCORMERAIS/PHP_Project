@@ -29,7 +29,7 @@
 
       if(!$connexion || $name == "") {die("pb de conextion".mysqli_connect_error());}
 
-      $sql = "SELECT MAX(Id) FROM user";
+      $sql = "SELECT MAX(Id) as idmax FROM user";
       $result = $connexion->query($sql);
       $result+=1;
 
@@ -38,7 +38,7 @@
       if(mysqli_query($connexion,$sql)){
           echo "good";
       }else { "error deso poto";}
-
+      setcookie("name",$name,time()+3600);
       mysqli_close($connexion);
       header("Location: /PHPProject/menu.php");
       exit();
@@ -89,7 +89,7 @@
       </div>
       <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
         <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-          <h1>TASKMANAGER</h1>
+          <h1>TASKMANAGER<a href="menu.php"></a></h1>
         </div>
         <div class="formbg-outer">
           <div class="formbg">

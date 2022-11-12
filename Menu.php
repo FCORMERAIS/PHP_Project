@@ -16,6 +16,7 @@
                 <ul class="nav__links">
                     <li><a href="#">Profil</a></li>
                     <li><a href="#">Group</a></li>
+                    <li><?php echo 'Connected As ' . htmlspecialchars($_COOKIE["name"]) . '!';?></li>
                 </ul>
             </nav>
             <p class="tempo">h</p>

@@ -22,6 +22,7 @@
     }
 
     if($returnmsg == ""){
+      setcookie("name",$mail,time()+3600);
       header("Location: /PHPProject/menu.php");
       exit();
     }
