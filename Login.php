@@ -16,8 +16,10 @@
     }
 
     if ($returnmsg == "") {
-      if(!testValueUser("phpproject","localhost","Password",$password) && $returnmsg== ""){
+      if(!testValuePassword("phpproject","localhost","Name",$password,$mail) && $returnmsg== ""){
+        if(!testValuePassword("phpproject","localhost","Mail",$password,$mail) && $returnmsg== ""){
           $returnmsg =  "sorry but the password is not good";
+        }
       } 
     }
 

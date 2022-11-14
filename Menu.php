@@ -8,6 +8,11 @@
     require('addUser.php');
     addUser($_POST['userAdd'],$name);
   }
+  if(!isset($_COOKIE["name"]))
+    {$connexion ="You are not connected";
+  }else { 
+    $connexion = 'Connected As ' . htmlspecialchars($_COOKIE["name"]) . ' !';
+  }
     ?>
 </script>
 <!DOCTYPE php>
@@ -24,12 +29,10 @@
         <header>
             <a class="logo" href="/PHPProject/Menu.php"><img src="me.jpg" alt="logo" height="50" width="50" ></a>
             <nav>
-                <ul class="nav__links">
-                    
+                <ul class="nav__links">  
                     <li><FONT size="6pt"><a href="#">Profil</a></FONT></li>
                     <li><FONT size="6pt"><a href="Group.php">Group</a></FONT></li>
-                    <li><?php echo 'Connected As ' . htmlspecialchars($_COOKIE["name"]) . '!';?></li>
-
+                    <li><FONT size="6pt"style="color: rgba(0, 136, 169, 0.8);"><?php echo $connexion;?></FONT size="6pt"></li>
                 </ul>
             </nav>
             <p class="tempo">h</p>
@@ -37,6 +40,13 @@
             <p class="connect"><a href="Login.php">Sign in</a></p>
         </header>
             <h1 class="title">WELCOME TO TASKMANAGER </h1>
+            <p class="redInfo">
+            <?php
+                if ($connexion == "You are not connected") {
+                    echo "YOU NEED TO BEE CONNECTED AND TO JOIN A GROUP FOR GET INFORMATION ON YOUR GROUP";
+                }
+            ?>
+            </p>
         <div class="overlay">
             <a class="close">&times;</a>
             <div class="overlay__content">

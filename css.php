@@ -121,7 +121,6 @@ header {
 .policeAugment {
     font-size: 36px;
 }
-
 .overlay {
   height: 100%;
   width: 0;
@@ -267,6 +266,12 @@ button::-moz-focus-inner {
 
   /* --m-background is set as inline style */
   background: var(--m-background);
+}
+
+.redInfo {
+  color:red;
+  text-align: center;
+  font-size: xx-large;
 }
 
 .modal-container2 {
