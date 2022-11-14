@@ -28,7 +28,8 @@
                     
                     <li><FONT size="6pt"><a href="#">Profil</a></FONT></li>
                     <li><FONT size="6pt"><a href="Group.php">Group</a></FONT></li>
-                    
+                    <li><?php echo 'Connected As ' . htmlspecialchars($_COOKIE["name"]) . '!';?></li>
+
                 </ul>
             </nav>
             <p class="tempo">h</p>
