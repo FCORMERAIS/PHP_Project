@@ -27,6 +27,9 @@
 
       $connexion = mysqli_connect($serverName,"root","",$db);
 
+      // Encrypte the password	
+      password_hash($password, PASSWORD_DEFAULT);
+
       if(!$connexion || $name == "") {die("pb de conextion".mysqli_connect_error());}
 
       $sql = "SELECT MAX(Id) as idmax FROM user";
