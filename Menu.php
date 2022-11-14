@@ -4,7 +4,7 @@
       (isset($_POST['userAdd'])&& !empty($_POST['userAdd']) )
       )
   {
-    $name = "BOUBALIN";
+    $name = "BABA";
     require('addUser.php');
     addUser($_POST['userAdd'],$name);
   }
@@ -22,11 +22,13 @@
     </head>
     <body class="corps">
         <header>
-            <a class="logo" href="/PHPProject/Menu.php"><img src="php-logo.jpg" alt="logo" height="50" width="50" ></a>
+            <a class="logo" href="/PHPProject/Menu.php"><img src="me.jpg" alt="logo" height="50" width="50" ></a>
             <nav>
                 <ul class="nav__links">
-                    <li><a href="#">Profil</a></li>
-                    <li><a href="#">Group</a></li>
+                    
+                    <li><FONT size="6pt"><a href="#">Profil</a></FONT></li>
+                    <li><FONT size="6pt"><a href="Group.php">Group</a></FONT></li>
+                    
                 </ul>
             </nav>
             <p class="tempo">h</p>

@@ -626,3 +626,17 @@ input {
 	color:#2e3750;
 	min-width:12em;
 } 
+
+.addHabit{
+  position:absolute;
+  top:22%;
+  left:90%;
+  padding: 9px 25px;
+  font-family: "Montserrat", sans-serif;
+  background-color: #CF3E3E;
+  border: none;
+  color : rgba(227, 227, 227 ,1);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease 0s;
+}

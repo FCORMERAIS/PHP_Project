@@ -9,7 +9,7 @@
             die('Erreur : ' . $e->getMessage());
     }
     
-    $name = "BOUBALIN";
+    $name = "BABA";
     // Ecriture de la requête
     $sqlQuery = 'UPDATE user SET idGroup = "" WHERE Name = :nameUser';
     $insertGroups = $db->prepare($sqlQuery);

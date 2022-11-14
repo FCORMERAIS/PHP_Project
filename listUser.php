@@ -1,6 +1,4 @@
 <?php
-
-
 function listUser(){
     try
     {
@@ -11,7 +9,7 @@ function listUser(){
     {
         die('Erreur : ' . $e->getMessage());
     }
-    $sqlQuery = 'SELECT * FROM user WHERE idGroup = 32';
+    $sqlQuery = 'SELECT * FROM user WHERE idGroup = 33';
     $groupsStatement = $db->prepare($sqlQuery);
     $groupsStatement->execute();
     $groups = $groupsStatement->fetchAll();

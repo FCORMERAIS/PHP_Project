@@ -1,8 +1,11 @@
+<script>console.log("pas la")</script>
+
 <?php
+
 try
 {
 	$db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-);
+    );
 }
 catch (Exception $e)
 {
