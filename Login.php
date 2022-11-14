@@ -3,8 +3,8 @@
   require("connectAccount.php");
     $mail = $_POST["email"];
     $password = $_POST["password"];
-//encrypte the password password_hash($password, PASSWORD_DEFAULT)
-    password_hash($password, PASSWORD_DEFAULT);
+
+
     
     if ($mail == NULL && $returnmsg == ""|| $password == NULL && $returnmsg == "") {
       $returnmsg= "Please fill out the gaps ";

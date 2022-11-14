@@ -24,6 +24,8 @@
       $mail = $_POST["email"];
       $password = $_POST["password"];
       $db = "phpproject";
+      
+
 
       $connexion = mysqli_connect($serverName,"root","",$db);
 
@@ -32,9 +34,8 @@
       //$sql = "SELECT MAX(Id) as idmax FROM `user`";
       //$result = $connexion->query($sql);
       //$result+=1;
-      
-    // Encrypte the password	
-    password_hash($password, PASSWORD_DEFAULT);
+
+    
       
       $sql = "INSERT INTO `user`(Name,Password,Mail,invitationGroups) VALUE ('$name','$password','$mail','')";
 
