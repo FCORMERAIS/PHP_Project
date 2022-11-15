@@ -33,7 +33,13 @@
     $Groupdelete = $db->prepare($sqlQuery);
     $Groupdelete-> execute([
         'idgroup' => $idgroupdelete,
-    ])
+    ]);
+
+    $sqlQuery = 'UPDATE user SET invitationGroups = TRIM(:idgroup FROM invitationGroups)';
+    $deleteInvitation = $db->prepare($sqlQuery);
+    $deleteInvitation -> execute([
+        'idgroup'=> $idgroupdelete,
+    ]);
     //TODO ajouter a l'utilisateur le groups en FOREING KEY
     
     // On récupère tout le contenu de la table groups

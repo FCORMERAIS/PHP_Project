@@ -40,11 +40,13 @@
         }
         // echo $user['idGroup'];
         $s = $userInv['invitationGroups']." ".strval($user['idGroup']);
-        $sqlQuery = 'UPDATE user SET invitationGroups = :invitationGroups WHERE Name = :nameUser';
-        $insertGroups = $db->prepare($sqlQuery);
-        $insertGroups->execute([
-            'invitationGroups'=>$s,
-            'nameUser' => $userInv["Name"],
-        ]);
+        if (count(explode($user['idGroup'], $s)) == 2) {
+            $sqlQuery = 'UPDATE user SET invitationGroups = :invitationGroups WHERE Name = :nameUser';
+            $insertGroups = $db->prepare($sqlQuery);
+            $insertGroups->execute([
+                'invitationGroups'=>$s,
+                'nameUser' => $userInv["Name"],
+            ]);
+        }
     }
 ?>

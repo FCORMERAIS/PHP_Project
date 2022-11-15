@@ -4,7 +4,7 @@
       (isset($_POST['userAdd'])&& !empty($_POST['userAdd']) )
       )
   {
-    $name = "BABA";
+    $name = htmlspecialchars($_COOKIE["name"]);
     require('addUser.php');
     addUser($_POST['userAdd'],$name);
   }
@@ -120,6 +120,11 @@
                                     </form>
                                     <span></span>	
                                 </span>
+                                <p class="redInfo">
+                                <?php
+                                if (!isset($_COOKIE["name"])){echo "VOUS DEVEZ VOUS CONNECTER POUR POUVOIR CREER UN GROUPE";}
+                                ?>
+                                </p>
                             <a href="#m2-c" class="link-2"></a>
                         </div>
                     </div>
