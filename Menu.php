@@ -43,7 +43,7 @@
             <p class="redInfo">
             <?php
                 if ($connexion == "You are not connected") {
-                    echo "YOU NEED TO BEE CONNECTED AND TO JOIN A GROUP FOR GET INFORMATION ON YOUR GROUP";
+                    echo "YOU NEED TO BE CONNECTED AND TO JOIN A GROUP FOR GET INFORMATION ON YOUR GROUP";
                 }
             ?>
             </p>
@@ -66,6 +66,7 @@
                         </div>
                     </div>
                 </div>
+                <script type="text/javascript" src="buttonpush.js"></script>
                 <div class="box2">
                     <a href="#m2-o2" class="btna">View Group Members</a>
                     <div class="modal-container" id="m2-o2" style="--m-background: hsla(0, 0%, 0%, .4);">
@@ -85,24 +86,20 @@
                         <a href="#m2-o4" class="link-12" id="m2-c4">CREATE GROUP</a>
                         <div class="modal-container" id="m2-o4" style="--m-background: hsla(0, 0%, 0%, .4);">
                             <div class="modal">
-                            <h1 class="modal__title">ARE YOU SURE DO YOU WANT TO CREATE A GROUP ?</h1>
-                            <p class="modal__text">If you create a group you will quit the group if you are already in a group.</p>
+                            <h1 class="modal__title">ARE YOU SURE,image.png DO YOU WANT TO CREATE A GROUP ?</h1>
+                            <p class="modal__text">If you create a group you will quit the group that you are in.</p>
+                            <form method="post" action="createGroups.php" id="stripe-login">
+                            <p class="redInfo">
                             <?php
-                                // if (""==1){  //TODO AJOUTER VERIFICATION PAR COOKIE DE LA CONNEXION
-                                    ?>
-                                    <form method="post" action="createGroups.php" id="stripe-login">
-                                    <?php
-                                // }
+                                if (!isset($_COOKIE["name"])){
+                                    echo "VOUS DEVEZ VOUS CONNECTER POUR POUVOIR CREER UN GROUPE";
+                                }else {
+                                    echo '<input type="submit" class="modal__btn2" name="submit" value="YEAH IM SURE &rarr;">';
+                                }
                             ?>
-                            <input type="submit" class="modal__btn2" name="submit" value="YEAH IM SURE &rarr;">
-                            <?php
-                                // if (""==1){  //TODO AJOUTER VERIFICATION PAR COOKIE DE LA CONNEXION
-                                    ?>
-                                    </form>
-                                    <?php
-                                // }
-                            ?>
+                            </p>
                             <a href="#m2-c4" class="link-2"></a>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -112,28 +109,24 @@
                             <div class="modal">
                             <h1 class="modal__title">ARE YOU SURE TO QUIT GROUP ?</h1>
                             <p class="modal__text">if you quit the group you will loose all your point, if youre the captain the group will be dissolved !! SO ARE YOU SUR ??</p>
+                            </br>
+                            <form method="post" action="quitGroup.php" id="stripe-login">
+                            <p class="redInfo">
                             <?php
-                                // if (""==1){  //TODO AJOUTER VERIFICATION PAR COOKIE DE LA CONNEXION
-                                    ?>
-                                    <form method="post" action="quitGroup.php" id="stripe-login">
-                                    <?php
-                                // }
+                                if (!isset($_COOKIE["name"])){
+                                    echo "VOUS DEVEZ VOUS CONNECTEZ POUR POUVOIR QUITTER UN GROUPE";
+                                }else {
+                                    echo '<input type="submit" class="modal__btn" name="submit" value="YEAH IM SURE &rarr;">                                    ';
+                                }
                             ?>
-                            <input type="submit" class="modal__btn" name="submit" value="YEAH IM SURE &rarr;">
-                            <?php
-                                // if (""==1){  //TODO AJOUTER VERIFICATION PAR COOKIE DE LA CONNEXION
-                                    ?>
-                                    </form>
-                                    <?php
-                                // }
-                            ?>                            
+                            </p>
                             <a href="#m2-c5" class="link-2"></a>
+                            </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="buttonpush.js"></script>
     </body>
 </html>
