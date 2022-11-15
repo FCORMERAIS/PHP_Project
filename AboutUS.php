@@ -45,7 +45,7 @@
                     <div class="card">
                         <div class="card-front3"></div>
                         <div class="card-back">
-                            <h2>Medhi ARROUSSI<br><span>Senior Developper</span></h2>
+                            <h2>Mehdi ARROUSSI<br><span>Senior Developper</span></h2>
                             <div class="social-icons">
                                 <a href="#"  class="github" aria-hidden="true"></a>
                             </div>
