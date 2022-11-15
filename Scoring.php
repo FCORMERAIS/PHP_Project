@@ -9,22 +9,19 @@ require("connectAccount.php");
 if(isset($_COOKIE["name"]) == true) {
 
 // On récupère son idGroup et sa dernière connexion dans la table 'user'
-$requete = $bdd->prepare('SELECT idGroup, lastConnection FROM user WHERE idGroup,lastConnexion = :idGroup, :lastConnection');
-
+$sql = "SELECT idGroup, lastConnection FROM `user` WHERE idGroup, lastConnexion = '".$_COOKIE["Name"]."'";
 // On récupère le score du Groupe dont fait partie l'utilisateur
-$requete = $bdd->prepare('SELECT score FROM group WHERE score = :score');
+$sql = "SELECT score FROM `group` WHERE score = '".$_COOKIE["Name"]."'";
 
 $_GET['score'] = $score;
 
-// On renvoie le score à la page 'menu.php' dans le header.
-header('Location: menu.php?score=' . $score);
-// on ferme la session
-session_close();
+echo $score;
+
 }
 else {
   // Sinon on informe qu'il n'est pas connecté
     echo "Vous n'êtes pas connecté";
-session_close();
+
 }
 
 exit();
