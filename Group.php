@@ -1,3 +1,9 @@
+<?php   if(!isset($_COOKIE["name"]))
+    {$connexion ="You are not connected";
+  }else { 
+    $connexion = 'Connected As ' . htmlspecialchars($_COOKIE["name"]) . ' !';
+  }?>
+
 <!DOCTYPE php>
     <head>
         <meta charset="utf-8">
@@ -16,13 +22,23 @@
                     
                     <li><FONT size="6pt"><a href="#">Profil</a></FONT></li>
                     <li><FONT size="6pt"><a href="Group.php">Group</a></FONT></li>
-                    
+                    <li><FONT size="6pt"><?php echo $connexion;?></FONT></li>
+
                 </ul>
             </nav>
             <p class="tempo">h</p>
             <p class="menu cta">Contact</p>
             <p class="connect"><a href="Login.php">Sign in</a></p>
         </header>
+        <div class="Activity">              
+            <?php
+                if ($connexion == "You are not connected") {
+                    echo "YOU NEED TO BEE CONNECTED AND TO JOIN A GROUP FOR GET INFORMATION ON YOUR GROUP";
+                }
+            ?> 
+
+        </div>
+
 
         <div class="overlay">
             <a class="close">&times;</a>

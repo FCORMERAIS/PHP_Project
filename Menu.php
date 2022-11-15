@@ -8,6 +8,11 @@
     require('addUser.php');
     addUser($_POST['userAdd'],$name);
   }
+  if(!isset($_COOKIE["name"]))
+    {$connexion ="You are not connected";
+  }else { 
+    $connexion = 'Connected As ' . htmlspecialchars($_COOKIE["name"]) . ' !';
+  }
     ?>
 </script>
 <!DOCTYPE php>
@@ -24,12 +29,10 @@
         <header>
             <a class="logo" href="/PHPProject/Menu.php"><img src="me.jpg" alt="logo" height="50" width="50" ></a>
             <nav>
-                <ul class="nav__links">
-                    
+                <ul class="nav__links">  
                     <li><FONT size="6pt"><a href="#">Profil</a></FONT></li>
                     <li><FONT size="6pt"><a href="Group.php">Group</a></FONT></li>
-                    <!-- <li><?php echo 'Connected As ' . htmlspecialchars($_COOKIE["name"]) . '!';?></li> -->
-
+                    <li><FONT size="6pt"style="color: rgba(0, 136, 169, 0.8);"><?php echo $connexion;?></FONT size="6pt"></li>
                 </ul>
             </nav>
             <p class="tempo">h</p>
@@ -89,11 +92,13 @@
                     </script>
                 </div>
             </div> 
-
+            <p class="redInfo">
             <?php
-
-            ?> 
-
+                if ($connexion == "You are not connected") {
+                    echo "YOU NEED TO BE CONNECTED AND TO JOIN A GROUP FOR GET INFORMATION ON YOUR GROUP";
+                }
+            ?>
+            </p>
         </div>
             <!-- <h1 class="title">WELCOME TO TASKMANAGER </h1> -->
         <div class="overlay">
@@ -115,6 +120,7 @@
                         </div>
                     </div>
                 </div>
+                <script type="text/javascript" src="buttonpush.js"></script>
                 <div class="box2">
                     <a href="#m2-o2" class="btna">View Group Members</a>
                     <div class="modal-container" id="m2-o2" style="--m-background: hsla(0, 0%, 0%, .4);">
@@ -134,24 +140,20 @@
                         <a href="#m2-o4" class="link-12" id="m2-c4">CREATE GROUP</a>
                         <div class="modal-container" id="m2-o4" style="--m-background: hsla(0, 0%, 0%, .4);">
                             <div class="modal">
-                            <h1 class="modal__title">ARE YOU SURE DO YOU WANT TO CREATE A GROUP ?</h1>
-                            <p class="modal__text">If you create a group you will quit the group if you are already in a group.</p>
+                            <h1 class="modal__title">ARE YOU SURE,image.png DO YOU WANT TO CREATE A GROUP ?</h1>
+                            <p class="modal__text">If you create a group you will quit the group that you are in.</p>
+                            <form method="post" action="createGroups.php" id="stripe-login">
+                            <p class="redInfo">
                             <?php
-                                // if (""==1){  //TODO AJOUTER VERIFICATION PAR COOKIE DE LA CONNEXION
-                                    ?>
-                                    <form method="post" action="createGroups.php" id="stripe-login">
-                                    <?php
-                                // }
+                                if (!isset($_COOKIE["name"])){
+                                    echo "VOUS DEVEZ VOUS CONNECTER POUR POUVOIR CREER UN GROUPE";
+                                }else {
+                                    echo '<input type="submit" class="modal__btn2" name="submit" value="YEAH IM SURE &rarr;">';
+                                }
                             ?>
-                            <input type="submit" class="modal__btn2" name="submit" value="YEAH IM SURE &rarr;">
-                            <?php
-                                // if (""==1){  //TODO AJOUTER VERIFICATION PAR COOKIE DE LA CONNEXION
-                                    ?>
-                                    </form>
-                                    <?php
-                                // }
-                            ?>
+                            </p>
                             <a href="#m2-c4" class="link-2"></a>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -161,28 +163,24 @@
                             <div class="modal">
                             <h1 class="modal__title">ARE YOU SURE TO QUIT GROUP ?</h1>
                             <p class="modal__text">if you quit the group you will loose all your point, if youre the captain the group will be dissolved !! SO ARE YOU SUR ??</p>
+                            </br>
+                            <form method="post" action="quitGroup.php" id="stripe-login">
+                            <p class="redInfo">
                             <?php
-                                // if (""==1){  //TODO AJOUTER VERIFICATION PAR COOKIE DE LA CONNEXION
-                                    ?>
-                                    <form method="post" action="quitGroup.php" id="stripe-login">
-                                    <?php
-                                // }
+                                if (!isset($_COOKIE["name"])){
+                                    echo "VOUS DEVEZ VOUS CONNECTEZ POUR POUVOIR QUITTER UN GROUPE";
+                                }else {
+                                    echo '<input type="submit" class="modal__btn" name="submit" value="YEAH IM SURE &rarr;">                                    ';
+                                }
                             ?>
-                            <input type="submit" class="modal__btn" name="submit" value="YEAH IM SURE &rarr;">
-                            <?php
-                                // if (""==1){  //TODO AJOUTER VERIFICATION PAR COOKIE DE LA CONNEXION
-                                    ?>
-                                    </form>
-                                    <?php
-                                // }
-                            ?>                            
+                            </p>
                             <a href="#m2-c5" class="link-2"></a>
+                            </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="buttonpush.js"></script>
     </body>
 </html>
