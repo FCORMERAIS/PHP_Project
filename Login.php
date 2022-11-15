@@ -53,7 +53,9 @@
       }else{
         if(isset($_POST['login'])){
           //TODO Cookies HERE
-
+          // setcookie("name",$_POST['email'],time()+3600);
+          // header("Location: /PHPProject/menu.php");
+          // exit();
 
           ?>
             <meta http-equiv="Refresh" content="0; url=Menu.php" />
