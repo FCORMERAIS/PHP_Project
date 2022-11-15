@@ -28,7 +28,7 @@
                     
                     <li><FONT size="6pt"><a href="#">Profil</a></FONT></li>
                     <li><FONT size="6pt"><a href="Group.php">Group</a></FONT></li>
-                    <li><?php echo 'Connected As ' . htmlspecialchars($_COOKIE["name"]) . '!';?></li>
+                    <!-- <li><?php echo 'Connected As ' . htmlspecialchars($_COOKIE["name"]) . '!';?></li> -->
 
                 </ul>
             </nav>
@@ -36,7 +36,66 @@
             <p class="menu cta">Contact</p>
             <p class="connect"><a href="Login.php">Sign in</a></p>
         </header>
-            <h1 class="title">WELCOME TO TASKMANAGER </h1>
+        <div class="Activity">  
+            <div class="containAddHabit">
+                <div class="login-box">
+                    <h2>Habit</h2>
+                    <form action="addHabit.php" name="forme" method="POST">
+                    <div class="user-box">
+                    <input type="text" name="Name" required="">
+                    <label>Name</label>
+                    </div>
+                    <div class="user-box">
+                    <input type="text" name="Description" required="">
+                    <label>Description</label>
+                    </div>
+                    <div class="user-box2">
+                    <label>Periodicity</label>
+                    <select name="Periodicity" id="periodicity" >
+                        <option value="">--Please choose an option--</option>
+                        <option value="1DAY">1 DAY</option>
+                        <option value="2DAY">3 DAY</option>
+                        <option value="1WEEK">1 WEEK</option>
+                        <option value="2WEEK">2 WEEK</option>
+                        <option value="1MONTH">1 MONTH</option>
+                    </select>   
+                    </div>
+                    <label>Difficulty</label>
+                    <select name="Difficulty" id="difficulty" >
+                        <option value="">--Please choose an option--</option>
+                        <option value="S">S</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                    </select>   
+                    <div class="ici">
+                    </form>
+
+                    <a onclick="submitPostLink()" href="#">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    add an habit
+                    </a>
+
+                    </div>
+                    <script language=javascript>
+                    function submitPostLink()
+                    {
+                    document.forme.submit();
+                    }
+                    </script>
+                </div>
+            </div> 
+
+            <?php
+
+            ?> 
+
+        </div>
+            <!-- <h1 class="title">WELCOME TO TASKMANAGER </h1> -->
         <div class="overlay">
             <a class="close">&times;</a>
             <div class="overlay__content">

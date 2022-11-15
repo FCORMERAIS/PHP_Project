@@ -23,15 +23,6 @@
             <p class="menu cta">Contact</p>
             <p class="connect"><a href="Login.php">Sign in</a></p>
         </header>
-        <div class="Activity">  
-            <p class="addhabit">add an habit</p>
-
-            <?php
-
-            ?> 
-
-        </div>
-
 
         <div class="overlay">
             <a class="close">&times;</a>
