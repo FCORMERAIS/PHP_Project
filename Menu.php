@@ -37,7 +37,14 @@
             </nav>
             <p class="tempo">h</p>
             <p class="menu cta">Contact</p>
-            <p class="connect"><a href="Login.php">Sign in</a></p>
+            <?php
+                if(isset($_COOKIE["name"])) {
+                    echo '<p class="connect"><a href="deco.php">Disconnect</a></p>';
+                }else {
+                    echo '<p class="connect"><a href="Login.php">Sign in</a></p>';
+                }
+            ?>
+            
         </header>
         <div class="Activity">  
             <div class="containAddHabit">
