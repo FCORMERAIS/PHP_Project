@@ -30,6 +30,7 @@
             <p class="menu cta">Contact</p>
             <p class="connect"><a href="Login.php">Sign in</a></p>
         </header>
+<<<<<<< HEAD
         <div class="Activity">              
             <?php
                 if ($connexion == "You are not connected") {
@@ -39,6 +40,8 @@
 
         </div>
 
+=======
+>>>>>>> origin/Marius
 
         <div class="overlay">
             <a class="close">&times;</a>
