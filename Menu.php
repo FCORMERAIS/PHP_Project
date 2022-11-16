@@ -13,8 +13,44 @@
   }else { 
     $connexion = 'Connected As ' . htmlspecialchars($_COOKIE["name"]) . ' !';
   }
-    ?>
-</script>
+  if (isset($_POST['check'])&& !empty($_POST['check']) && $_POST['check']=="true"){
+    try
+    {
+        $db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+    }
+    catch (Exception $e)
+    {
+        die('Erreur : ' . $e->getMessage());
+    }
+    $sqlQuery = 'SELECT * FROM activity WHERE name = :nameHabit';
+    $groupsStatement = $db->prepare($sqlQuery);
+    $groupsStatement->execute(
+        [
+            'nameHabit'=>$_POST["nameHabit"],
+        ]);
+    $habit = $groupsStatement->fetch();
+    $checkList="";
+    if ($habit['checkList'] != "" || $habit['checkList'] != null){
+        if(in_array($_COOKIE["name"],explode(" ",$habit['checkList']))){
+            $a = explode(" ",$habit['checkList']);
+            $key = array_search($_COOKIE["name"], $a);
+            unset($a[$key]);
+            $checkList=join(" ",$a);
+        }else{
+            $checkList=$habit['checkList']." ".$_COOKIE["name"];
+        }
+    }else{
+        $checkList=$_COOKIE["name"];
+    }
+    $sqlQuery = 'UPDATE activity SET checkList = :checkList WHERE name = :nameHabit';
+    $insertGroups = $db->prepare($sqlQuery);
+    $insertGroups->execute([
+        'checkList'=>$checkList,
+        'nameHabit' => $_POST['nameHabit'],
+    ]);
+  }
+    ?>  
 <!DOCTYPE php>
     <head>
         <meta charset="utf-8">
@@ -38,68 +74,143 @@
             <p class="tempo">h</p>
             <p class="menu cta">Contact</p>
             <p class="connect"><a href="Login.php">Sign in</a></p>
-        </header>
-        <div class="Activity">  
-            <div class="containAddHabit">
-                <div class="login-box">
-                    <h2>Habit</h2>
-                    <form action="addHabit.php" name="forme" method="POST">
-                    <div class="user-box">
-                    <input type="text" name="Name" required="">
-                    <label>Name</label>
-                    </div>
-                    <div class="user-box">
-                    <input type="text" name="Description" required="">
-                    <label>Description</label>
-                    </div>
-                    <div class="user-box2">
-                    <label>Periodicity</label>
-                    <select name="Periodicity" id="periodicity" >
-                        <option value="">--Please choose an option--</option>
-                        <option value="1DAY">1 DAY</option>
-                        <option value="2DAY">3 DAY</option>
-                        <option value="1WEEK">1 WEEK</option>
-                        <option value="2WEEK">2 WEEK</option>
-                        <option value="1MONTH">1 MONTH</option>
-                    </select>   
-                    </div>
-                    <label>Difficulty</label>
-                    <select name="Difficulty" id="difficulty" >
-                        <option value="">--Please choose an option--</option>
-                        <option value="S">S</option>
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                    </select>   
-                    <div class="ici">
-                    </form>
-
-                    <a onclick="submitPostLink()" href="#">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    add an habit
-                    </a>
-
-                    </div>
-                    <script language=javascript>
-                    function submitPostLink()
-                    {
-                    document.forme.submit();
-                    }
-                    </script>
-                </div>
-            </div> 
-            <p class="redInfo">
+        </header>            
             <?php
                 if ($connexion == "You are not connected") {
+                    ?>
+                    <p class="redInfo">
+                    <?php
                     echo "YOU NEED TO BE CONNECTED AND TO JOIN A GROUP FOR GET INFORMATION ON YOUR GROUP";
+                    ?>
+                    </p>
+                    <?php
+                }else{
+
+                    ?>
+                    <?php
+                    try
+                    {
+                        $db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+                    );
+                    }
+                    catch (Exception $e)
+                    {
+                        die('Erreur : ' . $e->getMessage());
+                    }
+                    $sqlQuery = 'SELECT * FROM activity WHERE groups = 32';
+                    $groupsStatement = $db->prepare($sqlQuery);
+                    $groupsStatement->execute();
+                    $habits = $groupsStatement->fetchAll();
+                    ?>
+                    <div class="Habit">
+                    <?php
+                    foreach ($habits as $habit){
+                        ?>
+                        <div class="cardHabit">
+                            <div class="titreHabit">
+                                <h2>
+                                    <?php
+                                        echo $habit["name"];    
+                                    ?>
+                                </h2>
+                            </div>
+                            <div class="periodicity">
+                            <p>
+                                <?php
+                                    echo $habit["periodicity"];
+                                ?>
+                            </p>
+                            </div>
+                            <div class="difficulty">
+                            <p>
+                                <?php
+                                    echo $habit["difficulty"];
+                                ?>
+                            </p>
+                            </div>
+                            <div class="marge"></div>
+                            <div class="Description">
+                            <p>
+                                <?php
+                                    echo $habit["text"];
+                                ?>
+                            </p>
+                            </div>
+                            <form method="POST" action="Menu.php">
+                                <div class="check">
+                                    <?php
+                                    if(in_array($_COOKIE["name"],explode(" ",$habit['checkList']))){
+                                        echo "<p>you already do it ! Wanna cancel it ?</p>";
+                                    }else{
+                                        echo "<p>you can do it !</p>";
+                                    }  
+                                    ?>
+                                    <input type="submit" name="" value="check"> 
+                                    <input type="hidden" name="check" value="true">
+                                    <input type="hidden" name="nameHabit" value="<?php echo $habit['name'];?>">
+                            </div>
+                            </form>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                    </div>
+
+                    <div class="containAddHabit">
+                    <div class="login-box">
+                        <h2>Habit</h2>
+                        <form action="addHabit.php" name="forme" method="POST">
+                        <div class="user-box">
+                        <input type="text" name="Name" required="">
+                        <label>Name</label>
+                        </div>
+                        <div class="user-box">
+                        <input type="text" name="Description" required="">
+                        <label>Description</label>
+                        </div>
+                        <div class="user-box2">
+                        <label>Periodicity</label>
+                        <select name="Periodicity" id="periodicity" >
+                            <option value="">--Please choose an option--</option>
+                            <option value="1DAY">1 DAY</option>
+                            <option value="2DAY">3 DAY</option>
+                            <option value="1WEEK">1 WEEK</option>
+                            <option value="2WEEK">2 WEEK</option>
+                            <option value="1MONTH">1 MONTH</option>
+                        </select>   
+                        </div>
+                        <label>Difficulty</label>
+                        <select name="Difficulty" id="difficulty" >
+                            <option value="">--Please choose an option--</option>
+                            <option value="S">S</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        </select>   
+                        <div class="ici">
+                        </form>
+    
+                        <a onclick="submitPostLink()" href="#">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        add an habit
+                        </a>
+    
+                        </div>
+                        <script language=javascript>
+                        function submitPostLink()
+                        {
+                        document.forme.submit();
+                        }
+                        </script>
+                    </div>
+                </div> 
+                <?php
                 }
             ?>
-            </p>
-        </div>
             <!-- <h1 class="title">WELCOME TO TASKMANAGER </h1> -->
         <div class="overlay">
             <a class="close">&times;</a>

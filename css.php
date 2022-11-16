@@ -65,6 +65,9 @@ header {
     align-items: center;
     padding: 30px 10%;
     background-color: #24252a;
+    position: fixed;
+    z-index: 10;
+    width:100%;
 }
 
 .logo {
@@ -272,6 +275,8 @@ button::-moz-focus-inner {
   color:red;
   text-align: center;
   font-size: xx-large;
+  top:200px;
+  position:relative;
 }
 
 .modal-container2 {
@@ -810,8 +815,63 @@ input {
     bottom: 100%;
   }
 }
+.Habit {
+  width:100%;
+  max-width:60rem;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: stretch;
+  top:20%;
+  position:relative;
 
+}
+.cardHabit{
+  margin-right:150px;
+  right:10%;
+  margin-top:50px;
+  left:550px;
+  position:relative;
+  background-color: #615D84 ;
+  width:300px;
+  height:200px;
+  border-radius:10px;
+  display: flex;  
+  max-width:300px;
+}
 
+.titreHabit{
+  margin-left:20px;
+  height:50px;
+}
 
+.periodicity {
+  margin-left:20px;
+  margin-top:7px;
+  height:50px;
 
+}
+
+.difficulty{
+  margin-left:30px;
+  margin-top:7px;
+    height:50px;
+
+}
+.marge{
+  margin-top:100px;
+  width:100%;
+  height:30px;
+  background-color: black;
+}
+.Description{
+  margin-top:7px;
+  margin-right:10px;
+}
+
+.check {
+  margin-top:100px;
+}
 <!-- HABIT ########################################################" -->
