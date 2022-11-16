@@ -1,4 +1,4 @@
-<?php
+<?php // TODO VERIFIER SI L'UTILISATEUR EST BIEN DANS UN GROUPE
     function addUser($nameInv,$nameUser){
         try
         {

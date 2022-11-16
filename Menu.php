@@ -44,9 +44,43 @@
                     echo '<p class="connect"><a href="Login.php">Sign in</a></p>';
                 }
             ?>
-            
         </header>
-        <div class="Activity">  
+        <div class="Activity"> 
+            <div class="invitation">
+                <p>
+                    <?php
+                        try
+                        {
+                            $db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+                        );
+                        }
+                        catch (Exception $e)
+                        {
+                                die('Erreur : ' . $e->getMessage());
+                        }
+                        
+                        // Ecriture de la requête
+                        $sqlQuery = 'SELECT invitationGroups FROM user WHERE Name = :nameUser';
+                        $insertGroups = $db->prepare($sqlQuery);
+                        $insertGroups->execute([
+                            'nameUser' => htmlspecialchars($_COOKIE["name"]),
+                        ]);
+                        $res = $insertGroups->fetch();
+                        $listInvit = explode(" ",$res["invitationGroups"]);
+                        for ($i = 0;$i<count($listInvit);$i++) {
+                            if ($listInvit[$i] != "") {
+                                $sqlQuery = 'SELECT name,chief FROM groups WHERE id = :idgroup';
+                                $insertGroups = $db->prepare($sqlQuery);
+                                $insertGroups->execute([
+                                    'idgroup' => $listInvit[$i],
+                                ]);
+                                $row = $insertGroups->fetch();
+                                echo $row["chief"] . " AS INVITE YOU TO JOIN ".$row["name"]."  |||||||||||||||||||||  ";
+                            }
+                        }
+                    ?>
+                </p>
+            </div> 
             <div class="containAddHabit">
                 <div class="login-box">
                     <h2>Habit</h2>
