@@ -9,14 +9,22 @@ function listUser(){
     {
         die('Erreur : ' . $e->getMessage());
     }
-    $sqlQuery = 'SELECT * FROM user WHERE idGroup = 33';
+    $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :nameuser';
     $groupsStatement = $db->prepare($sqlQuery);
-    $groupsStatement->execute();
-    $groups = $groupsStatement->fetchAll();
+    $groupsStatement->execute([
+        'nameuser' => $_COOKIE["name"],
+    ]);
+    $id = $groupsStatement->fetch();
+    $sqlQuery = 'SELECT Name FROM user WHERE idGroup=:id';
+    $groupsStatement = $db->prepare($sqlQuery);
+    $groupsStatement->execute([
+        'id' => $id["idGroup"],
+    ]);
+    $groups = $groupsStatement -> fetchAll();
     // On affiche chaque groupe un à un
-    foreach ($groups as $group) {
+    foreach ($groups as $name) {
     ?>
-        <p><?php echo $group['Name']; ?></p>
+        <p><?php echo $name["Name"]; ?></p>
     <?php
     }
 }

@@ -31,7 +31,7 @@ if (count($result) == 0) {
         'name' => htmlspecialchars($_COOKIE["name"]),
     ]);
 
-    $sqlQuery = 'SELECT id FROM groups WHERE name = :cookiename';
+    $sqlQuery = 'SELECT id FROM groups WHERE chief = :cookiename';
     $getid = $db->prepare($sqlQuery);
     $getid->execute([
         'cookiename' => htmlspecialchars($_COOKIE["name"]),

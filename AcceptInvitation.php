@@ -8,24 +8,34 @@
     {
         die('Erreur : ' . $e->getMessage());
     }
-    $sqlQuery = 'SELECT id FROM groups WHERE chief = :userchief';
+    $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :nameUser';
     $groupsStatement = $db->prepare($sqlQuery);
     $groupsStatement->execute([
-        'userchief' => $_POST["nameInvit"],
+        'nameUser' => htmlspecialchars($_COOKIE["name"]),
     ]);
-    $idgroup = $groupsStatement->fetch();
 
-    $sqlQuery = 'UPDATE user SET idGroup = :idgroup WHERE Name = :username';
-    $groupsStatement = $db->prepare($sqlQuery);
-    $groupsStatement->execute([
-        'idgroup' => $idgroup["id"],
-        'username' => htmlspecialchars($_COOKIE["name"]),
-    ]);
-    $sqlQuery = 'UPDATE user SET invitationGroups = "" WHERE Name = :username';
-    $groupsStatement = $db->prepare($sqlQuery);
-    $groupsStatement->execute([
-        'username' => htmlspecialchars($_COOKIE["name"]),
-    ]);
+    $GrouporNot = $groupsStatement->fetch();
+
+    if ($GrouporNot["idGroup"] == "" || $GrouporNot["idGroup"] == NULL) {
+        $sqlQuery = 'SELECT id FROM groups WHERE chief = :userchief';
+        $groupsStatement = $db->prepare($sqlQuery);
+        $groupsStatement->execute([
+            'userchief' => $_POST["nameInvit"],
+        ]);
+        $idgroup = $groupsStatement->fetch();
+
+        $sqlQuery = 'UPDATE user SET idGroup = :idgroup WHERE Name = :username';
+        $groupsStatement = $db->prepare($sqlQuery);
+        $groupsStatement->execute([
+            'idgroup' => $idgroup["id"],
+            'username' => htmlspecialchars($_COOKIE["name"]),
+        ]);
+        $sqlQuery = 'UPDATE user SET invitationGroups = "" WHERE Name = :username';
+        $groupsStatement = $db->prepare($sqlQuery);
+        $groupsStatement->execute([
+            'username' => htmlspecialchars($_COOKIE["name"]),
+        ]);
+    }
     header("Location: /PHPProject/menu.php");
     exit();
 ?>
