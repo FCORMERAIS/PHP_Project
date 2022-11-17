@@ -36,6 +36,6 @@
         'username' => htmlspecialchars($_COOKIE["name"]),
         'listinvit' => join(" ",$listinvit)
     ]);
-    // header("Location: /PHPProject/menu.php");
+    header("Location: /PHPProject/menu.php");
     exit();
 ?>
