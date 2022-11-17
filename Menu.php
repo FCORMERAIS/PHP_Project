@@ -75,7 +75,10 @@
                                     'idgroup' => $listInvit[$i],
                                 ]);
                                 $row = $insertGroups->fetch();
-                                echo $row["chief"] . " AS INVITE YOU TO JOIN ".$row["name"]."  |||||||||||||||||||||  ";
+                                echo "</br></br>".$row["chief"] . " AS INVITE YOU TO JOIN ".$row["name"]."  ";
+                                echo '<form action="AcceptInvitation.php" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input type="submit" name="submit" value="Accept">
+                                </form>
+                                <form action="deniedInvitation.php" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input type="submit" name="submit" value="Denied"></form></br></br>';
                             }
                         }
                     ?>

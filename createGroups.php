@@ -20,7 +20,7 @@ $result = $verify -> fetchAll();
 
 // Ecriture de la requête
 if (count($result) == 0) {
-    $sqlQuery = 'INSERT INTO groups(score,name,chief) VALUES (:score,:name,"groupe lalaa")';
+    $sqlQuery = 'INSERT INTO groups(score,chief,name) VALUES (:score,:name,"groupe lalaa")';
 
     // Préparation
     $insertGroups = $db->prepare($sqlQuery);
