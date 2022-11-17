@@ -16,7 +16,7 @@ catch (Exception $e)
         die('Erreur : ' . $e->getMessage());
 }
 
-$sql = "INSERT INTO activity(groups, name,text,periodicity,difficulty) VALUE (:groups,:name,:text,:periodicity,:difficulty)";
+$sql = "INSERT INTO activity(groups, name,text,periodicity,lastTimeDo,difficulty) VALUE (:groups,:name,:text,:periodicity,FROM_UNIXTIME(:lastTimeDo),:difficulty)";
 
 $insertGroups = $db->prepare($sql);
 
@@ -26,6 +26,7 @@ $insertGroups->execute([
     'name' => $name,
     'text' => $Description,
     'periodicity' => $Periodicity,
+    'lastTimeDo' => strtotime('tomorrow')-3600,
     'difficulty' => $Difficulty,
 ]);
 

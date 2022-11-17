@@ -839,6 +839,8 @@ input {
   height:200px;
   border-radius:10px;
   display: flex;  
+  flex-direction: row;
+	flex-wrap: wrap;
   max-width:300px;
 }
 
@@ -848,14 +850,14 @@ input {
 }
 
 .periodicity {
-  margin-left:20px;
+  margin-left:10px;
   margin-top:7px;
   height:50px;
 
 }
 
 .difficulty{
-  margin-left:30px;
+  margin-left:10px;
   margin-top:7px;
     height:50px;
 
@@ -873,5 +875,9 @@ input {
 
 .check {
   margin-top:100px;
+  max-height:50px;
+}
+.timeLeft{
+  margin-left:5px;
 }
 <!-- HABIT ########################################################" -->

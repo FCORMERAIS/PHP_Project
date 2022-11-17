@@ -25,6 +25,15 @@
 
     if($returnmsg == ""){
       setcookie("name",$mail,time()+3600);
+
+      // try{$db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);}
+      // catch (Exception $e){die('Erreur : ' . $e->getMessage());}
+      // $sqlQuery = 'UPDATE user SET invitationGroups = :invitationGroups WHERE Name = :nameUser';
+      //   $insertGroups = $db->prepare($sqlQuery);
+      //   $insertGroups->execute([
+      //       'invitationGroups'=>$s,
+      //       'nameUser' => $userInv["Name"],
+      //   ]);
       header("Location: /PHPProject/menu.php");
       exit();
     }
@@ -39,32 +48,6 @@
 </head>
 
 <body>
-    <?php
-      // session_start();
-      if (
-          (isset($_POST['email']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
-          || (isset($_POST['message']) &&  empty($_POST['message']))
-          )
-      {
-        ?>
-          <script>console.log("pas de login")</script>
-        <?php
-      }else{
-        if(isset($_POST['login'])){
-          //TODO Cookies HERE
-
-
-          ?>
-            <meta http-equiv="Refresh" content="0; url=Menu.php" />
-          <?php
-
-        }else{
-          ?>
-            <script>console.log("pas de login")</script>
-          <?php
-        } 
-      }
-    ?>
   <div class="login-root">
     <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
       <div class="loginbackground box-background--white padding-top--64">

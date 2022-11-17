@@ -33,10 +33,15 @@
     $checkList="";
     if ($habit['checkList'] != "" || $habit['checkList'] != null){
         if(in_array($_COOKIE["name"],explode(" ",$habit['checkList']))){
-            $a = explode(" ",$habit['checkList']);
-            $key = array_search($_COOKIE["name"], $a);
-            unset($a[$key]);
-            $checkList=join(" ",$a);
+            if (count(explode(" ",$habit['checkList']))!=1){
+                $a = explode(" ",$habit['checkList']);
+                $key = array_search($_COOKIE["name"], $a);
+                unset($a[$key]);
+                $checkList=join(" ",$a);
+            }else{
+                $checkList = null;
+            }
+            
         }else{
             $checkList=$habit['checkList']." ".$_COOKIE["name"];
         }
@@ -101,6 +106,12 @@
                     $groupsStatement = $db->prepare($sqlQuery);
                     $groupsStatement->execute();
                     $habits = $groupsStatement->fetchAll();
+
+                    $sqlQuery = 'SELECT * FROM user WHERE idGroup = 32';
+                    $groupsStatement = $db->prepare($sqlQuery);
+                    $groupsStatement->execute();
+                    $user = $groupsStatement->fetchAll();
+                    
                     ?>
                     <div class="Habit">
                     <?php
@@ -128,7 +139,6 @@
                                 ?>
                             </p>
                             </div>
-                            <div class="marge"></div>
                             <div class="Description">
                             <p>
                                 <?php
@@ -136,7 +146,7 @@
                                 ?>
                             </p>
                             </div>
-                            <form method="POST" action="Menu.php">
+                            <form class="" method="POST" action="Menu.php">
                                 <div class="check">
                                     <?php
                                     if(in_array($_COOKIE["name"],explode(" ",$habit['checkList']))){
@@ -150,6 +160,18 @@
                                     <input type="hidden" name="nameHabit" value="<?php echo $habit['name'];?>">
                             </div>
                             </form>
+                            <div class="nbDo">
+                                <p><?php 
+                                if($habit['checkList']!=""&& $habit['checkList']!=null &&$habit['checkList'] != " "){
+                                    echo count(explode(" ",$habit['checkList']))."/".count($user)." ".$habit['checkList'];
+                                }else{
+                                    echo "0/".count($user);
+                                }
+                                ?></p>
+                            </div>
+                            <div class="timeLeft">
+                                <p><?php  echo "il reste ".date("H:i",abs(time()-strtotime($habit['lastTimeDo'])));?></p>
+                            </div>
                         </div>
                         <?php
                     }
