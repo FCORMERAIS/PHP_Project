@@ -183,23 +183,23 @@
                         <h2>Habit</h2>
                         <form action="addHabit.php" name="forme" method="POST">
                         <div class="user-box">
-                        <input type="text" name="Name" required="">
-                        <label>Name</label>
+                            <input type="text" name="Name" required="">
+                            <label>Name</label>
                         </div>
                         <div class="user-box">
-                        <input type="text" name="Description" required="">
-                        <label>Description</label>
+                            <input type="text" name="Description" required="">
+                            <label>Description</label>
                         </div>
                         <div class="user-box2">
-                        <label>Periodicity</label>
-                        <select name="Periodicity" id="periodicity" >
-                            <option value="">--Please choose an option--</option>
-                            <option value="1DAY">1 DAY</option>
-                            <option value="2DAY">3 DAY</option>
-                            <option value="1WEEK">1 WEEK</option>
-                            <option value="2WEEK">2 WEEK</option>
-                            <option value="1MONTH">1 MONTH</option>
-                        </select>   
+                            <label>Periodicity</label>
+                            <select name="Periodicity" id="periodicity" >
+                                <option value="">--Please choose an option--</option>
+                                <option value="1DAY">1 DAY</option>
+                                <option value="2DAY">3 DAY</option>
+                                <option value="1WEEK">1 WEEK</option>
+                                <option value="2WEEK">2 WEEK</option>
+                                <option value="1MONTH">1 MONTH</option>
+                            </select>   
                         </div>
                         <label>Difficulty</label>
                         <select name="Difficulty" id="difficulty" >

@@ -1,12 +1,14 @@
 <?php 
   $returnmsg = "";
+  ?>
+    <script>console.log("laaaa eg")</script>
+    <?php
   require("connectAccount.php");
     $mail = $_POST["email"];
     $password = $_POST["password"];
     if ($mail == NULL && $returnmsg == ""|| $password == NULL && $returnmsg == "") {
       $returnmsg= "Please fill out the gaps ";
     }
-
     if ($returnmsg == "") {
       if(!testValueUser("phpproject","localhost","Name",$mail) && $returnmsg == ""){
         if (!testValueUser("phpproject","localhost","Mail",$mail) && $returnmsg == "") {
@@ -14,7 +16,6 @@
         }
       }
     }
-
     if ($returnmsg == "") {
       if(!testValuePassword("phpproject","localhost","Name",$password,$mail) && $returnmsg== ""){
         if(!testValuePassword("phpproject","localhost","Mail",$password,$mail) && $returnmsg== ""){
@@ -22,18 +23,11 @@
         }
       } 
     }
-
+    
     if($returnmsg == ""){
       setcookie("name",$mail,time()+3600);
-
-      // try{$db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);}
-      // catch (Exception $e){die('Erreur : ' . $e->getMessage());}
-      // $sqlQuery = 'UPDATE user SET invitationGroups = :invitationGroups WHERE Name = :nameUser';
-      //   $insertGroups = $db->prepare($sqlQuery);
-      //   $insertGroups->execute([
-      //       'invitationGroups'=>$s,
-      //       'nameUser' => $userInv["Name"],
-      //   ]);
+      require("checkHabit.php");
+      checkHabit($mail);
       header("Location: /PHPProject/menu.php");
       exit();
     }
