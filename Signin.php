@@ -34,19 +34,25 @@
       //$sql = "SELECT MAX(Id) as idmax FROM `user`";
       //$result = $connexion->query($sql);
       //$result+=1;
-
-    
+      
+      $password = password_hash($password, PASSWORD_DEFAULT);
       
       $sql = "INSERT INTO `user`(Name,Password,Mail,invitationGroups) VALUE ('$name','$password','$mail','')";
 
       if(mysqli_query($connexion,$sql)){
           echo "good";
-      }else { echo mysqli_error($connexion);}
+          // redirect to Menu page (menu.php)
+          // header("Location: /PHPProject/menu.php");
+
+      }
+      else { echo mysqli_error($connexion);}
       setcookie("name",$name,time()+3600);
       mysqli_close($connexion);
       //header("Location: /PHPProject/menu.php");
       exit();
     }
+
+      
 ?>
 <!DOCTYPE html>
 <html>
