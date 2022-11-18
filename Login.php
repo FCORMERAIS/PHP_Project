@@ -8,23 +8,26 @@
     }
 
     if ($returnmsg == "") {
-      if(!testValueUser("phpproject","localhost","Name",$mail) && $returnmsg == ""){
-        if (!testValueUser("phpproject","localhost","Mail",$mail) && $returnmsg == "") {
+      if(testValueUserName($mail)=="" && $returnmsg == ""){
+        if (testValueUserMail($mail)=="" && $returnmsg == "") {
             $returnmsg =  "sorry but the username or email is not good";
+        }else {
+          $nameUserCookie = testValueUserMail($mail);
         }
+      }else {
+        $nameUserCookie = testValueUserName($mail);
       }
     }
 
     if ($returnmsg == "") {
-      if(!testValuePassword("phpproject","localhost","Name",$password,$mail) && $returnmsg== ""){
-        if(!testValuePassword("phpproject","localhost","Mail",$password,$mail) && $returnmsg== ""){
-          $returnmsg =  "sorry but the password is not good";
-        }
-      } 
+      if(!testValuePassword($password,$nameUserCookie)){
+        $returnmsg =  "sorry but the password is not good";
+      }
     }
 
     if($returnmsg == ""){
-      setcookie("name",$mail,time()+3600);
+      setcookie("name",$nameUserCookie,time()+3600);
+      echo $nameUserCookie;
       header("Location: /PHPProject/menu.php");
       exit();
     }
@@ -43,7 +46,7 @@
       // session_start();
       if (
           (isset($_POST['email']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
-          || (isset($_POST['message']) &&  empty($_POST['message']))
+          || (isset($_POST['message']) && empty($_POST['message']))
           )
       {
         ?>
@@ -55,7 +58,7 @@
 
 
           ?>
-            <meta http-equiv="Refresh" content="0; url=Menu.php" />
+            <!-- <meta http-equiv="Refresh" content="0" /> -->
           <?php
 
         }else{
@@ -107,7 +110,7 @@
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Login to your account</span>
-              <form method="post" action="Login.php" id="stripe-login">
+              <form method="post" id="stripe-login">
                 <div class="field padding-bottom--24">
                   <label for="email">Email or Pseudo</label>
                   <input type="hidden" name="login" value="true">
