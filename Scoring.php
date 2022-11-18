@@ -6,16 +6,23 @@ session_start();
 require("connectAccount.php");
 
 // On vérifie si l'utilisateur est connecté
-if(isset($_COOKIE["name"]) == true) {
+if(isset($_COOKIE["Name"]) == true) {
 
 // On récupère son idGroup et sa dernière connexion dans la table 'user'
 $sql = "SELECT idGroup, lastConnection FROM `user` WHERE idGroup, lastConnexion = '".$_COOKIE["Name"]."'";
-// On récupère le score du Groupe dont fait partie l'utilisateur
-$sql = "SELECT score FROM `group` WHERE score = '".$_COOKIE["Name"]."'";
+$_GET['idGroup'] = $idGroup;
+$_GET['lastConnection'] = $lastConnection;
+
+// on accède à la table 'groupe' à travers idGroup de l'utilisateur
+$sql = "SELECT * FROM `groupe` WHERE idGroup = '".$_GET['idGroup']."'";
+
+// on récupere le score du groupe en question
+$sql = "SELECT score FROM `groupe` WHERE idGroup = '".$_GET['idGroup']."'";
 
 $_GET['score'] = $score;
 
-echo $score;
+
+echo "$score $idGroup $lastConnection";
 
 }
 else {
