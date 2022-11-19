@@ -1,12 +1,14 @@
 <?php 
   $returnmsg = "";
+  ?>
+    <script>console.log("laaaa eg")</script>
+    <?php
   require("connectAccount.php");
     $mail = $_POST["email"];
     $password = $_POST["password"];
     if ($mail == NULL && $returnmsg == ""|| $password == NULL && $returnmsg == "") {
       $returnmsg= "Please fill out the gaps ";
     }
-
     if ($returnmsg == "") {
       if(testValueUserName($mail)=="" && $returnmsg == ""){
         if (testValueUserMail($mail)=="" && $returnmsg == "") {
@@ -18,16 +20,16 @@
         $nameUserCookie = testValueUserName($mail);
       }
     }
-
     if ($returnmsg == "") {
       if(!testValuePassword($password,$nameUserCookie)){
         $returnmsg =  "sorry but the password is not good";
       }
     }
-
+    
     if($returnmsg == ""){
-      setcookie("name",$nameUserCookie,time()+3600);
-      echo $nameUserCookie;
+      setcookie("name",$nameUserCookie,time()+36000);
+      require("checkHabit.php");
+      checkHabit($mail);
       header("Location: /PHPProject/menu.php");
       exit();
     }
@@ -42,32 +44,6 @@
 </head>
 
 <body>
-    <?php
-      // session_start();
-      if (
-          (isset($_POST['email']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
-          || (isset($_POST['message']) && empty($_POST['message']))
-          )
-      {
-        ?>
-          <script>console.log("pas de login")</script>
-        <?php
-      }else{
-        if(isset($_POST['login'])){
-          //TODO Cookies HERE
-
-
-          ?>
-            <!-- <meta http-equiv="Refresh" content="0" /> -->
-          <?php
-
-        }else{
-          ?>
-            <script>console.log("pas de login")</script>
-          <?php
-        } 
-      }
-    ?>
   <div class="login-root">
     <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
       <div class="loginbackground box-background--white padding-top--64">

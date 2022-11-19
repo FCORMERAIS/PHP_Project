@@ -46,7 +46,7 @@
       ]);
       setcookie("name",$name,time()+36000);
       mysqli_close($connexion);
-      // header("Location: /PHPProject/menu.php");
+      header("Location: /PHPProject/menu.php");
       exit();
     }
 ?>
