@@ -4,7 +4,6 @@ $name = $_POST["Name"];
 $Periodicity = $_POST["Periodicity"];
 $Description = $_POST["Description"];
 $Difficulty = $_POST["Difficulty"];
-$group = "32";
 
 try
 {
@@ -15,12 +14,14 @@ catch (Exception $e)
 {
     die('Erreur : ' . $e->getMessage());
 }
+
 $sqlQuery = 'SELECT * FROM user WHERE Name = :nameUser';
     $groupsStatement = $db->prepare($sqlQuery);
     $groupsStatement->execute([
         'nameUser' => $_COOKIE['name'],
     ]);
     $user = $groupsStatement->fetch();
+    $group = $user["idGroup"];
 if (strtotime($user['lastTimeAddHabit'])+24*3600<time()){
     $sqlQuery = 'UPDATE user SET lastTimeAddHabit = :lastTime WHERE Name = :nameUser';
     $insertGroups = $db->prepare($sqlQuery);

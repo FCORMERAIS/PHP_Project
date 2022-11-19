@@ -20,7 +20,7 @@ $result = $verify -> fetchAll();
 
 // Ecriture de la requête
 if (count($result) == 0) {
-    $sqlQuery = 'INSERT INTO groups(score,name) VALUES (:score,:name)';
+    $sqlQuery = 'INSERT INTO groups(score,chief,name) VALUES (:score,:name,:groupname)';
 
     // Préparation
     $insertGroups = $db->prepare($sqlQuery);
@@ -29,9 +29,10 @@ if (count($result) == 0) {
     $insertGroups->execute([
         'score' => 1000,
         'name' => htmlspecialchars($_COOKIE["name"]),
+        'groupname' => $_POST["NameGroup"],
     ]);
 
-    $sqlQuery = 'SELECT id FROM groups WHERE name = :cookiename';
+    $sqlQuery = 'SELECT id FROM groups WHERE chief = :cookiename';
     $getid = $db->prepare($sqlQuery);
     $getid->execute([
         'cookiename' => htmlspecialchars($_COOKIE["name"]),

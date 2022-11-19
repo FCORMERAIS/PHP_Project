@@ -10,10 +10,10 @@
     }
 
     if ($returnmsg == "") {
-      if(testValueUser("phpproject","localhost","Name",$pseudo) && $returnmsg == ""){
+      if(testValueUserName($pseudo) && $returnmsg == ""){
         $returnmsg = "Sorry but the nickname is already use";
       }
-      if (testValueUser("phpproject","localhost","Mail",$mail) && $returnmsg == "") {
+      if (testValueUserMail($mail) && $returnmsg == "") {
         $returnmsg =  "sorry but the email is arlready use";
       }
     }
@@ -28,16 +28,22 @@
       $connexion = mysqli_connect($serverName,"root","",$db);
 
       if(!$connexion || $name == "") {die("pb de conextion".mysqli_connect_error());}
-
-      $sql = "SELECT MAX(Id) as idmax FROM user";
-      $result = $connexion->query($sql);
-      $result+=1;
-
-      $sql = "INSERT INTO user(Id,Name,Password,Mail) VALUE ('$result','$name','$password','$mail')";
-
-      if(mysqli_query($connexion,$sql)){
-          echo "good";
-      }else { "error deso poto";}
+      try
+      {
+        $db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+          );
+      }
+      catch (Exception $e)
+      {
+              die('Erreur : ' . $e->getMessage());
+      }
+      $sqlQuery = "INSERT INTO user(Id,Name,Password,Mail,invitationGroups,idGroup) VALUE (5,:name,:password,:mail,'','')";
+      $SQLREQUEST = $db->prepare($sqlQuery);
+      $SQLREQUEST->execute([
+          'name' => $name,
+          'password' => $password,
+          'mail' => $mail,
+      ]);
       setcookie("name",$name,time()+36000);
       mysqli_close($connexion);
       header("Location: /PHPProject/menu.php");

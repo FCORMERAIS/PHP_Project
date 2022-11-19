@@ -1,5 +1,5 @@
-<?php
-    function addUser($nameInv,$nameUser){
+<?php // TODO VERIFIER SI L'UTILISATEUR EST BIEN DANS UN GROUPE
+    function addUser($nameInv){
         try
         {
             $db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
@@ -9,42 +9,36 @@
         {
             die('Erreur : ' . $e->getMessage());
         }
-        $sqlQuery = 'SELECT * FROM user WHERE Name = :name';
+        $sqlQuery = 'SELECT chief FROM groups WHERE chief = :name';
         $groupsStatement = $db->prepare($sqlQuery);
-        $groupsStatement->execute(['name'=>$nameInv],);
-        $userInv = $groupsStatement->fetchAll();
-        // ///////////////////////////////////////////////////////////////////////////////////////
-        $sqlQuery = 'SELECT * FROM user WHERE Name = :name';
-        $groupsStatement = $db->prepare($sqlQuery);
-        $groupsStatement->execute(['name'=>$nameUser],);
-        $user = $groupsStatement->fetchAll();
-        // ///////////////////////////////////////////////////////////////////////////////////////
-        if (isset($user)){
-            foreach ($user as $users) {
-                // echo $users['Name']; 
-                $user = $users;
-                break;
+        $groupsStatement->execute(['name'=>$_COOKIE["name"]],);
+        $result = $groupsStatement->fetch();
+        if ($result["chief"] != "") {   
+            $sqlQuery = 'SELECT Name,invitationGroups,idGroup FROM user WHERE Name = :name OR Mail= :mail';
+            $groupsStatement = $db->prepare($sqlQuery);
+            $groupsStatement->execute([
+                'name'=>$nameInv,
+                'mail' =>$nameInv,
+            ],);
+            $userInv = $groupsStatement->fetch();
+            // ///////////////////////////////////////////////////////////////////////////////////////
+            $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :name';
+            $groupsStatement = $db->prepare($sqlQuery);
+            $groupsStatement->execute(['name'=>$_COOKIE["name"]],);
+            $user = $groupsStatement->fetch();
+            $s = $userInv['invitationGroups']." ".strval($user['idGroup']);
+            if (count(explode($user['idGroup'], $s)) == 2 && $userInv["idGroup"] != $user["idGroup"]) {
+                $sqlQuery = 'UPDATE user SET invitationGroups = :invitationGroups WHERE Name = :nameUser';
+                $insertGroups = $db->prepare($sqlQuery);
+                $insertGroups->execute([
+                    'invitationGroups'=>$s,
+                    'nameUser' => $userInv["Name"],
+                ]);
             }
-            foreach ($userInv as $usersinv) {
-                // echo $usersinv['Name']; 
-                $userInv = $usersinv;
-                break;
-            }
+        }else {
             ?>
-            <script>console.log("laaaa eg")</script>
-            <?php
-        }else{
-            ?>
-            <script>console.log("pas la")</script>
+            <script> alert("you need to be the chief of a groupe for invite someone")</script>
             <?php
         }
-        // echo $user['idGroup'];
-        $s = $userInv['invitationGroups']." ".strval($user['idGroup']);
-        $sqlQuery = 'UPDATE user SET invitationGroups = :invitationGroups WHERE Name = :nameUser';
-        $insertGroups = $db->prepare($sqlQuery);
-        $insertGroups->execute([
-            'invitationGroups'=>$s,
-            'nameUser' => $userInv["Name"],
-        ]);
     }
 ?>
