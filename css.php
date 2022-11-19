@@ -69,6 +69,7 @@ header {
 
 .logo {
     cursor: pointer;
+    display: flex;
 }
 
 .nav__links a,

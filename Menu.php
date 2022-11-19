@@ -11,10 +11,10 @@
     </head>
     <body class="corps">
         <header>
-            <a class="logo" href="/PHPProject/Menu.php"><img src="me.jpg" alt="logo" height="97" width="70" ></a>
+            <a class="logo" href="/PHPProject/Menu.php"><img src="habitat.png" alt="logo" height="90" width="150" ></a>
             <nav>
                 <ul class="nav__links">
-                    <li><a href="Scoring.php">score</a></li>
+                    <li><a href="/PHPproject/Scoring.php">Score !</a></li>    <!--  No echo till tests -->
                     <li><a href="#">Group</a></li>
                    
                 </ul>
