@@ -35,6 +35,10 @@
                     'nameUser' => $userInv["Name"],
                 ]);
             }
+        }else {
+            ?>
+            <script> alert("you need to be the chief of a groupe for invite someone")</script>
+            <?php
         }
     }
 ?>

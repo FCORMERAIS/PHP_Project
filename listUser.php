@@ -25,7 +25,7 @@ function listUser(){
         // On affiche chaque groupe un à un
         foreach ($groups as $name) {
         ?>
-            <p><?php echo $name["Name"]; ?></p>
+            <h2><?php echo $name["Name"]; ?></h2>
         <?php
         }
     }

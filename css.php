@@ -241,6 +241,10 @@ button::-moz-focus-inner {
   font-size: 1.6rem;
 }
 
+.listName{
+  text-align:center;
+}
+
 .box__info {
   margin-top: 6rem;
 }
@@ -304,6 +308,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 }
 
 .modal {
+  text-align:center;
   width: 60rem;
   padding: 4rem 2rem;
   border-radius: .8rem;

@@ -157,6 +157,7 @@
                     <div class="modal-container" id="m2-o3" style="--m-background: hsla(0, 0%, 0%, .4);">
                         <div class="modal">
                             <h1 class="modal__title2">Add a Member </h1>
+                            </br></br></br>
                                 <span class="input">
                                     <form method="POST" action="Menu.php">
                                     <input type="text" name="userAdd" placeholder="Please enter the pseudo or email">
@@ -179,10 +180,13 @@
                     <div class="modal-container" id="m2-o2" style="--m-background: hsla(0, 0%, 0%, .4);">
                         <div class="modal">
                             <h1 class="modal__title2">LIST GROUP</h1>
-                            <?php
-                            require('listUser.php');
-                            listUser();
-                            ?>
+                            </br></br></br>
+                            <div class="listName">
+                                <?php
+                                require('listUser.php');
+                                listUser();
+                                ?>
+                            </div>
                             <a href="#m2-c" class="link-2"></a>
                         </div>
                     </div>
@@ -193,8 +197,9 @@
                         <a href="#m2-o4" class="link-12" id="m2-c4">CREATE GROUP</a>
                         <div class="modal-container" id="m2-o4" style="--m-background: hsla(0, 0%, 0%, .4);">
                             <div class="modal">
-                            <h1 class="modal__title">ARE YOU SURE,image.png DO YOU WANT TO CREATE A GROUP ?</h1>
-                            <p class="modal__text">If you create a group you will quit the group that you are in.</p>
+                            <h1 class="modal__title">ARE YOU SURE, DO YOU WANT TO CREATE A GROUP ?</h1>
+                            <p class="modal__text">If you create a group you will quit the group that you are in. </p><p class="modal__text">Please enter a group name and click on cre ate group</p>
+                            </br></br>
                             <form method="post" action="createGroups.php" id="stripe-login">
                                 <input type="text" name="NameGroup" value="NameGroup">
                             <p class="redInfo">
