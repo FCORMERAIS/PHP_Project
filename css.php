@@ -65,7 +65,6 @@ header {
     align-items: center;
     padding: 30px 10%;
     background-color: #24252a;
-    position: fixed;
     z-index: 10;
     width:100%;
 }

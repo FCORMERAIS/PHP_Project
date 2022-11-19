@@ -67,7 +67,7 @@ function checkHabit($name){
             //TODO Retenir les modif et les afficher
             
 
-            header("Location: /PHPProject/recap.php");
+            header("Location: /PHPProject/Menu.php");
             exit();
         }
     }

@@ -162,127 +162,135 @@
                     $groupsStatement = $db->prepare($sqlQuery);
                     $groupsStatement->execute(['idGroup' => $IdGroupUser["idGroup"]],);
                     $user = $groupsStatement->fetchAll();
-                    ?>
-                    <div class="Habit">
-                    <?php
-                    foreach ($habits as $habit){
+                    if ($IdGroupUser["idGroup"] != "" ) {
                         ?>
-                        <div class="cardHabit">
-                            <div class="titreHabit">
-                                <h2>
-                                    <?php
-                                        echo $habit["name"];    
-                                    ?>
-                                </h2>
-                            </div>
-                            <div class="periodicity">
-                            <p>
-                                <?php
-                                    echo $habit["periodicity"];
-                                ?>
-                            </p>
-                            </div>
-                            <div class="difficulty">
-                            <p>
-                                <?php
-                                    echo $habit["difficulty"];
-                                ?>
-                            </p>
-                            </div>
-                            <div class="Description">
-                            <p>
-                                <?php
-                                    echo $habit["text"];
-                                ?>
-                            </p>
-                            </div>
-                            <form class="" method="POST" action="Menu.php">
-                                <div class="check">
-                                    <?php
-                                    if(in_array($_COOKIE["name"],explode(" ",$habit['checkList']))){
-                                        echo "<p>you already do it ! Wanna cancel it ?</p>";
-                                    }else{
-                                        echo "<p>you can do it !</p>";
-                                    }  
-                                    ?>
-                                    <input type="submit" name="" value="check"> 
-                                    <input type="hidden" name="check" value="true">
-                                    <input type="hidden" name="nameHabit" value="<?php echo $habit['name'];?>">
-                            </div>
-                            </form>
-                            <div class="nbDo">
-                                <p><?php 
-                                if($habit['checkList']!=""&& $habit['checkList']!=null &&$habit['checkList'] != " "){
-                                    echo count(explode(" ",$habit['checkList']))."/".count($user)." ".$habit['checkList'];
-                                }else{
-                                    echo "0/".count($user);
-                                }
-                                ?></p>
-                            </div>
-                            <div class="timeLeft">
-                                <p><?php  echo "il reste ".date("H:i",abs(time()-strtotime($habit['lastTimeDo'])));?></p>
-                            </div>
-                        </div>
+                        <div class="Habit">
                         <?php
-                    }
-                    ?>
-                    </div>
-
-                    <div class="containAddHabit">
-                    <div class="login-box">
-                        <h2>Habit</h2>
-                        <form action="addHabit.php" name="forme" method="POST">
-                        <div class="user-box">
-                            <input type="text" name="Name" required="">
-                            <label>Name</label>
-                        </div>
-                        <div class="user-box">
-                            <input type="text" name="Description" required="">
-                            <label>Description</label>
-                        </div>
-                        <div class="user-box2">
-                            <label>Periodicity</label>
-                            <select name="Periodicity" id="periodicity" >
-                                <option value="">--Please choose an option--</option>
-                                <option value="1DAY">1 DAY</option>
-                                <option value="2DAY">3 DAY</option>
-                                <option value="1WEEK">1 WEEK</option>
-                                <option value="2WEEK">2 WEEK</option>
-                                <option value="1MONTH">1 MONTH</option>
-                            </select>   
-                        </div>
-                        <label>Difficulty</label>
-                        <select name="Difficulty" id="difficulty" >
-                            <option value="">--Please choose an option--</option>
-                            <option value="S">S</option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                        </select>   
-                        <div class="ici">
-                        </form>
-    
-                        <a onclick="submitPostLink()" href="#">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        add an habit
-                        </a>
-    
-                        </div>
-                        <script language=javascript>
-                        function submitPostLink()
-                        {
-                        document.forme.submit();
+                        foreach ($habits as $habit){
+                            ?>
+                            <div class="cardHabit">
+                                <div class="titreHabit">
+                                    <h2>
+                                        <?php
+                                            echo $habit["name"];    
+                                        ?>
+                                    </h2>
+                                </div>
+                                <div class="periodicity">
+                                <p>
+                                    <?php
+                                        echo $habit["periodicity"];
+                                    ?>
+                                </p>
+                                </div>
+                                <div class="difficulty">
+                                <p>
+                                    <?php
+                                        echo $habit["difficulty"];
+                                    ?>
+                                </p>
+                                </div>
+                                <div class="Description">
+                                <p>
+                                    <?php
+                                        echo $habit["text"];
+                                    ?>
+                                </p>
+                                </div>
+                                <form class="" method="POST" action="Menu.php">
+                                    <div class="check">
+                                        <?php
+                                        if(in_array($_COOKIE["name"],explode(" ",$habit['checkList']))){
+                                            echo "<p>you already do it ! Wanna cancel it ?</p>";
+                                        }else{
+                                            echo "<p>you can do it !</p>";
+                                        }  
+                                        ?>
+                                        <input type="submit" name="" value="check"> 
+                                        <input type="hidden" name="check" value="true">
+                                        <input type="hidden" name="nameHabit" value="<?php echo $habit['name'];?>">
+                                </div>
+                                </form>
+                                <div class="nbDo">
+                                    <p><?php 
+                                    if($habit['checkList']!=""&& $habit['checkList']!=null &&$habit['checkList'] != " "){
+                                        echo count(explode(" ",$habit['checkList']))."/".count($user)." ".$habit['checkList'];
+                                    }else{
+                                        echo "0/".count($user);
+                                    }
+                                    ?></p>
+                                </div>
+                                <div class="timeLeft">
+                                    <p><?php  echo "il reste ".date("H:i",abs(time()-strtotime($habit['lastTimeDo'])));?></p>
+                                </div>
+                            </div>
+                            <?php
                         }
-                        </script>
-                    </div>
-                </div> 
-                <?php
+                        ?>
+                        </div>
+
+                        <div class="containAddHabit">
+                        <div class="login-box">
+                            <h2>Habit</h2>
+                            <form action="addHabit.php" name="forme" method="POST">
+                            <div class="user-box">
+                                <input type="text" name="Name" required="">
+                                <label>Name</label>
+                            </div>
+                            <div class="user-box">
+                                <input type="text" name="Description" required="">
+                                <label>Description</label>
+                            </div>
+                            <div class="user-box2">
+                                <label>Periodicity</label>
+                                <select name="Periodicity" id="periodicity" >
+                                    <option value="">--Please choose an option--</option>
+                                    <option value="1DAY">1 DAY</option>
+                                    <option value="2DAY">3 DAY</option>
+                                    <option value="1WEEK">1 WEEK</option>
+                                    <option value="2WEEK">2 WEEK</option>
+                                    <option value="1MONTH">1 MONTH</option>
+                                </select>   
+                            </div>
+                            <label>Difficulty</label>
+                            <select name="Difficulty" id="difficulty" >
+                                <option value="">--Please choose an option--</option>
+                                <option value="S">S</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>   
+                            <div class="ici">
+                            </form>
+        
+                            <a onclick="submitPostLink()" href="#">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            add an habit
+                            </a>
+        
+                            </div>
+                            <script language=javascript>
+                            function submitPostLink()
+                            {
+                            document.forme.submit();
+                            }
+                            </script>
+                        </div>
+                    </div> 
+                    <?php
+                    }else {
+                        ?>
+                        <p class="redInfo">
+                            <?php
+                        echo "You need to be in a Group for Add an Habit";
+                    }
                 }
-            ?>
+                ?>
+                    </p>
             <!-- <h1 class="title">WELCOME TO TASKMANAGER </h1> -->
         <div class="overlay"style="z-index: 50;">
             <a class="close">&times;</a>
@@ -335,19 +343,16 @@
                             <h1 class="modal__title">ARE YOU SURE, DO YOU WANT TO CREATE A GROUP ?</h1>
                             <p class="modal__text">If you create a group you will quit the group that you are in. </p><p class="modal__text">Please enter a group name and click on cre ate group</p>
                             </br></br>
-                            <form method="post" action="createGroups.php" id="stripe-login">
-                                <input type="text" name="NameGroup" value="NameGroup">
                             <p class="redInfo2">
                             <?php
                                 if (!isset($_COOKIE["name"])){
                                     echo "VOUS DEVEZ VOUS CONNECTER POUR POUVOIR CREER UN GROUPE";
                                 }else {
-                                    echo '<input type="submit" class="modal__btn2" name="submit" value="YEAH IM SURE &rarr;">';
+                                    echo '<form method="post" action="createGroups.php" id="stripe-login"><input type="text" name="NameGroup" value="NameGroup"><input type="submit" class="modal__btn2" name="submit" value="YEAH IM SURE &rarr;"></form>';
                                 }   
                             ?>
                             </p>
                             <a href="#m2-c4" class="link-2"></a>
-                            </form>
                             </div>
                         </div>
                     </div>
