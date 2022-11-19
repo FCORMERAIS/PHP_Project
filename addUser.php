@@ -14,9 +14,12 @@
         $groupsStatement->execute(['name'=>$_COOKIE["name"]],);
         $result = $groupsStatement->fetch();
         if ($result["chief"] != "") {   
-            $sqlQuery = 'SELECT Name,invitationGroups,idGroup FROM user WHERE Name = :name';
+            $sqlQuery = 'SELECT Name,invitationGroups,idGroup FROM user WHERE Name = :name OR Mail= :mail';
             $groupsStatement = $db->prepare($sqlQuery);
-            $groupsStatement->execute(['name'=>$nameInv],);
+            $groupsStatement->execute([
+                'name'=>$nameInv,
+                'mail' =>$nameInv,
+            ],);
             $userInv = $groupsStatement->fetch();
             // ///////////////////////////////////////////////////////////////////////////////////////
             $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :name';
