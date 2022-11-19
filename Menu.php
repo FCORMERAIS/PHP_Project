@@ -96,9 +96,6 @@
                     </p>
                     <?php
                 }else{
-
-                    ?>
-                    <?php
                     ?>
                     <div class="invitation">
                         <p>
@@ -110,9 +107,8 @@
                                 }
                                 catch (Exception $e)
                                 {
-                                        die('Erreur : ' . $e->getMessage());
+                                    die('Erreur : ' . $e->getMessage());
                                 }
-                                
                                 // Ecriture de la requête
                                 $sqlQuery = 'SELECT invitationGroups FROM user WHERE Name = :nameUser';
                                 $insertGroups = $db->prepare($sqlQuery);
