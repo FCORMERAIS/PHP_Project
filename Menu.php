@@ -23,11 +23,11 @@
     {
         die('Erreur : ' . $e->getMessage());
     }
-    $sqlQuery = 'SELECT * FROM activity WHERE name = :nameHabit';
+    $sqlQuery = 'SELECT * FROM activity WHERE id = :idHabit';
     $groupsStatement = $db->prepare($sqlQuery);
     $groupsStatement->execute(
         [
-            'nameHabit'=>$_POST["nameHabit"],
+            'idHabit'=>$_POST["idHabit"],
         ]);
     $habit = $groupsStatement->fetch();
     $checkList="";
@@ -48,11 +48,11 @@
     }else{
         $checkList=$_COOKIE["name"];
     }
-    $sqlQuery = 'UPDATE activity SET checkList = :checkList WHERE name = :nameHabit';
+    $sqlQuery = 'UPDATE activity SET checkList = :checkList WHERE id = :idHabit';
     $insertGroups = $db->prepare($sqlQuery);
     $insertGroups->execute([
         'checkList'=>$checkList,
-        'nameHabit' => $_POST['nameHabit'],
+        'idHabit' => $_POST['idHabit'],
     ]);
   }
     ?>  
@@ -204,7 +204,7 @@
                                         ?>
                                         <input type="submit" name="" value="check"> 
                                         <input type="hidden" name="check" value="true">
-                                        <input type="hidden" name="nameHabit" value="<?php echo $habit['name'];?>">
+                                        <input type="hidden" name="idHabit" value="<?php echo $habit['id'];?>">
                                 </div>
                                 </form>
                                 <div class="nbDo">
