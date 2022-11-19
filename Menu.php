@@ -6,7 +6,7 @@
   {
     $name = htmlspecialchars($_COOKIE["name"]);
     require('addUser.php');
-    addUser($_POST['userAdd'],$name);
+    addUser($_POST['userAdd']);
   }
   if(!isset($_COOKIE["name"]))
     {$connexion ="You are not connected";
@@ -196,6 +196,7 @@
                             <h1 class="modal__title">ARE YOU SURE,image.png DO YOU WANT TO CREATE A GROUP ?</h1>
                             <p class="modal__text">If you create a group you will quit the group that you are in.</p>
                             <form method="post" action="createGroups.php" id="stripe-login">
+                                <input type="text" name="NameGroup" value="NameGroup">
                             <p class="redInfo">
                             <?php
                                 if (!isset($_COOKIE["name"])){

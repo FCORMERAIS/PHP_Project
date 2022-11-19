@@ -16,7 +16,7 @@
         'nameUser' => htmlspecialchars($_COOKIE["name"]),
     ]);
     
-    $sqlQuery = 'SELECT id FROM groups WHERE name = :nameUser';
+    $sqlQuery = 'SELECT id FROM groups WHERE chief = :nameUser';
     $Lookchief = $db->prepare($sqlQuery);
     $Lookchief->execute([
         'nameUser' => htmlspecialchars($_COOKIE["name"]),
@@ -36,10 +36,11 @@
     ]);
 
     $sqlQuery = 'UPDATE user SET invitationGroups = TRIM(:idgroup FROM invitationGroups)';
-    $deleteInvitation = $db->prepare($sqlQuery);
-    $deleteInvitation -> execute([
-        'idgroup'=> $idgroupdelete,
+    $Groupdelete = $db->prepare($sqlQuery);
+    $Groupdelete-> execute([
+        'idgroup' => $idgroupdelete,
     ]);
+
     //TODO ajouter a l'utilisateur le groups en FOREING KEY
     
     // On récupère tout le contenu de la table groups

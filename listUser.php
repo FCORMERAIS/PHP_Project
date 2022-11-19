@@ -15,17 +15,19 @@ function listUser(){
         'nameuser' => $_COOKIE["name"],
     ]);
     $id = $groupsStatement->fetch();
-    $sqlQuery = 'SELECT Name FROM user WHERE idGroup=:id';
-    $groupsStatement = $db->prepare($sqlQuery);
-    $groupsStatement->execute([
-        'id' => $id["idGroup"],
-    ]);
-    $groups = $groupsStatement -> fetchAll();
-    // On affiche chaque groupe un à un
-    foreach ($groups as $name) {
-    ?>
-        <p><?php echo $name["Name"]; ?></p>
-    <?php
+    if ($id["idGroup"] != "") {
+        $sqlQuery = 'SELECT Name FROM user WHERE idGroup=:id';
+        $groupsStatement = $db->prepare($sqlQuery);
+        $groupsStatement->execute([
+            'id' => $id["idGroup"],
+        ]);
+        $groups = $groupsStatement -> fetchAll();
+        // On affiche chaque groupe un à un
+        foreach ($groups as $name) {
+        ?>
+            <p><?php echo $name["Name"]; ?></p>
+        <?php
+        }
     }
 }
 
