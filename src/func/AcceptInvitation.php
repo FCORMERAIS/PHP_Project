@@ -36,6 +36,6 @@
             'username' => htmlspecialchars($_COOKIE["name"]),
         ]);
     }
-    header("Location: /PHPProject/menu.php");
+    header("Location: /PHPProject/src/component/menu.php");
     exit();
 ?>

@@ -62,7 +62,7 @@
     // foreach ($groups as $group) {
     // }
     ?>
-    <meta http-equiv="Refresh" content="0; url=Menu.php" />
+    <meta http-equiv="Refresh" content="0; url=../component/Menu.php" />
     <?php
 
 ?>
