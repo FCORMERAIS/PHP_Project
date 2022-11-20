@@ -10,6 +10,14 @@ header('Content-type: text/css; charset:UTF-8');
   padding: 0;
 }
 
+p{
+  color:hsl(255deg 30% 55%);
+}
+
+h2{
+  color:black;
+}
+
 .careful {
     background-color:red;
     margin-top : 25%;
@@ -622,7 +630,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 .input {
 	position:relative;
-	font-size: 1.5em;
+	font-size: 1.2em;
 	background: linear-gradient(21deg, #10abff, #1beabd);
 	padding: 3px;
 	display: inline-block;
@@ -848,11 +856,10 @@ input {
   right:10%;
   margin-top:50px;
   left:550px;
-  position:relative;
-  background-color: #615D84 ;
   width:300px;
   height:200px;
   border-radius:10px;
+  position:relative;
   display: flex;  
   flex-direction: row;
 	flex-wrap: wrap;
@@ -896,3 +903,70 @@ input {
   margin-left:5px;
 }
 <!-- HABIT ########################################################" -->
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #34495e;
+}
+
+.cards {
+  right:10%;
+  margin-top:50px;
+  left: 19%;
+  border-radius:10px;
+  position:relative;
+  display: flex;  
+  flex-direction: row;
+	flex-wrap: wrap;
+  max-width: 75%;
+}
+
+.card {
+  margin-top:2%;
+  float: left;
+  margin-right : 5%;
+}
+
+.card-title {
+  display: block;
+  text-align: center;
+  color: #fff;
+  background-color: #6184a8;
+  padding: 2%;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.card img {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+}
+
+.card-desc {
+  display: block;
+  font-size: 1.2rem;
+  position: absolute;
+  height: 0;
+  top: 0;
+  opacity: 0;
+  padding: 18px 8%;
+  background-color: #24252a;
+  overflow-y: scroll;
+  transition: 0.8s ease;
+}
+
+.card:hover .card-desc {
+  opacity: 1;
+  height: 100%;
+}
+
+h1 {
+  font-size: 2.8rem;
+  color: #fff;
+  margin: 40px 0 20px 0;
+  text-align: center;
+}

@@ -1,5 +1,5 @@
 <header>
-            <a class="logo" href="/PHPProject/src/component/Menu.php"><img src="../../assets/me.jpg" alt="logo" height="50" width="50" ></a>
+            <a class="logo" href="/PHPProject/src/component/Menu.php"><img src="../../assets/tinylogo.png" alt="logo" height="75" width="75" ></a>
             <nav>
                 <ul class="nav__links">  
                     <li><FONT size="6pt"><a href="#">Profil</a></FONT></li>
