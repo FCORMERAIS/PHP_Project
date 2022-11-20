@@ -18,7 +18,7 @@
                         </div>
                     </div>
                 </div>
-                <script type="text/javascript" src="buttonpush.js"></script>
+                <script type="text/javascript" src="../../assets/buttonpush.js"></script>
                 <div class="box2">
                     <a href="#m2-o2" class="btna">View Group Members</a>
                     <div class="modal-container" id="m2-o2" style="--m-background: hsla(0, 0%, 0%, .4);">
