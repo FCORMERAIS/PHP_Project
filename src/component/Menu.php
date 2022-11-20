@@ -83,7 +83,19 @@
                         <?php
                         foreach ($habits as $habit){
                             ?>
-                            <div class="cardHabit">
+                            <div class="cardHabit"style="background-color: <?php 
+                            if ($habit["difficulty"] == "S") {
+                                echo "gold";
+                            }else if ($habit["difficulty"] == "A") {
+                                echo "#05512C";
+                            }else if ($habit["difficulty"] == "B") {
+                                echo "#23BD9D";
+                            }else if ($habit["difficulty"] == "C") {
+                                echo "#0A0F89";
+                            }else {
+                                echo "#78034E";
+                            }
+                            ;?>;">
                                 <div class="titreHabit">
                                     <h2>
                                         <?php
@@ -95,13 +107,6 @@
                                 <p>
                                     <?php
                                         echo $habit["periodicity"];
-                                    ?>
-                                </p>
-                                </div>
-                                <div class="difficulty">
-                                <p>
-                                    <?php
-                                        echo $habit["difficulty"];
                                     ?>
                                 </p>
                                 </div>

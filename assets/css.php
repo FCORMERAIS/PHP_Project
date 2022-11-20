@@ -849,7 +849,6 @@ input {
   margin-top:50px;
   left:550px;
   position:relative;
-  background-color: #615D84 ;
   width:300px;
   height:200px;
   border-radius:10px;
