@@ -1,28 +1,12 @@
 <?php
 function listUser(){
     if (isset($_COOKIE["name"])) {
-        try
-        {
-            $db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-        );
-        }
-        catch (Exception $e)
-        {
-            die('Erreur : ' . $e->getMessage());
-        }
+        
         $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :nameuser';
-        $groupsStatement = $db->prepare($sqlQuery);
-        $groupsStatement->execute([
-            'nameuser' => $_COOKIE["name"],
-        ]);
-        $id = $groupsStatement->fetch();
+        $id = SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
         if ($id["idGroup"] != "") {
             $sqlQuery = 'SELECT Name FROM user WHERE idGroup=:id';
-            $groupsStatement = $db->prepare($sqlQuery);
-            $groupsStatement->execute([
-                'id' => $id["idGroup"],
-            ]);
-            $groups = $groupsStatement -> fetchAll();
+            $groups = SQLREQUEST($sqlQuery,$id["idGroup"]);
             // On affiche chaque groupe un à un
             foreach ($groups as $name) {
             ?>

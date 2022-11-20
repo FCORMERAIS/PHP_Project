@@ -1,6 +1,7 @@
 <?php
     include "../asset/phpMenu.php";
     include "../asset/header.php";
+
     ?>  
 
     <body class="corps">
@@ -19,31 +20,16 @@
                     <div class="invitation">
                         <p>
                             <?php
-                                try
-                                {
-                                    $db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-                                );
-                                }
-                                catch (Exception $e)
-                                {
-                                    die('Erreur : ' . $e->getMessage());
-                                }
+                               
                                 // Ecriture de la requête
                                 $sqlQuery = 'SELECT invitationGroups FROM user WHERE Name = :nameUser';
-                                $insertGroups = $db->prepare($sqlQuery);
-                                $insertGroups->execute([
-                                    'nameUser' => htmlspecialchars($_COOKIE["name"]),
-                                ]);
-                                $res = $insertGroups->fetch();
+                                $res = SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
+                                
                                 $listInvit = explode(" ",$res["invitationGroups"]);
                                 for ($i = 0;$i<count($listInvit);$i++) {
                                     if ($listInvit[$i] != "") {
-                                        $sqlQuery = 'SELECT name,chief FROM groups WHERE id = :idgroup';
-                                        $insertGroups = $db->prepare($sqlQuery);
-                                        $insertGroups->execute([
-                                            'idgroup' => $listInvit[$i],
-                                        ]);
-                                        $row = $insertGroups->fetch();
+                                        $sqlQuery = 'SELECT * FROM groups WHERE id = :idgroup';
+                                        $row = SQLREQUEST($sqlQuery,$listInvit[$i],"fetch");
                                         echo "<div class='invit'></br></br>".$row["chief"] . " AS INVITE YOU TO JOIN ".$row["name"]."  ";
                                         echo '<form action="../func/AcceptInvitation.php" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input class="input" type="submit" name="submit" value="Accept">
                                         </form>
@@ -54,29 +40,17 @@
                         </p>
                     </div> 
                     <?php
-                    try
-                    {
-                        $db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-                    );
-                    }
-                    catch (Exception $e)
-                    {
-                        die('Erreur : ' . $e->getMessage());
-                    }
-                    $sqlQuery = 'SELECT * FROM user WHERE Name = :userCookie';
-                    $groupsStatement = $db->prepare($sqlQuery);
-                    $groupsStatement->execute(['userCookie'=> $_COOKIE["name"]],);
-                    $IdGroupUser=$groupsStatement->fetch();
+                   
+
+                    $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :userCookie';
+                    $IdGroupUser = SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");                    
 
                     $sqlQuery = 'SELECT * FROM activity WHERE groups = :idGroup';
-                    $groupsStatement = $db->prepare($sqlQuery);
-                    $groupsStatement->execute(['idGroup' => $IdGroupUser["idGroup"]],);
-                    $habits = $groupsStatement->fetchAll();
+                    $habits = SQLREQUEST($sqlQuery,$IdGroupUser["idGroup"],"fetchAll"); 
 
                     $sqlQuery = 'SELECT * FROM user WHERE idGroup = :idGroup';
-                    $groupsStatement = $db->prepare($sqlQuery);
-                    $groupsStatement->execute(['idGroup' => $IdGroupUser["idGroup"]],);
-                    $user = $groupsStatement->fetchAll();
+                    $user = SQLREQUEST($sqlQuery,$IdGroupUser["idGroup"],"fetchAll");                    
+                    
                     if ($IdGroupUser["idGroup"] != "" ) {
                         ?>
                         <div class="Habit">
@@ -129,7 +103,7 @@
                                 <div class="nbDo">
                                     <p><?php 
                                     if($habit['checkList']!=""&& $habit['checkList']!=null &&$habit['checkList'] != " "){
-                                        echo (count(explode(" ",$habit['checkList']))-1)."/".count($user)." ".$habit['checkList'];
+                                        echo (count(explode(" ",$habit['checkList'])))."/".count($user)." ".$habit['checkList'];
                                     }else{
                                         echo "0/".count($user);
                                     }

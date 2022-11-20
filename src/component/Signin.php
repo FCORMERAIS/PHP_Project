@@ -35,7 +35,7 @@
     }
     catch (Exception $e)
     {
-            die('Erreur : ' . $e->getMessage());
+      die('Erreur : ' . $e->getMessage());
     }
     $sqlQuery = "INSERT INTO user(Name,Password,Mail,invitationGroups,idGroup) VALUE (:name,:password,:mail,'','')";
     $SQLREQUEST = $db->prepare($sqlQuery);

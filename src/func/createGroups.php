@@ -11,19 +11,13 @@ catch (Exception $e)
         die('Erreur : ' . $e->getMessage());
 }
 $sqlQuery = 'SELECT Name FROM user WHERE idGroup != "" AND Name = :cookieconnect';
-$verify = $db->prepare($sqlQuery);
-$verify->execute([
-    'cookieconnect' => htmlspecialchars($_COOKIE["name"]),
-]);
-$result = $verify -> fetchAll();
+$result = SQLREQUEST($sqlQuery,htmlspecialchars($_COOKIE["name"]),"fetchAll");
 
 // Ecriture de la requête
 if (count($result) == 0) {
     $sqlQuery = 'INSERT INTO groups(score,chief,name) VALUES (:score,:name,:groupname)';
-
     // Préparation
     $insertGroups = $db->prepare($sqlQuery);
-
     // Exécution ! Le groupe est maintenant en base de données
     $insertGroups->execute([
         'score' => 1000,
@@ -37,14 +31,10 @@ if (count($result) == 0) {
         'cookiename' => htmlspecialchars($_COOKIE["name"]),
     ]);
     
-    $id = $getid->fetch();
+    $id = SQLREQUEST($sqlQuery,htmlspecialchars($_COOKIE["name"]),"fetch");
 
     $sqlQuery = 'UPDATE user SET idGroup = :id WHERE name = :cookiename';
-    $changeId = $db->prepare($sqlQuery);
-    $changeId->execute([
-        'id' => $id["id"],
-        'cookiename' => htmlspecialchars($_COOKIE["name"]),
-    ]);
+    SQLREQUEST($sqlQuery,$id["id"],htmlspecialchars($_COOKIE["name"]));
 }
 
 //TODO ajouter a l'utilisateur le groups en FOREING KEY

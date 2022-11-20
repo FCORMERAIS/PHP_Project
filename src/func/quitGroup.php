@@ -1,20 +1,6 @@
-<?php
-    try
-    {
-        $db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-    }
-    catch (Exception $e)
-    {
-            die('Erreur : ' . $e->getMessage());
-    }
-    
+<?php    
     $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :nameUser';
-    $insertGroups = $db->prepare($sqlQuery);
-    $insertGroups->execute([
-        'nameUser' => htmlspecialchars($_COOKIE["name"]),
-    ]);
-    $result = $insertGroups->fetch();
+    $result = SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
     if ($result == "") {
         ?>
         <script>alert("You are not in a group")</script>
@@ -22,17 +8,9 @@
     }else {
         // Ecriture de la requête
         $sqlQuery = 'UPDATE user SET idGroup = "" WHERE Name = :nameUser';
-        $insertGroups = $db->prepare($sqlQuery);
-        $insertGroups->execute([
-            'nameUser' => htmlspecialchars($_COOKIE["name"]),
-        ]);
-        
+        SQLREQUEST($sqlQuery,$_COOKIE["name"]);
         $sqlQuery = 'SELECT id FROM groups WHERE chief = :nameUser';
-        $Lookchief = $db->prepare($sqlQuery);
-        $Lookchief->execute([
-            'nameUser' => htmlspecialchars($_COOKIE["name"]),
-        ]);
-        $groupchief = $Lookchief->fetch();
+        $groupchief = SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
         $idgroupdelete = $groupchief["id"];
         $sqlQuery = 'DELETE FROM groups WHERE groups.id = :idgroup';
         $deletegroup = $db->prepare($sqlQuery);
@@ -47,22 +25,13 @@
         ]);
 
         $sqlQuery = 'UPDATE user SET idGroup = "" WHERE idGroup = :idgroup';
-        $Groupdelete = $db->prepare($sqlQuery);
-        $Groupdelete-> execute([
-            'idgroup' => $idgroupdelete,
-        ]);
+        SQLREQUEST($sqlQuery,$idgroupdelete);
         
         $sqlQuery = 'UPDATE user SET invitationGroups = TRIM(:idgroup FROM invitationGroups)';
-        $Groupdelete = $db->prepare($sqlQuery);
-        $Groupdelete-> execute([
-            'idgroup' => $idgroupdelete,
-        ]);
+        SQLREQUEST($sqlQuery,$idgroupdelete);
 
         $sqlQuery = 'UPDATE activity SET checklist = TRIM(:username FROM checklist)';
-        $Groupdelete = $db->prepare($sqlQuery);
-        $Groupdelete-> execute([
-            'username' => $_COOKIE["name"],
-        ]);
+        SQLREQUEST($sqlQuery,$_COOKIE['name']);
         
         ?>
         <script>alert("You have quit your group")</script>

@@ -25,8 +25,8 @@
     
     if($returnmsg == ""){
       setcookie("name",$nameUserCookie,time()+36000,"/","localhost");
-      // require("checkHabit.php");
-      // checkHabit($mail);
+      require("../func/checkHabit.php");
+      checkHabit($mail);
       header("Location: /PHPProject/src/component/menu.php");
       exit();
     }
