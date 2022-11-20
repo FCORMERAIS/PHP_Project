@@ -129,7 +129,7 @@
                                 <div class="nbDo">
                                     <p><?php 
                                     if($habit['checkList']!=""&& $habit['checkList']!=null &&$habit['checkList'] != " "){
-                                        echo count(explode(" ",$habit['checkList']))."/".count($user)." ".$habit['checkList'];
+                                        echo (count(explode(" ",$habit['checkList']))-1)."/".count($user)." ".$habit['checkList'];
                                     }else{
                                         echo "0/".count($user);
                                     }
