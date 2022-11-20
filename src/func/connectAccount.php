@@ -16,11 +16,8 @@ function testValueUserMail(string $value) : string
         'valueName' => $value,
     ]);
     $result = $verify->fetch();
-    if($result["Name"] == NULL || $result["Name"]== "" ) {
-        return "";
-    }else {
-        return $result["Name"];
-    }
+    echo $result;
+    return $result["Name"] ?? "";
 }
 
 function testValueUserName(string $value) : string 
@@ -34,17 +31,13 @@ function testValueUserName(string $value) : string
     {
         die('Erreur : ' . $e->getMessage());
     }
-    $sqlQuery = 'SELECT Name FROM user WHERE Name = :valueName';
+    $sqlQuery = 'SELECT * FROM user WHERE Name = :valueName';
     $verify = $db->prepare($sqlQuery);
     $verify->execute([
         'valueName' => $value,
     ]);
     $result = $verify->fetch();
-    if($result["Name"] == NULL || $result["Name"]== "" ) {
-        return "";
-    }else {
-        return $result["Name"];
-    }
+    return $result["Name"] ?? "";
 }
 
 function testValuePassword(string $value, string $Nickname) : string {

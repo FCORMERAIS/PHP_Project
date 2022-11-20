@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Navbar</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="css.php">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
-    </head>
+<?php 
+include "../asset/header.php";
+?>
     <body class="corps">
         <header>
-            <a class="logo" href="/PHPProject/Menu.php"><img src="php-logo.jpg" alt="logo" height="50" width="50" ></a>
+            <a class="logo" href="/PHPProject/src/component/Menu.php"><img src="php-logo.jpg" alt="logo" height="50" width="50" ></a>
             <nav>
                 <ul class="nav__links">
                     <li><a href="#">Profil</a></li>
@@ -75,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="btna" href="/PHPProject/AboutUS.php" style="margin-bottom: 20%;">About US</a>
+                <a class="btna" href="/PHPProject/src/component/AboutUS.php" style="margin-bottom: 20%;">About US</a>
                 <div class="backpage">
                     <div class="box">
                         <a href="#m2-o4" class="link-12" id="m2-c4">CREATE GROUP</a>
