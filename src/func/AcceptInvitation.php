@@ -1,11 +1,6 @@
 <?php 
    require "../func/functionSql.php";
     $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :nameUser';
-    $groupsStatement = $db->prepare($sqlQuery);
-    $groupsStatement->execute([
-        'nameUser' => htmlspecialchars($_COOKIE["name"]),
-    ]);
-
     $GrouporNot = SQLREQUEST($sqlQuery,htmlspecialchars($_COOKIE["name"]),"fetch");
 
     if ($GrouporNot["idGroup"] == "" || $GrouporNot["idGroup"] == NULL) {

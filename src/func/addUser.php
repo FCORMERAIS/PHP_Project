@@ -1,4 +1,7 @@
 <?php // TODO VERIFIER SI L'UTILISATEUR EST BIEN DANS UN GROUPE
+require "functionSql.php";
+try{$db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);}
+catch (Exception $e){die('Erreur : ' . $e->getMessage());}
     $nameInv = $_POST["userInv"];    
     $sqlQuery = 'SELECT chief FROM groups WHERE chief = :name';
     $result = SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");

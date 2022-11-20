@@ -45,7 +45,7 @@ session_start();
         'password' => $password,
         'mail' => $mail,
     ]);
-    setcookie("name",$name,time()+36000);
+    setcookie("name",$name,time()+36000,"/","localhost");
     mysqli_close($connexion);
     header("Location: /PHPProject/src/component/menu.php");
     exit();

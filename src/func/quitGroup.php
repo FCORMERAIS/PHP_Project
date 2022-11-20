@@ -1,4 +1,7 @@
 <?php    
+require "functionSql.php";
+try{$db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);}
+catch (Exception $e){die('Erreur : ' . $e->getMessage());}
     $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :nameUser';
     $result = SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
     if ($result == "") {
@@ -12,6 +15,7 @@
         $sqlQuery = 'SELECT id FROM groups WHERE chief = :nameUser';
         $groupchief = SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
         $idgroupdelete = $groupchief["id"];
+        
         $sqlQuery = 'DELETE FROM groups WHERE groups.id = :idgroup';
         $deletegroup = $db->prepare($sqlQuery);
         $deletegroup->execute([

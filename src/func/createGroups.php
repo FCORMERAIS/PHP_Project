@@ -1,18 +1,11 @@
 
 <?php
 
-try
-{
-	$db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-}
-catch (Exception $e)
-{
-        die('Erreur : ' . $e->getMessage());
-}
+require "functionSql.php";
 $sqlQuery = 'SELECT Name FROM user WHERE idGroup != "" AND Name = :cookieconnect';
 $result = SQLREQUEST($sqlQuery,htmlspecialchars($_COOKIE["name"]),"fetchAll");
-
+try{$db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);}
+catch (Exception $e){die('Erreur : ' . $e->getMessage());}
 // Ecriture de la requête
 if (count($result) == 0) {
     $sqlQuery = 'INSERT INTO groups(score,chief,name) VALUES (:score,:name,:groupname)';
