@@ -1,5 +1,6 @@
 
 <?php 
+$returnmsg="";
 include "../asset/phpLogin.php";
 include "../asset/headerLogin.php";
 ?>

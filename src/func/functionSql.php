@@ -18,10 +18,9 @@ function SQLREQUEST(string $sqlQuery, $var1,$var2=null,$var3=null,$var4=null) {
         $a=0;
         for($i=0;$i<4;$i++){
             array_push($arr,$sub = explode(" ",stristr(substr($sqlQuery,$a),":"))[0]);
-            $a = strpos(substr($sqlQuery,$a),":")+1;
-            // $i = $a+1;
+            $a = $a+strpos(substr($sqlQuery,$a),":")+1;
         }
-        if ($var2 ==null){
+        if ($var2 ==null && $var3==null){
             $sql = $db->prepare($sqlQuery);
             $sql->execute([
                 $arr[0] => $var1,

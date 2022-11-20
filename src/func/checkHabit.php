@@ -43,9 +43,11 @@ function checkHabit($name){
                     $time = date('Y-m-d H:i:s',strtotime($habit["lastTimeDo"])+24*3600*31);
                     break;
                 default:
+                echo $time."gaa";
+
                     break;
             }
-            $sqlQuery = 'UPDATE activity SET lastTimeDo = :time, checkList = :checkList , lastCheckList = :lastCheckList WHERE id = :idHabit';
+            $sqlQuery = 'UPDATE activity SET lastTimeDo = :time , checkList = :checkList , lastCheckList = :lastCheckList WHERE id = :idHabit';
             SQLREQUEST($sqlQuery,$time,null,$habit['checkList'], $habit['id']);
 
             
