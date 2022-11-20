@@ -10,6 +10,14 @@ header('Content-type: text/css; charset:UTF-8');
   padding: 0;
 }
 
+p{
+  color:red;
+}
+
+h2{
+  color:black;
+}
+
 .careful {
     background-color:red;
     margin-top : 25%;
@@ -622,7 +630,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 .input {
 	position:relative;
-	font-size: 1.5em;
+	font-size: 1em;
 	background: linear-gradient(21deg, #10abff, #1beabd);
 	padding: 3px;
 	display: inline-block;

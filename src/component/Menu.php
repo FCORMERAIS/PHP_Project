@@ -85,13 +85,13 @@
                             ?>
                             <div class="cardHabit"style="background-color: <?php 
                             if ($habit["difficulty"] == "S") {
-                                echo "gold";
+                                echo "#D2DB96";
                             }else if ($habit["difficulty"] == "A") {
-                                echo "#05512C";
+                                echo "#6AA6F3";
                             }else if ($habit["difficulty"] == "B") {
                                 echo "#23BD9D";
                             }else if ($habit["difficulty"] == "C") {
-                                echo "#0A0F89";
+                                echo "#99F580";
                             }else {
                                 echo "#78034E";
                             }
@@ -126,9 +126,9 @@
                                             echo "<p>you can do it !</p>";
                                         }  
                                         ?>
-                                        <input type="submit" name="" value="check"> 
-                                        <input type="hidden" name="check" value="true">
-                                        <input type="hidden" name="idHabit" value="<?php echo $habit['id'];?>">
+                                        <input class="input"type="submit" name="" value="check"> 
+                                        <input class="input" type="hidden" name="check" value="true">
+                                        <input class="input"type="hidden" name="idHabit" value="<?php echo $habit['id'];?>">
                                 </div>
                                 </form>
                                 <div class="nbDo">
@@ -163,7 +163,7 @@
                             </div>
                             <div class="user-box2">
                                 <label>Periodicity</label>
-                                <select name="Periodicity" id="periodicity" >
+                                <select class="input" name="Periodicity" id="periodicity" >
                                     <option value="">--Please choose an option--</option>
                                     <option value="1DAY">1 DAY</option>
                                     <option value="2DAY">3 DAY</option>
@@ -173,7 +173,7 @@
                                 </select>   
                             </div>
                             <label>Difficulty</label>
-                            <select name="Difficulty" id="difficulty" >
+                            <select class="input" name="Difficulty" id="difficulty" >
                                 <option value="">--Please choose an option--</option>
                                 <option value="S">S</option>
                                 <option value="A">A</option>
