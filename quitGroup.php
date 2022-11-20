@@ -45,6 +45,12 @@
         $Groupdelete-> execute([
             'idgroup' => $idgroupdelete,
         ]);
+        
+        $sqlQuery = 'UPDATE user SET invitationGroups = TRIM(:idgroup FROM invitationGroups)';
+        $Groupdelete = $db->prepare($sqlQuery);
+        $Groupdelete-> execute([
+            'idgroup' => $idgroupdelete,
+        ]);
         ?>
         <script>alert("You have quit your group")</script>
         <?php

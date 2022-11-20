@@ -130,9 +130,9 @@
                                         ]);
                                         $row = $insertGroups->fetch();
                                         echo "<div class='invit'></br></br>".$row["chief"] . " AS INVITE YOU TO JOIN ".$row["name"]."  ";
-                                        echo '<form action="AcceptInvitation.php" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input type="submit" name="submit" value="Accept">
+                                        echo '<form action="AcceptInvitation.php" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input class="input" type="submit" name="submit" value="Accept">
                                         </form>
-                                        <form action="deniedInvitation.php" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input type="submit" name="submit" value="Denied"></form></br></br></div>';
+                                        <form action="deniedInvitation.php" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input class="input" type="submit" name="submit" value="Denied"></form></br></br></div>';
                                     }
                                 }
                             ?>
@@ -348,7 +348,7 @@
                                 if (!isset($_COOKIE["name"])){
                                     echo "VOUS DEVEZ VOUS CONNECTER POUR POUVOIR CREER UN GROUPE";
                                 }else {
-                                    echo '<form method="post" action="createGroups.php" id="stripe-login"><input type="text" name="NameGroup" value="NameGroup"><input type="submit" class="modal__btn2" name="submit" value="YEAH IM SURE &rarr;"></form>';
+                                    echo '<form method="post" action="createGroups.php" id="stripe-login"><input class ="input" type="text" name="NameGroup" value="NameGroup"><input type="submit" class="modal__btn2" name="submit" value="YEAH IM SURE &rarr;"></form>';
                                 }   
                             ?>
                             </p>
