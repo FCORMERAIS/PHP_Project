@@ -30,7 +30,7 @@ include "../asset/phpMenu.php";
                     <div class="card">
                         <div class="card-front3"></div>
                         <div class="card-back">
-                            <h2 style="color:white;">Medhi ARROUSSI<br><span style="color:white;">Senior Developper</span></h2>
+                            <h2 style="color:white;">Mehdi ARROUSSI<br><span style="color:white;">Senior Developper</span></h2>
                             <div class="social-icons">
                                 <a href="#"  class="github" aria-hidden="true"></a>
                             </div>

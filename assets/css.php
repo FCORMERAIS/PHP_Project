@@ -83,6 +83,7 @@ header {
 
 .logo {
     cursor: pointer;
+    display: flex;
 }
 
 .nav__links a,
@@ -903,6 +904,7 @@ input {
   margin-left:5px;
 }
 <!-- HABIT ########################################################" -->
+<<<<<<< HEAD:assets/css.php
 body {
   display: flex;
   justify-content: center;
@@ -970,3 +972,5 @@ h1 {
   margin: 40px 0 20px 0;
   text-align: center;
 }
+=======
+>>>>>>> ce2bc7b54562bf60a07449ddd64957a2098f1675:css.php
