@@ -79,11 +79,11 @@
                     $user = $groupsStatement->fetchAll();
                     if ($IdGroupUser["idGroup"] != "" ) {
                         ?>
-                        <div class="Habit">
+                        <div class="cards">
                         <?php
                         foreach ($habits as $habit){
                             ?>
-                            <div class="cardHabit"style="background-color: <?php 
+                            <div class="card"style="border: ridge;border-color: <?php 
                             if ($habit["difficulty"] == "S") {
                                 echo "#D2DB96";
                             }else if ($habit["difficulty"] == "A") {
@@ -96,28 +96,15 @@
                                 echo "#78034E";
                             }
                             ;?>;">
-                                <div class="titreHabit">
-                                    <h2>
-                                        <?php
-                                            echo $habit["name"];    
-                                        ?>
-                                    </h2>
-                                </div>
-                                <div class="periodicity">
-                                <p>
-                                    <?php
-                                        echo $habit["periodicity"];
-                                    ?>
-                                </p>
-                                </div>
-                                <div class="Description">
-                                <p>
-                                    <?php
+                                <h2 class="card-title"><?php echo $habit["name"];?></h2>
+                                <img src="../../assets/logo.png" alt="">
+                                <p style="text-align: center;"><?php echo "difficulty : ". $habit["difficulty"]; ?></p>
+                                <p style="text-align: center;"><?php echo "il reste ".date("H:i",abs(time()-strtotime($habit['lastTimeDo'])));?></p>
+                                <div class="card-desc">
+                                    <p><?php
                                         echo $habit["text"];
-                                    ?>
-                                </p>
-                                </div>
-                                <form class="" method="POST" action="Menu.php">
+                                    ?></p>
+                                    <form class="" method="POST" action="Menu.php">
                                     <div class="check">
                                         <?php
                                         if(in_array($_COOKIE["name"],explode(" ",$habit['checkList']))){
@@ -126,12 +113,11 @@
                                             echo "<p>you can do it !</p>";
                                         }  
                                         ?>
-                                        <input class="input"type="submit" name="" value="check"> 
-                                        <input class="input" type="hidden" name="check" value="true">
-                                        <input class="input"type="hidden" name="idHabit" value="<?php echo $habit['id'];?>">
-                                </div>
-                                </form>
-                                <div class="nbDo">
+                                        <input class="input" style="font-size: 0.8em;" type="submit" name="" value="check"> 
+                                        <input class="input" style="font-size: 0.8em;" type="hidden" name="check" value="true">
+                                        <input class="input"style="font-size: 0.8em;" type="hidden" name="idHabit" value="<?php echo $habit['id'];?>">
+                                    </div>
+                                    </form>
                                     <p><?php 
                                     if($habit['checkList']!=""&& $habit['checkList']!=null &&$habit['checkList'] != " "){
                                         echo (count(explode(" ",$habit['checkList']))-1)."/".count($user)." ".$habit['checkList'];
@@ -140,15 +126,11 @@
                                     }
                                     ?></p>
                                 </div>
-                                <div class="timeLeft">
-                                    <p><?php  echo "il reste ".date("H:i",abs(time()-strtotime($habit['lastTimeDo'])));?></p>
-                                </div>
                             </div>
                             <?php
                         }
                         ?>
                         </div>
-
                         <div class="containAddHabit">
                         <div class="login-box">
                             <h2>Habit</h2>
