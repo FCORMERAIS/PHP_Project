@@ -3,5 +3,6 @@ function SQLREQUEST(string $mot1, string $mot2,string $mot3,string $mot4,string 
     if ($mot1 != "SELECT") {
         
     }
+    return false;
 }
 ?>
