@@ -53,7 +53,7 @@ function checkHabit($name){
             
         }
     }
-    header("Location: /PHPProject/src/component/Menu.php");
+    header("Location: /PHPProject/src/component/recap.php");
     exit();
 	// if ($group['score']<0){
 	// 	$sqlQuery = 'UPDATE user SET idGroup = "" WHERE Name = :nameUser';
