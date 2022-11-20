@@ -24,9 +24,9 @@
     }
     
     if($returnmsg == ""){
-      setcookie("name",$nameUserCookie,time()+36000);
-      require("checkHabit.php");
-      checkHabit($mail);
+      setcookie("name",$nameUserCookie,time()+36000,"/","localhost");
+      // require("checkHabit.php");
+      // checkHabit($mail);
       header("Location: /PHPProject/src/component/menu.php");
       exit();
     }

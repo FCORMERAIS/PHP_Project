@@ -40,11 +40,30 @@
             'idgroup' => $idgroupdelete,
         ]);
 
+        $sqlQuery = 'DELETE FROM activity WHERE groups = :idgroup';
+        $Groupdelete = $db->prepare($sqlQuery);
+        $Groupdelete-> execute([
+            'idgroup' => $idgroupdelete,
+        ]);
+
         $sqlQuery = 'UPDATE user SET idGroup = "" WHERE idGroup = :idgroup';
         $Groupdelete = $db->prepare($sqlQuery);
         $Groupdelete-> execute([
             'idgroup' => $idgroupdelete,
         ]);
+        
+        $sqlQuery = 'UPDATE user SET invitationGroups = TRIM(:idgroup FROM invitationGroups)';
+        $Groupdelete = $db->prepare($sqlQuery);
+        $Groupdelete-> execute([
+            'idgroup' => $idgroupdelete,
+        ]);
+
+        $sqlQuery = 'UPDATE activity SET checklist = TRIM(:username FROM checklist)';
+        $Groupdelete = $db->prepare($sqlQuery);
+        $Groupdelete-> execute([
+            'username' => $_COOKIE["name"],
+        ]);
+        
         ?>
         <script>alert("You have quit your group")</script>
         <?php

@@ -1,13 +1,5 @@
 <?php session_start()?>
 <?php
-  if (
-      (isset($_POST['userAdd'])&& !empty($_POST['userAdd']) )
-      )
-  {
-    $name = "BABA";
-    require('addUser.php');
-    addUser($_POST['userAdd']);
-  }
   if(!isset($_COOKIE["name"]))
     {$connexion ="You are not connected";
   }else { 

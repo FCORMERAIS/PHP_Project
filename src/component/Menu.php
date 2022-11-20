@@ -45,9 +45,9 @@
                                         ]);
                                         $row = $insertGroups->fetch();
                                         echo "<div class='invit'></br></br>".$row["chief"] . " AS INVITE YOU TO JOIN ".$row["name"]."  ";
-                                        echo '<form action="../func/AcceptInvitation.php" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input type="submit" name="submit" value="Accept">
+                                        echo '<form action="../func/AcceptInvitation.php" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input class="input" type="submit" name="submit" value="Accept">
                                         </form>
-                                        <form action="../func/deniedInvitation.php" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input type="submit" name="submit" value="Denied"></form></br></br></div>';
+                                        <form action="../func/deniedInvitation.php" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input class="input" type="submit" name="submit" value="Denied"></form></br></br></div>';
                                     }
                                 }
                             ?>
@@ -129,7 +129,7 @@
                                 <div class="nbDo">
                                     <p><?php 
                                     if($habit['checkList']!=""&& $habit['checkList']!=null &&$habit['checkList'] != " "){
-                                        echo count(explode(" ",$habit['checkList']))."/".count($user)." ".$habit['checkList'];
+                                        echo (count(explode(" ",$habit['checkList']))-1)."/".count($user)." ".$habit['checkList'];
                                     }else{
                                         echo "0/".count($user);
                                     }

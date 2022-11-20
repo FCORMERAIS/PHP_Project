@@ -8,12 +8,17 @@
                             <h1 class="modal__title2">Add a Member </h1>
                             </br></br></br>
                                 <span class="input">
-                                    <form method="POST" action="Menu.php">
-                                    <input type="text" name="userAdd" placeholder="Please enter the pseudo or email">
+                                    <form method="POST" action="../func/addUser.php">
+                                    <input type="text" name="userInv" placeholder="Please enter the pseudo or email">
                                     <input type="submit">
                                     </form>
                                     <span></span>	
                                 </span>
+                                <p class="redInfo">
+                                <?php
+                                if (!isset($_COOKIE["name"])){echo "VOUS DEVEZ VOUS CONNECTER POUR POUVOIR CREER UN GROUPE";}
+                                ?>
+                                </p>
                             <a href="#m2-c" class="link-2"></a>
                         </div>
                     </div>
@@ -27,7 +32,7 @@
                             </br></br></br>
                             <div class="listName">
                                 <?php
-                                require('listUser.php');
+                                require('../func/listUser.php');
                                 listUser();
                                 ?>
                             </div>
@@ -49,7 +54,7 @@
                                 if (!isset($_COOKIE["name"])){
                                     echo "VOUS DEVEZ VOUS CONNECTER POUR POUVOIR CREER UN GROUPE";
                                 }else {
-                                    echo '<form method="post" action="../func/createGroups.php" id="stripe-login"><input type="text" name="NameGroup" value="NameGroup"><input type="submit" class="modal__btn2" name="submit" value="YEAH IM SURE &rarr;"></form>';
+                                    echo '<form method="post" action="../func/createGroups.php" id="stripe-login"><input class ="input" type="text" name="NameGroup" value="NameGroup"><input type="submit" class="modal__btn2" name="submit" value="YEAH IM SURE &rarr;"></form>';
                                 }   
                             ?>
                             </p>
@@ -81,4 +86,3 @@
                     </div>
                 </div>
             </div>
-        </div>

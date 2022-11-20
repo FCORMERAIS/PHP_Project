@@ -69,6 +69,10 @@ header {
     width:100%;
 }
 
+.invitation{
+  position:absolute;
+}
+
 .logo {
     cursor: pointer;
 }
