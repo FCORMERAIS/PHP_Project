@@ -1,5 +1,6 @@
 <?php session_start()?>
 <?php
+//verify if we are connected
   require("../func/DBConnect.php");
   $db = new DB();
   if(!isset($_COOKIE["name"]))
@@ -7,6 +8,7 @@
   }else { 
     $connexion = 'Connected As ' . htmlspecialchars($_COOKIE["name"]) . ' !';
   }
+  //Add or remove the user of the checkList
   if (isset($_POST['check'])&& !empty($_POST['check']) && $_POST['check']=="true"){
     $sqlQuery = 'SELECT * FROM activity WHERE id = :idHabit';
     $habit = $db->SQLREQUEST($sqlQuery,$_POST["idHabit"],"fetch");

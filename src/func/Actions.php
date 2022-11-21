@@ -1,31 +1,56 @@
 <?php
 require_once('DBConnect.php');
 
+//the class Action list every function available in the project
 Class Actions extends DB{
     function __construct(){
         parent::__construct();
     }
-
+    
+    /**
+     * testValueUserMail can verify the mail of the user
+     *
+     * @param  mixed $value
+     * @return string
+     */
     function testValueUserMail(string $value) : string 
     {
         $sqlQuery = 'SELECT Name FROM user WHERE Mail = :valueName';
         $result = $this->SQLREQUEST($sqlQuery,$value,"fetch");
         return $result["Name"] ?? "";
     }
-
+    
+    /**
+     * testValueUserName can verify the Name of the user
+     *
+     * @param  mixed $value
+     * @return string
+     */
     function testValueUserName(string $value) : string 
     {
         $sqlQuery = 'SELECT * FROM user WHERE Name = :valueName';
         $result =$this->SQLREQUEST($sqlQuery,$value,"fetch");
         return $result["Name"] ?? "";
     }
-
+    
+    /**
+     * testValuePassword verify the password in the database
+     *
+     * @param  mixed $value
+     * @param  mixed $Nickname
+     * @return bool
+     */
     function testValuePassword(string $value, string $Nickname) : bool {
         $sqlQuery = 'SELECT Password FROM user WHERE Name = :Nickname';
         $result = $this->SQLREQUEST($sqlQuery,$Nickname,"fetch");
         return password_verify( $value,$result['Password']);
     }
-
+    
+    /**
+     * acceptInvitation is the function to accept an invitation and put it in the db
+     *
+     * 
+     */
     function acceptInvitation(){
         $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :nameUser';
         $GrouporNot = $this->SQLREQUEST($sqlQuery,htmlspecialchars($_COOKIE["name"]),"fetch");
@@ -42,7 +67,11 @@ Class Actions extends DB{
         header("Location: /PHPProject/src/component/menu.php");
         exit();
     }
-
+    
+    /**
+     * addHabit add an habit in the db 
+     *
+     */
     function addHabit(){
         $name = $_POST["Name"];
         $Periodicity = $_POST["Periodicity"];
@@ -79,7 +108,11 @@ Class Actions extends DB{
         exit();
 
     }
-
+    
+    /**
+     * addUser can add a user in a group
+     *
+     */
     function addUser(){
         $nameInv = $_POST["userInv"];    
         $sqlQuery = 'SELECT chief FROM groups WHERE chief = :name';
@@ -107,7 +140,12 @@ Class Actions extends DB{
         header("Location: /PHPProject/src/component/menu.php");
         exit();
     }
-
+    
+    /**
+     * checkHabit check in the db all habit if their time is end then update them
+     *
+     * @param  mixed $name
+     */
     function checkHabit($name){
         try{$db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);}
         catch (Exception $e){die('Erreur : ' . $e->getMessage());}
@@ -164,27 +202,12 @@ Class Actions extends DB{
         }
         header("Location: /PHPProject/src/component/recap.php");
         exit();
-        // if ($group['score']<0){
-        // 	$sqlQuery = 'UPDATE user SET idGroup = "" WHERE Name = :nameUser';
-        // 	$insertGroups = $db->prepare($sqlQuery);
-        // 	$insertGroups->execute([
-        // 		'nameUser' => htmlspecialchars($name),
-        // 	]);
-        // 	$sqlQuery = 'UPDATE user SET idGroup = "" WHERE idGroup = :idgroup';
-        // 	$Groupdelete = $db->prepare($sqlQuery);
-        // 	$Groupdelete-> execute([
-        // 		'idgroup' => $group['id'],
-        // 	]);
-        // 	$sqlQuery = 'DELETE FROM groups WHERE groups.id = :idgroup';
-        // 	$deletegroup = $db->prepare($sqlQuery);
-        // 	$deletegroup->execute([
-        // 		'idgroup' => $group['id'],
-        // 	]);
-        // }else{
-            
-        // }
     }
-
+    
+    /**
+     * createGroups create a group in the db
+     *
+     */
     function createGroups(){
         $sqlQuery = 'SELECT Name FROM user WHERE idGroup != "" AND Name = :cookieconnect';
         $result = $this->SQLREQUEST($sqlQuery,htmlspecialchars($_COOKIE["name"]),"fetchAll");
@@ -209,13 +232,21 @@ Class Actions extends DB{
         ?><meta http-equiv="Refresh" content="0; url=../component/Menu.php" /><?php
 
     }
-
+    
+    /**
+     * deco unset the cookies
+     *
+     */
     function deco(){
         setcookie('name', null, -1,"/","localhost");
         header("Location: /PHPProject/src/component/Menu.php");
         exit();
     }
-
+    
+    /**
+     * deniedInvitation unset the invitation in the db to denied them
+     *
+     */
     function deniedInvitation(){
         $sqlQuery = 'SELECT id FROM groups WHERE chief = :userchief';
         $idgroup = $this->SQLREQUEST($sqlQuery,$_POST["nameInvit"],"fetch");
@@ -236,7 +267,11 @@ Class Actions extends DB{
         header("Location: /PHPProject/src/component/menu.php");
         exit();
     }
-
+    
+    /**
+     * listUser list all user in the group
+     *
+     */
     function listUser(){
         if (isset($_COOKIE["name"])) {
             
@@ -258,7 +293,11 @@ Class Actions extends DB{
             <?php
         }
     }
-
+    
+    /**
+     * quitGroup Leave the group and unset every things about the group in the db
+     *
+     */
     function quitGroup(){
         $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :nameUser';
         $result = $this->SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
@@ -306,6 +345,8 @@ Class Actions extends DB{
 }
 $post = isset($_GET['post']) ?$_GET['post'] : '';
 $action = new Actions();
+
+// call each function who come from a form in the html
 switch($post){
     case 'acceptInvitation':
         echo $action->acceptInvitation();

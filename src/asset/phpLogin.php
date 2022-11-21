@@ -1,6 +1,7 @@
 <?php 
   $returnmsg = "";
   include("../func/Actions.php");
+  //Verifie if the user can connect to the db with his name and password
     $mail = $_POST["email"];
     $password = $_POST["password"];
     if ($mail == NULL && $returnmsg == ""|| $password == NULL && $returnmsg == "") {
@@ -22,7 +23,7 @@
         $returnmsg =  "sorry but the password is not good";
       }
     }
-    
+    //set a cookie
     if($returnmsg == ""){
       setcookie("name",$nameUserCookie,time()+36000,"/","localhost");
       $action->checkHabit($mail);
