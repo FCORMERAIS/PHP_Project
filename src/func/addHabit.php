@@ -5,30 +5,18 @@ $Periodicity = $_POST["Periodicity"];
 $Description = $_POST["Description"];
 $Difficulty = $_POST["Difficulty"];
 
-try
-{
-    $db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-);
-}
-catch (Exception $e)
-{
-    die('Erreur : ' . $e->getMessage());
-}
+require "../func/functionSql.php";
+
+try{$db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);}
+catch (Exception $e){die('Erreur : ' . $e->getMessage());}
 
 $sqlQuery = 'SELECT * FROM user WHERE Name = :nameUser';
-    $groupsStatement = $db->prepare($sqlQuery);
-    $groupsStatement->execute([
-        'nameUser' => $_COOKIE['name'],
-    ]);
-    $user = $groupsStatement->fetch();
-    $group = $user["idGroup"];
+$user =SQLREQUEST($sqlQuery,$_COOKIE['name'],"fetch");
+$group = $user["idGroup"];
+
 if (strtotime($user['lastTimeAddHabit'])+24*3600<time()){
     $sqlQuery = 'UPDATE user SET lastTimeAddHabit = :lastTime WHERE Name = :nameUser';
-    $insertGroups = $db->prepare($sqlQuery);
-    $insertGroups->execute([
-        'lastTime' => date('Y-m-d H:i:s',time()),
-        'nameUser' => $_COOKIE["name"],
-    ]);
+    SQLREQUEST($sqlQuery,date('Y-m-d H:i:s',time()),$_COOKIE["name"]);
     $sql = "INSERT INTO activity(groups, name,text,periodicity,lastTimeDo,difficulty) VALUE (:groups,:name,:text,:periodicity,FROM_UNIXTIME(:lastTimeDo),:difficulty)";
     $insertGroups = $db->prepare($sql);
     // Exécution ! Le groupe est maintenant en base de données

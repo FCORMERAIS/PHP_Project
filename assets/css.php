@@ -904,6 +904,10 @@ input {
   margin-left:5px;
 }
 <!-- HABIT ########################################################" -->
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:assets/css.php
+>>>>>>> 10232e9cf545e72ec74f2a7775bfda3feb2cd176
 body {
   display: flex;
   justify-content: center;
@@ -971,3 +975,8 @@ h1 {
   margin: 40px 0 20px 0;
   text-align: center;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> ce2bc7b54562bf60a07449ddd64957a2098f1675:css.php
+>>>>>>> 10232e9cf545e72ec74f2a7775bfda3feb2cd176

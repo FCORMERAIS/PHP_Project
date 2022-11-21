@@ -1,19 +1,10 @@
 <?php // TODO VERIFIER SI L'UTILISATEUR EST BIEN DANS UN GROUPE
-    $nameInv = $_POST["userInv"];
-    echo $_POST["userInv"];
-    try
-    {
-        $db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-    }
-    catch (Exception $e)
-    {
-        die('Erreur : ' . $e->getMessage());
-    }
+require "functionSql.php";
+try{$db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);}
+catch (Exception $e){die('Erreur : ' . $e->getMessage());}
+    $nameInv = $_POST["userInv"];    
     $sqlQuery = 'SELECT chief FROM groups WHERE chief = :name';
-    $groupsStatement = $db->prepare($sqlQuery);
-    $groupsStatement->execute(['name'=>$_COOKIE["name"]],);
-    $result = $groupsStatement->fetch();
+    $result = SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
     if ($result["chief"] != "") {   
         $sqlQuery = 'SELECT Name,invitationGroups,idGroup FROM user WHERE Name = :name OR Mail= :mail';
         $groupsStatement = $db->prepare($sqlQuery);
@@ -24,17 +15,11 @@
         $userInv = $groupsStatement->fetch();
         // ///////////////////////////////////////////////////////////////////////////////////////
         $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :name';
-        $groupsStatement = $db->prepare($sqlQuery);
-        $groupsStatement->execute(['name'=>$_COOKIE["name"]],);
-        $user = $groupsStatement->fetch();
+        $user = SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
         $s = $userInv['invitationGroups']." ".strval($user['idGroup']);
         if (count(explode($user['idGroup'], $s)) == 2 && $userInv["idGroup"] != $user["idGroup"]) {
             $sqlQuery = 'UPDATE user SET invitationGroups = :invitationGroups WHERE Name = :nameUser';
-            $insertGroups = $db->prepare($sqlQuery);
-            $insertGroups->execute([
-                'invitationGroups'=>$s,
-                'nameUser' => $userInv["Name"],
-            ]);
+            SQLREQUEST($sqlQuery,$s,$userInv["Name"]);
         }
     }else {
         ?>
