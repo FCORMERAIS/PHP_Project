@@ -905,9 +905,12 @@ input {
 }
 <!-- HABIT ########################################################" -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD:assets/css.php
 >>>>>>> 10232e9cf545e72ec74f2a7775bfda3feb2cd176
+=======
+>>>>>>> f46fd4697703a9a657e4cce0062ca71c4f5381c4
 body {
   display: flex;
   justify-content: center;
@@ -976,7 +979,10 @@ h1 {
   text-align: center;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> ce2bc7b54562bf60a07449ddd64957a2098f1675:css.php
 >>>>>>> 10232e9cf545e72ec74f2a7775bfda3feb2cd176
+=======
+>>>>>>> f46fd4697703a9a657e4cce0062ca71c4f5381c4
