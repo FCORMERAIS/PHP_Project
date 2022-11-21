@@ -56,19 +56,7 @@
                         <?php
                         foreach ($habits as $habit){
                             ?>
-                            <div class="card"style="border: ridge;border-color: <?php 
-                            if ($habit["difficulty"] == "S") {
-                                echo "#D2DB96";
-                            }else if ($habit["difficulty"] == "A") {
-                                echo "#6AA6F3";
-                            }else if ($habit["difficulty"] == "B") {
-                                echo "#23BD9D";
-                            }else if ($habit["difficulty"] == "C") {
-                                echo "#99F580";
-                            }else {
-                                echo "#78034E";
-                            }
-                            ;?>;">
+                            <div class="card"style="border: ridge;border-color: <?php echo $habit["Color"];?>;">
                                 <h2 class="card-title"><?php echo $habit["name"];?></h2>
                                 <img src="../../assets/logo.png" alt="">
                                 <p style="text-align: center;"><?php echo "difficulty : ". $habit["difficulty"]; ?></p>
@@ -136,7 +124,11 @@
                                 <option value="C">C</option>
                                 <option value="D">D</option>
                             </select>   
+                            </br></br>
+                            <label>ColorHabit</label>
+                            <input class="input" type="color" name="colorHabit">
                             <div class="ici">
+
                             </form>
         
                             <a onclick="submitPostLink()" href="#">
