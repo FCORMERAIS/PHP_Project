@@ -11,7 +11,7 @@
             <p class="menu cta">Contact</p>
             <?php
                 if(isset($_COOKIE["name"])) {
-                    echo '<p class="connect"><a href="../func/deco.php">Disconnect</a></p>';
+                    echo '<p class="connect"><a href="../func/Actions.php?post=deco">Disconnect</a></p>';
                 }else {
                     echo '<p class="connect"><a href="../component/Login.php">Login</a></p>';
                 }

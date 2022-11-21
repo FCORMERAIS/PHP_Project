@@ -1,20 +1,20 @@
 <?php
 session_start(); 
+  include "../func/Actions.php";
   $returnmsg = "";
-  require("../func/connectAccount.php");
-  require "../func/functionSql.php";
   $mail = $_POST["email"];
   $password = $_POST["password"];
   $pseudo = $_POST["Pseudo"];
   if ($mail == NULL && $returnmsg == ""|| $password == NULL && $returnmsg == "" || $pseudo == NULL && $returnmsg == "") {
     $returnmsg= "Please fill out the gaps";
   }
-
+echo "gag";
   if ($returnmsg == "") {
-    if(testValueUserName($pseudo) && $returnmsg == ""){
+    
+    if($action->testValueUserName($pseudo) && $returnmsg == ""){
       $returnmsg = "Sorry but the nickname is already use";
     }
-    if (testValueUserMail($mail) && $returnmsg == "") {
+    if ($action->testValueUserMail($mail) && $returnmsg == "") {
       $returnmsg =  "sorry but the email is arlready use";
     }
   }
@@ -38,11 +38,12 @@ session_start();
     {
       die('Erreur : ' . $e->getMessage());
     }
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     $sqlQuery = "INSERT INTO user(Name,Password,Mail,invitationGroups,idGroup) VALUE (:name,:password,:mail,'','')";
     $SQLREQUEST = $db->prepare($sqlQuery);
     $SQLREQUEST->execute([
         'name' => $name,
-        'password' => $password,
+        'password' => $passwordHash,
         'mail' => $mail,
     ]);
     setcookie("name",$name,time()+36000,"/","localhost");

@@ -11,6 +11,7 @@
                     ?>
                     <p class="redInfo">
                     <?php
+                    
                     echo "YOU NEED TO BE CONNECTED AND TO JOIN A GROUP FOR GET INFORMATION ON YOUR GROUP";
                     ?>
                     </p>
@@ -23,17 +24,17 @@
                                
                                 // Ecriture de la requête
                                 $sqlQuery = 'SELECT invitationGroups FROM user WHERE Name = :nameUser';
-                                $res = SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
+                                $res = $db->SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
                                 
                                 $listInvit = explode(" ",$res["invitationGroups"]);
                                 for ($i = 0;$i<count($listInvit);$i++) {
                                     if ($listInvit[$i] != "") {
                                         $sqlQuery = 'SELECT * FROM groups WHERE id = :idgroup';
-                                        $row = SQLREQUEST($sqlQuery,$listInvit[$i],"fetch");
+                                        $row = $db->SQLREQUEST($sqlQuery,$listInvit[$i],"fetch");
                                         echo "<div class='invit'></br></br>".$row["chief"] . " AS INVITE YOU TO JOIN ".$row["name"]."  ";
-                                        echo '<form action="../func/AcceptInvitation.php" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input class="input" type="submit" name="submit" value="Accept">
+                                        echo '<form action="../func/Actions.php?post=acceptInvitation" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input class="input" type="submit" name="submit" value="Accept">
                                         </form>
-                                        <form action="../func/deniedInvitation.php" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input class="input" type="submit" name="submit" value="Denied"></form></br></br></div>';
+                                        <form action="../func/Actions.php?post=deniedInvitation" method="POST"><input type="hidden" value='.$row["chief"].' name="nameInvit"><input class="input" type="submit" name="submit" value="Denied"></form></br></br></div>';
                                     }
                                 }
                             ?>
@@ -43,13 +44,13 @@
                    
 
                     $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :userCookie';
-                    $IdGroupUser = SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");                    
+                    $IdGroupUser = $db->SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");                    
 
                     $sqlQuery = 'SELECT * FROM activity WHERE groups = :idGroup';
-                    $habits = SQLREQUEST($sqlQuery,$IdGroupUser["idGroup"],"fetchAll"); 
+                    $habits = $db->SQLREQUEST($sqlQuery,$IdGroupUser["idGroup"],"fetchAll"); 
 
                     $sqlQuery = 'SELECT * FROM user WHERE idGroup = :idGroup';
-                    $user = SQLREQUEST($sqlQuery,$IdGroupUser["idGroup"],"fetchAll");                    
+                    $user = $db->SQLREQUEST($sqlQuery,$IdGroupUser["idGroup"],"fetchAll");                    
                     
                     if ($IdGroupUser["idGroup"] != "" ) {
                         ?>
@@ -108,7 +109,7 @@
                         <div class="containAddHabit">
                         <div class="login-box">
                             <h2>Habit</h2>
-                            <form action="../func/addHabit.php" name="forme" method="POST">
+                            <form action="../func/Actions.php?post=addHabit" name="forme" method="POST">
                             <div class="user-box">
                                 <input type="text" name="Name" required="">
                                 <label>Name</label>
