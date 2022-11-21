@@ -19,7 +19,7 @@ $users = $db->SQLREQUEST($sqlQuery,$user["idGroup"]);
             foreach($habits as $habit){
                 ?><div class="blockRecapHabit"><?php
                 $habitName = $habit["name"];
-                echo "<p style='margin-top: 100px;'> Habit Name : $habitName </p></br></br></br></br>";
+                echo "<h2 style='margin-top: 100px;'> Habit Name : $habitName </h2></br></br></br></br>";
                 if(count(explode(" ",$habit["lastCheckList"])) != count($users)){
                     foreach($users as $userGroup){
                         if(!in_array($userGroup["Name"],explode(" ",$habit["lastCheckList"]))){
