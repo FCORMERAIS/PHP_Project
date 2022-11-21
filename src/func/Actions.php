@@ -63,6 +63,9 @@ Class Actions extends DB{
             $this->SQLREQUEST($sqlQuery,$idgroup["id"],htmlspecialchars($_COOKIE["name"]));
             $sqlQuery = 'UPDATE user SET invitationGroups = "" WHERE Name = :username';
             $this->SQLREQUEST($sqlQuery,htmlspecialchars($_COOKIE["name"]));
+        }else {
+            header("Location: /PHPProject/src/component/menu.php?rep3=false");
+            exit();
         }
         header("Location: /PHPProject/src/component/menu.php");
         exit();
@@ -101,10 +104,12 @@ Class Actions extends DB{
                 ]);  
                   
             }else{
-                ?> <script>alert("Vous ne pouvez pas ajouter une habitude car vous en avez deja ajouter une il y a - de 24h")</script> <?php
                 header("Location: /PHPProject/src/component/menu.php?rep=false");
                 exit();
             }
+        }else {
+            header("Location: /PHPProject/src/component/menu.php?rep2=false");
+            exit();
         }
         
         header("Location: /PHPProject/src/component/menu.php");
@@ -134,11 +139,13 @@ Class Actions extends DB{
             if (count(explode($user['idGroup'], $s)) == 2 && $userInv["idGroup"] != $user["idGroup"]) {
                 $sqlQuery = 'UPDATE user SET invitationGroups = :invitationGroups WHERE Name = :nameUser';
                 $this->SQLREQUEST($sqlQuery,$s,$userInv["Name"]);
+            }else {
+                header("Location: /PHPProject/src/component/menu.php?rep7=false");
+                exit();
             }
         }else {
-            ?>
-            <script> alert("you need to be the chief of a groupe for invite someone")</script>
-            <?php
+            header("Location: /PHPProject/src/component/menu.php?rep4=false");
+            exit();
         }
         header("Location: /PHPProject/src/component/menu.php");
         exit();
@@ -219,7 +226,6 @@ Class Actions extends DB{
     function createGroups(){
         $sqlQuery = 'SELECT Name FROM user WHERE idGroup != "" AND Name = :cookieconnect';
         $result = $this->SQLREQUEST($sqlQuery,htmlspecialchars($_COOKIE["name"]),"fetchAll");
-        echo "aofua";
         if (count($result) == 0) {
             $sqlQuery = 'INSERT INTO groups(score,chief,name) VALUES (:score,:name,:groupname)';
             // Préparation
@@ -236,6 +242,9 @@ Class Actions extends DB{
 
             $sqlQuery = 'UPDATE user SET idGroup = :id WHERE name = :cookiename';
             $this->SQLREQUEST($sqlQuery,$id["id"],htmlspecialchars($_COOKIE["name"]));
+        }else {
+            header("Location: /PHPProject/src/component/menu.php?rep5=false");
+            exit();
         }
         ?><meta http-equiv="Refresh" content="0; url=../component/Menu.php" /><?php
 
@@ -310,10 +319,7 @@ Class Actions extends DB{
         $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :nameUser';
         $result = $this->SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
     if ($result["idGroup"] == "") {
-        ?>
-        <script>alert("You are not in a group")</script>
-        <?php
-        header("Location: /PHPProject/src/component/menu.php");
+        header("Location: /PHPProject/src/component/menu.php?rep6=false");
         exit();
     }else {
         // Ecriture de la requête
