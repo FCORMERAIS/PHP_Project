@@ -991,3 +991,8 @@ h1 {
 ::-webkit-scrollbar-thumb:hover {
   background: #b30000; 
 }
+
+
+.bodyRecap{
+  background-color:linear-gradient(to right, hsl(210, 30%, 20%), hsl(255, 30%, 25%))
+}
