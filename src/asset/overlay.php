@@ -8,7 +8,7 @@
                             <h1 class="modal__title2">Add a Member </h1>
                             </br></br></br>
                                 <span class="input">
-                                    <form method="POST" action="../func/addUser.php">
+                                    <form method="POST" action="../func/Actions.php?post=addUser">
                                     <input type="text" name="userInv" placeholder="Please enter the pseudo or email">
                                     <input type="submit">
                                     </form>
@@ -28,12 +28,12 @@
                     <a href="#m2-o2" class="btna">View Group Members</a>
                     <div class="modal-container" id="m2-o2" style="--m-background: hsla(0, 0%, 0%, .4);">
                         <div class="modal">
-                            <h1 class="modal__title2">LIST GROUP</h1>
+                            <h1 class="modal__title2">LIST MEMBERS GROUP</h1>
                             </br></br></br>
                             <div class="listName">
                                 <?php
-                                require('../func/listUser.php');
-                                listUser();
+                                include('../func/Actions.php');
+                                $action->listUser();
                                 ?>
                             </div>
                             <a href="#m2-c" class="link-2"></a>
@@ -54,7 +54,7 @@
                                 if (!isset($_COOKIE["name"])){
                                     echo "VOUS DEVEZ VOUS CONNECTER POUR POUVOIR CREER UN GROUPE";
                                 }else {
-                                    echo '<form method="post" action="../func/createGroups.php" id="stripe-login"><input class ="input" type="text" name="NameGroup" value="NameGroup"><input type="submit" class="modal__btn2" name="submit" value="YEAH IM SURE &rarr;"></form>';
+                                    echo '<form method="post" action="../func/Actions.php?post=createGroups" id="stripe-login"><input class ="input" type="text" name="NameGroup" value="NameGroup"><input type="submit" class="modal__btn2" name="submit" value="YEAH IM SURE &rarr;"></form>';
                                 }   
                             ?>
                             </p>
@@ -69,7 +69,7 @@
                             <h1 class="modal__title">ARE YOU SURE TO QUIT GROUP ?</h1>
                             <p class="modal__text">if you quit the group you will loose all your point, if youre the captain the group will be dissolved !! SO ARE YOU SUR ??</p>
                             </br>
-                            <form method="post" action="../func/quitGroup.php" id="stripe-login">
+                            <form method="post" action="../func/Actions.php?post=quitGroup" id="stripe-login">
                             <p class="redInfo2">
                             <?php
                                 if (!isset($_COOKIE["name"])){

@@ -1,6 +1,7 @@
 <?php session_start()?>
 <?php
-  require("../func/functionSql.php");
+  require("../func/DBConnect.php");
+  $db = new DB();
   if(!isset($_COOKIE["name"]))
     {$connexion ="You are not connected";
   }else { 
@@ -8,7 +9,7 @@
   }
   if (isset($_POST['check'])&& !empty($_POST['check']) && $_POST['check']=="true"){
     $sqlQuery = 'SELECT * FROM activity WHERE id = :idHabit';
-    $habit = SQLREQUEST($sqlQuery,$_POST["idHabit"],"fetch");
+    $habit = $db->SQLREQUEST($sqlQuery,$_POST["idHabit"],"fetch");
     $checkList="";
     if ($habit['checkList'] != "" || $habit['checkList'] != null){
         if(in_array($_COOKIE["name"],explode(" ",$habit['checkList']))){
@@ -28,5 +29,5 @@
     }
 
     $sqlQuery = 'UPDATE activity SET checkList = :checkList WHERE id = :idHabit';
-    SQLREQUEST($sqlQuery,$checkList,$_POST['idHabit']);
+    $db->SQLREQUEST($sqlQuery,$checkList,$_POST['idHabit']);
   }
