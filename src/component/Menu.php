@@ -22,7 +22,7 @@
                         <p>
                             <?php
                                
-                                // Ecriture de la requête
+                                //  Display every invitation of the user
                                 $sqlQuery = 'SELECT invitationGroups FROM user WHERE Name = :nameUser';
                                 $res = $db->SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
                                 
@@ -42,7 +42,7 @@
                     </div> 
                     <?php
                    
-
+                    // go take in the db all habit and their information then display them
                     $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :userCookie';
                     $IdGroupUser = $db->SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");                    
 

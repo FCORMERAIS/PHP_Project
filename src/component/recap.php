@@ -4,6 +4,7 @@
 include "../asset/header.php";
 require "../func/DBConnect.php";
 $db = new DB();
+//all request SQL
 $sqlQuery="SELECT * FROM user WHERE Name = :user";
 $user = $db->SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
 $sqlQuery = "SELECT * FROM activity WHERE groups = :idGroup";
@@ -13,6 +14,7 @@ $users = $db->SQLREQUEST($sqlQuery,$user["idGroup"]);
 ?>
     <body class = "bodyRecap">
         <?php
+        // display all habit if they have be do by everyone
         foreach($habits as $habit){
             $habitName = $habit["name"];
             echo "<p style='margin-top: 100px;
