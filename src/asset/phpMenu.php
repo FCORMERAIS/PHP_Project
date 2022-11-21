@@ -32,5 +32,8 @@
   if(isset($_GET["rep7"]) && $_GET["rep7"]=="false") {
     ?><script> alert("Cet utilisateur a déja été inviter ")</script> <?php
   }
+  if(isset($_GET["rep8"]) && $_GET["rep8"]=="false") {
+    ?><script> alert("Cet utilisateur n'existe pas ")</script> <?php
+  }
 
   

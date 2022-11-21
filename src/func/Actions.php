@@ -136,6 +136,10 @@ Class Actions extends DB{
             $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :name';
             $user = $this->SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
             $s = $userInv['invitationGroups']." ".strval($user['idGroup']);
+            if ($userInv["Name"] == NULL) {
+                header("Location: /PHPProject/src/component/menu.php?rep8=false");
+                exit();
+            }
             if (count(explode($user['idGroup'], $s)) == 2 && $userInv["idGroup"] != $user["idGroup"]) {
                 $sqlQuery = 'UPDATE user SET invitationGroups = :invitationGroups WHERE Name = :nameUser';
                 $this->SQLREQUEST($sqlQuery,$s,$userInv["Name"]);
