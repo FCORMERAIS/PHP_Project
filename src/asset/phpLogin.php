@@ -25,7 +25,7 @@
     
     if($returnmsg == ""){
       setcookie("name",$nameUserCookie,time()+36000,"/","localhost");
-      $action->checkHabit($mail);
+      $action->checkHabit($nameUserCookie);
       
     }
 ?>

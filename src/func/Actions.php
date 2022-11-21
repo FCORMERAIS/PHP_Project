@@ -164,7 +164,11 @@ Class Actions extends DB{
                 
             }
         }
-        header("Location: /PHPProject/src/component/recap.php");
+        if($user["idGroup"] != "") {
+            header("Location: /PHPProject/src/component/recap.php");
+        }else {
+            header("Location: /PHPProject/src/component/Menu.php");
+        }
         exit();
         // if ($group['score']<0){
         // 	$sqlQuery = 'UPDATE user SET idGroup = "" WHERE Name = :nameUser';
