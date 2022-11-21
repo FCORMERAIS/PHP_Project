@@ -2,21 +2,13 @@
     {$connexion ="You are not connected";
   }else { 
     $connexion = 'Connected As ' . htmlspecialchars($_COOKIE["name"]) . ' !';
-  }?>
-
-<!DOCTYPE php>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Navbar</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="css.php">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
-    </head>
+  }
+  
+  include "../asset/header.php";
+  ?>
     <body class="corps">
         <header>
-            <a class="logo" href="/PHPProject/Menu.php"><img src="me.jpg" alt="logo" height="50" width="50" ></a>
+            <a class="logo" href="/PHPProject/src/component/Menu.php"><img src="me.jpg" alt="logo" height="50" width="50" ></a>
             <nav>
                 <ul class="nav__links">
                     

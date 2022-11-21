@@ -43,4 +43,4 @@ if (strtotime($user['lastTimeAddHabit'])+24*3600<time()){
 }
 
 ?>
-<meta http-equiv="Refresh" content="0; url=Menu.php" />
+<meta http-equiv="Refresh" content="0; url=../component/Menu.php" />

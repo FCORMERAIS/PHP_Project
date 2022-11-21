@@ -1,9 +1,6 @@
 <?php 
   $returnmsg = "";
-  ?>
-    <script>console.log("laaaa eg")</script>
-    <?php
-  require("connectAccount.php");
+  require("../func/connectAccount.php");
     $mail = $_POST["email"];
     $password = $_POST["password"];
 
@@ -31,21 +28,17 @@
     }
     
     if($returnmsg == ""){
-      setcookie("name",$nameUserCookie,time()+36000);
-      require("checkHabit.php");
-      checkHabit($mail);
-      header("Location: /PHPProject/menu.php");
+      setcookie("name",$nameUserCookie,time()+36000,"/","localhost");
+      // require("checkHabit.php");
+      // checkHabit($mail);
+      header("Location: /PHPProject/src/component/menu.php");
       exit();
     }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Taskmanager: Login</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
+<?php 
+include "../asset/headerLogin.php";
+?>
 
 <body>
   <div class="login-root">
