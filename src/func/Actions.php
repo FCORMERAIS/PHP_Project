@@ -57,7 +57,7 @@ Class Actions extends DB{
     
         if ($GrouporNot["idGroup"] == "" || $GrouporNot["idGroup"] == NULL) {
             $sqlQuery = 'SELECT id FROM groups WHERE chief = :userchief';
-            $idgroup =$this->SQLREQUEST($sqlQuery,$_POST["nameInvit"],"fetch");
+            $idgroup =$this->SQLREQUEST($sqlQuery,strip_tags($_POST["nameInvit"]),"fetch");
     
             $sqlQuery = 'UPDATE user SET idGroup = :idgroup WHERE Name = :username';
             $this->SQLREQUEST($sqlQuery,$idgroup["id"],htmlspecialchars($_COOKIE["name"]));
@@ -73,10 +73,10 @@ Class Actions extends DB{
      *
      */
     function addHabit(){
-        $name = $_POST["Name"];
-        $Periodicity = $_POST["Periodicity"];
-        $Description = $_POST["Description"];
-        $Difficulty = $_POST["Difficulty"];
+        $name = strip_tags($_POST["Name"]);
+        $Periodicity = strip_tags($_POST["Periodicity"]);
+        $Description = strip_tags($_POST["Description"]);
+        $Difficulty = strip_tags($_POST["Difficulty"]);
         if ($name!= null && $name!= ""  && $Periodicity!= null && $Periodicity!= "" && $Description!= null && $Description!= "" && $Difficulty!= null && $Difficulty!= ""){
             $sqlQuery = 'SELECT * FROM user WHERE Name = :nameUser';
             $user =$this->SQLREQUEST($sqlQuery,$_COOKIE['name'],"fetch");
@@ -114,7 +114,7 @@ Class Actions extends DB{
      *
      */
     function addUser(){
-        $nameInv = $_POST["userInv"];    
+        $nameInv = strip_tags($_POST["userInv"]);    
         $sqlQuery = 'SELECT chief FROM groups WHERE chief = :name';
         $result = $this->SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
         if ($result["chief"] != "") {   
@@ -220,7 +220,7 @@ Class Actions extends DB{
             $insertGroups->execute([
                 'score' => 1000,
                 'name' => htmlspecialchars($_COOKIE["name"]),
-                'groupname' => $_POST["NameGroup"],
+                'groupname' => strip_tags($_POST["NameGroup"]),
             ]);
 
             $sqlQuery = 'SELECT id FROM groups WHERE chief = :cookiename';            
@@ -249,7 +249,7 @@ Class Actions extends DB{
      */
     function deniedInvitation(){
         $sqlQuery = 'SELECT id FROM groups WHERE chief = :userchief';
-        $idgroup = $this->SQLREQUEST($sqlQuery,$_POST["nameInvit"],"fetch");
+        $idgroup = $this->SQLREQUEST($sqlQuery,strip_tags($_POST["nameInvit"]),"fetch");
 
         $sqlQuery = 'SELECT invitationGroups FROM user WHERE Name = :username';
         $result = $this->SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");
@@ -350,7 +350,7 @@ Class Actions extends DB{
      */
     function checkList(){
         $sqlQuery = 'SELECT * FROM activity WHERE id = :idHabit';
-        $habit = $this->SQLREQUEST($sqlQuery,$_POST["idHabit"],"fetch");
+        $habit = $this->SQLREQUEST($sqlQuery,strip_tags($_POST["idHabit"]),"fetch");
         $checkList="";
         if ($habit['checkList'] != "" || $habit['checkList'] != null){
             if(in_array($_COOKIE["name"],explode(" ",$habit['checkList']))){
@@ -370,7 +370,7 @@ Class Actions extends DB{
         }
     
         $sqlQuery = 'UPDATE activity SET checkList = :checkList WHERE id = :idHabit';
-        $this->SQLREQUEST($sqlQuery,$checkList,$_POST['idHabit']);
+        $this->SQLREQUEST($sqlQuery,$checkList,strip_tags($_POST['idHabit']));
     }
 }
 $post = isset($_GET['post']) ?$_GET['post'] : '';

@@ -2,9 +2,9 @@
 session_start(); 
   include "../func/Actions.php";
   $returnmsg = "";
-  $mail = $_POST["email"];
-  $password = $_POST["password"];
-  $pseudo = $_POST["Pseudo"];
+  $mail = strip_tags($_POST["email"]);
+  $password = strip_tags($_POST["password"]);
+  $pseudo = strip_tags($_POST["Pseudo"]);
   if ($mail == NULL && $returnmsg == ""|| $password == NULL && $returnmsg == "" || $pseudo == NULL && $returnmsg == "") {
     $returnmsg= "Please fill out the gaps";
   }
@@ -21,9 +21,9 @@ echo "gag";
 
   if($returnmsg == ""){
     $serverName = "localhost";
-    $name = $_POST["Pseudo"];
-    $mail = $_POST["email"];
-    $password = $_POST["password"];
+    $name = strip_tags($_POST["Pseudo"]);
+    $mail = strip_tags($_POST["email"]);
+    $password = ($_POST["password"]);
     $db = "phpproject";
 
     $connexion = mysqli_connect($serverName,"root","",$db);

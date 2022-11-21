@@ -2,8 +2,8 @@
   $returnmsg = "";
   include("../func/Actions.php");
   //Verifie if the user can connect to the db with his name and password
-    $mail = $_POST["email"];
-    $password = $_POST["password"];
+    $mail = strip_tags($_POST["email"]);
+    $password = strip_tags($_POST["password"]);
     if ($mail == NULL && $returnmsg == ""|| $password == NULL && $returnmsg == "") {
       $returnmsg= "Please fill out the gaps ";
     }
