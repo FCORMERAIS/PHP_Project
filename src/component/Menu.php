@@ -41,8 +41,6 @@
                         </p>
                     </div> 
                     <?php
-                   
-
                     $sqlQuery = 'SELECT idGroup FROM user WHERE Name = :userCookie';
                     $IdGroupUser = $db->SQLREQUEST($sqlQuery,$_COOKIE["name"],"fetch");                    
 
