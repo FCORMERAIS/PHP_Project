@@ -42,7 +42,7 @@ session_start();
     $SQLREQUEST = $db->prepare($sqlQuery);
     $SQLREQUEST->execute([
         'name' => $name,
-        'password' => $password,
+        'password' => $password = password_hash($password, PASSWORD_DEFAULT),
         'mail' => $mail,
     ]);
     setcookie("name",$name,time()+36000,"/","localhost");
