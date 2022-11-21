@@ -1,35 +1,14 @@
 <?php session_start()?>
 <?php
 //verify if we are connected
-  require("../func/DBConnect.php");
+  include("../func/Actions.php");
   $db = new DB();
   if(!isset($_COOKIE["name"]))
     {$connexion ="You are not connected";
   }else { 
     $connexion = 'Connected As ' . htmlspecialchars($_COOKIE["name"]) . ' !';
   }
-  //Add or remove the user of the checkList
-  if (isset($_POST['check'])&& !empty($_POST['check']) && $_POST['check']=="true"){
-    $sqlQuery = 'SELECT * FROM activity WHERE id = :idHabit';
-    $habit = $db->SQLREQUEST($sqlQuery,$_POST["idHabit"],"fetch");
-    $checkList="";
-    if ($habit['checkList'] != "" || $habit['checkList'] != null){
-        if(in_array($_COOKIE["name"],explode(" ",$habit['checkList']))){
-            if (count(explode(" ",$habit['checkList']))!=1){
-                $a = explode(" ",$habit['checkList']);
-                $key = array_search($_COOKIE["name"], $a);
-                unset($a[$key]);
-                $checkList=join(" ",$a);
-            }else{
-                $checkList = null;
-            }
-        }else{
-            $checkList=$habit['checkList']." ".$_COOKIE["name"];
-        }
-    }else{
-        $checkList=$_COOKIE["name"];
-    }
-
-    $sqlQuery = 'UPDATE activity SET checkList = :checkList WHERE id = :idHabit';
-    $db->SQLREQUEST($sqlQuery,$checkList,$_POST['idHabit']);
+  if (isset($_POST["check"])&& !empty($_POST["check"]) && $_POST["check"]=="true"){
+    $action->checkList();
   }
+

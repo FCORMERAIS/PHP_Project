@@ -2,7 +2,7 @@
 
 
 include "../asset/header.php";
-require "../func/DBConnect.php";
+include "../func/DBConnect.php";
 $db = new DB();
 //all request SQL
 $sqlQuery="SELECT * FROM user WHERE Name = :user";

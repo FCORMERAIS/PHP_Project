@@ -32,7 +32,6 @@
                             </br></br></br>
                             <div class="listName">
                                 <?php
-                                include('../func/Actions.php');
                                 $action->listUser();
                                 ?>
                             </div>

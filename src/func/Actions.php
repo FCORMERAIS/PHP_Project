@@ -1,5 +1,5 @@
 <?php
-require_once('DBConnect.php');
+require('DBConnect.php');
 
 //the class Action list every function available in the project
 Class Actions extends DB{
@@ -339,8 +339,38 @@ Class Actions extends DB{
         <script>alert("You have quit your group")</script>
         <meta http-equiv="Refresh" content="0; url=../component/Menu.php" />
         <?php
-    }
+        }
 
+    }
+    
+    /**
+     *  Add or remove the user of the checkList
+     *
+     * @param  mixed $var1
+     */
+    function checkList(){
+        $sqlQuery = 'SELECT * FROM activity WHERE id = :idHabit';
+        $habit = $this->SQLREQUEST($sqlQuery,$_POST["idHabit"],"fetch");
+        $checkList="";
+        if ($habit['checkList'] != "" || $habit['checkList'] != null){
+            if(in_array($_COOKIE["name"],explode(" ",$habit['checkList']))){
+                if (count(explode(" ",$habit['checkList']))!=1){
+                    $a = explode(" ",$habit['checkList']);
+                    $key = array_search($_COOKIE["name"], $a);
+                    unset($a[$key]);
+                    $checkList=join(" ",$a);
+                }else{
+                    $checkList = null;
+                }
+            }else{
+                $checkList=$habit['checkList']." ".$_COOKIE["name"];
+            }
+        }else{
+            $checkList=$_COOKIE["name"];
+        }
+    
+        $sqlQuery = 'UPDATE activity SET checkList = :checkList WHERE id = :idHabit';
+        $this->SQLREQUEST($sqlQuery,$checkList,$_POST['idHabit']);
     }
 }
 $post = isset($_GET['post']) ?$_GET['post'] : '';
