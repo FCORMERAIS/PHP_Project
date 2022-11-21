@@ -36,9 +36,35 @@ $users = $db->SQLREQUEST($sqlQuery,$user["idGroup"]);
             header("Location: /PHPProject/src/component/menu.php");
             exit();
         }
+        $sqlQuery = "SELECT * FROM groups WHERE id = :idGroup";
+        $group = $db->SQLREQUEST($sqlQuery,$user["idGroup"],"fetch");
+        if ((int)$group["score"]  < 0) {
+            $sqlQuery = 'UPDATE user SET idGroup = "" WHERE Name = :userName';
+            $group = $db->SQLREQUEST($sqlQuery,$user["Name"]);
+            $sqlQuery = 'UPDATE user SET invitationGroups = TRIM(:idgroup FROM invitationGroups)';
+            $deleteInvitation = $db->SQLREQUEST($sqlQuery,$user["idGroup"]);
+            echo "YOU HAVE BEEN KICKING FROM YOUR GROUP BECAUSE YOUR SCORE WAS UNDER 0";
+            $sqlQuery = 'SELECT * FROM user WHERE idGroup = :idGroup';
+            $verifyNbInGroup = $db->SQLREQUEST($sqlQuery,$user["idGroup"],"fetchAll");
+            echo(count($verifyNbInGroup));
+            if (count($verifyNbInGroup) == 0) {
+                $db = new PDO('mysql:host=localhost;dbname=phpproject;charset=utf8', 'root', '',[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+                if(!$db){
+                    die("Database Connection Failed. Error: ".$db);
+                }
+                $sqlQuery = 'DELETE FROM groups WHERE id = :idGroup';
+                $verifyNbInGroup = $db->prepare($sqlQuery);
+                $verifyNbInGroup -> execute(["idGroup" => $user["idGroup"],]);
+                $sqlQuery = 'DELETE FROM activity WHERE groups = :idGroup';
+                $verifyNbInGroup = $db->prepare($sqlQuery);
+                $verifyNbInGroup -> execute(["idGroup" => $user["idGroup"],]);
+            }
+        }else {
+            echo "YOUR GROUP HAVE ". $group["score"] ." OF SCORING </br>";
+        }
         ?>
         <form action="Menu.php" method="POST">
-            <input type="submit" class="buttonRecap" value="COMPRIS !">
+            <input class ="input"type="submit" class="buttonRecap" value="COMPRIS !">
 
         </form>
     </body>

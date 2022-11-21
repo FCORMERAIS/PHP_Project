@@ -948,6 +948,7 @@ body {
 }
 
 .card-desc {
+  scrollbar-color: green blue;
   display: block;
   font-size: 1.2rem;
   position: absolute;
@@ -970,4 +971,28 @@ h1 {
   color: #fff;
   margin: 40px 0 20px 0;
   text-align: center;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #0088a9; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
+
+
+.bodyRecap{
+  background-color:linear-gradient(to right, hsl(210, 30%, 20%), hsl(255, 30%, 25%))
 }

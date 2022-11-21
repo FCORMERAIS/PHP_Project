@@ -73,10 +73,12 @@ Class Actions extends DB{
      *
      */
     function addHabit(){
+
         $name = strip_tags($_POST["Name"]);
         $Periodicity = strip_tags($_POST["Periodicity"]);
         $Description = strip_tags($_POST["Description"]);
         $Difficulty = strip_tags($_POST["Difficulty"]);
+        $colorHabit = strip_tags($_POST["colorHabit"]);
         if ($name!= null && $name!= ""  && $Periodicity!= null && $Periodicity!= "" && $Description!= null && $Description!= "" && $Difficulty!= null && $Difficulty!= ""){
             $sqlQuery = 'SELECT * FROM user WHERE Name = :nameUser';
             $user =$this->SQLREQUEST($sqlQuery,$_COOKIE['name'],"fetch");
@@ -85,7 +87,7 @@ Class Actions extends DB{
             if (strtotime($user['lastTimeAddHabit'])+24*3600<time()){
                 $sqlQuery = 'UPDATE user SET lastTimeAddHabit = :lastTime WHERE Name = :nameUser';
                 $this->SQLREQUEST($sqlQuery,date('Y-m-d H:i:s',time()),$_COOKIE["name"]);
-                $sql = "INSERT INTO activity(groups, name,text,periodicity,lastTimeDo,difficulty) VALUE (:groups,:name,:text,:periodicity,FROM_UNIXTIME(:lastTimeDo),:difficulty)";
+                $sql = "INSERT INTO activity(groups, name,text,periodicity,lastTimeDo,difficulty,Color) VALUE (:groups,:name,:text,:periodicity,FROM_UNIXTIME(:lastTimeDo),:difficulty,:color)";
                 $insertGroups = $this->db->prepare($sql);
                 // Exécution ! Le groupe est maintenant en base de données
                 $insertGroups->execute([
@@ -95,6 +97,7 @@ Class Actions extends DB{
                     'periodicity' => $Periodicity,
                     'lastTimeDo' => strtotime('tomorrow')-3600,
                     'difficulty' => $Difficulty,
+                    'color' => $colorHabit,
                 ]);  
                   
             }else{
@@ -205,6 +208,8 @@ Class Actions extends DB{
         }else {
             header("Location: /PHPProject/src/component/Menu.php");
         }
+        exit();
+       
     }
     
     /**

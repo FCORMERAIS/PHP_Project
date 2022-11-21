@@ -11,7 +11,7 @@ include "../asset/headerLogin.php";
       <div class="loginbackground box-background--white padding-top--64">
         <div class="loginbackground-gridContainer">
           <div class="box-root flex-flex" style="grid-area: top / start / 8 / end;">
-            <div class="box-root" style="background-image: linear-gradient(white 0%, rgb(147, 147, 147) 33%); flex-grow: 1;">
+            <div class="box-root" style="background-image: linear-gradient(white 0%, white 33%); flex-grow: 1;">
             </div>
           </div>
           <div class="box-root flex-flex" style="grid-area: 4 / 2 / auto / 5;">
