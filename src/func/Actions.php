@@ -200,8 +200,11 @@ Class Actions extends DB{
                 
             }
         }
-        header("Location: /PHPProject/src/component/recap.php");
-        exit();
+        if($user["idGroup"] != "") {
+            header("Location: /PHPProject/src/component/recap.php");
+        }else {
+            header("Location: /PHPProject/src/component/Menu.php");
+        }
     }
     
     /**
