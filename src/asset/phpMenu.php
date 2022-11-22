@@ -11,4 +11,7 @@
   if (isset($_POST["check"])&& !empty($_POST["check"]) && $_POST["check"]=="true"){
     $action->checkList();
   }
+  if (isset($_GET["rep"]) && $_GET["rep"]=="false"){
+    ?> <script>alert("Vous ne pouvez pas ajouter une habitude car vous en avez deja ajouter une il y a - de 24h")</script> <?php
+  }
   

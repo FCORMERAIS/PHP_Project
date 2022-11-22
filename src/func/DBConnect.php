@@ -18,7 +18,7 @@ class DB {
      * @param  mixed $var3
      * @param  mixed $var4
      */
-    function SQLREQUEST(string $sqlQuery, $var1,$var2=null,$var3=null,$var4=null) {        
+    function SQLREQUEST(string $sqlQuery, $var1,$var2=-1,$var3=-1,$var4=null) {        
         if (explode(" ",$sqlQuery)[0] == "SELECT") { 
             $groupsStatement = $this->db->prepare($sqlQuery);
             $groupsStatement->execute([
@@ -36,12 +36,12 @@ class DB {
                 array_push($arr,$sub = explode(" ",stristr(substr($sqlQuery,$a),":"))[0]);
                 $a = $a+strpos(substr($sqlQuery,$a),":")+1;
             }
-            if ($var2 ==null && $var3==null){
+            if ($var2 ==-1 && $var3==-1){
                 $sql = $this->db->prepare($sqlQuery);
                 $sql->execute([
                     $arr[0] => $var1,
                 ]);
-            }else if ($var3==null){
+            }else if ($var3==-1){
                 $sql = $this->db->prepare($sqlQuery);
                 $sql->execute([
                     $arr[0] => $var1,

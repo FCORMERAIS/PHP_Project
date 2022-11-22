@@ -99,7 +99,7 @@ Class Actions extends DB{
                   
             }else{
                 ?> <script>alert("Vous ne pouvez pas ajouter une habitude car vous en avez deja ajouter une il y a - de 24h")</script> <?php
-                header("Location: /PHPProject/src/component/menu.php");
+                header("Location: /PHPProject/src/component/menu.php?rep=false");
                 exit();
             }
         }
