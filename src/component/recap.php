@@ -17,9 +17,9 @@ $users = $db->SQLREQUEST($sqlQuery,$user["idGroup"]);
         // display all habit if they have be do by everyone
         if(date("d",strtotime($user["lastConnexion"]))!=date("d")){
             foreach($habits as $habit){
+                ?><div class="blockRecapHabit"><?php
                 $habitName = $habit["name"];
-                echo "<p style='margin-top: 100px;
-                margin-left: 200px;'> Habit Name : $habitName </p>";
+                echo "<p style='margin-top: 100px;'> Habit Name : $habitName </p></br></br></br></br>";
                 if(count(explode(" ",$habit["lastCheckList"])) != count($users)){
                     foreach($users as $userGroup){
                         if(!in_array($userGroup["Name"],explode(" ",$habit["lastCheckList"]))){
@@ -29,6 +29,7 @@ $users = $db->SQLREQUEST($sqlQuery,$user["idGroup"]);
                     }
                     echo "<p class='recapfinal'>A cause de cette ou ces personnes qui n'ont pas réaliser l'habitude en temps voulu, vous avez perdu [] score</p>";
                 }
+                ?></div><?php
             }
             $sqlQuery = "UPDATE user SET lastConnexion = :timeNow WHERE Name = :name";
             $db->SQLREQUEST($sqlQuery,date('Y-m-d H:i:s',strtotime("now")+3600),$_COOKIE["name"]);
@@ -60,7 +61,7 @@ $users = $db->SQLREQUEST($sqlQuery,$user["idGroup"]);
                 $verifyNbInGroup -> execute(["idGroup" => $user["idGroup"],]);
             }
         }else {
-            echo "YOUR GROUP HAVE ". $group["score"] ." OF SCORING </br>";
+            echo "</br><br>YOUR GROUP HAVE ". $group["score"] ." OF SCORING </br></br>";
         }
         ?>
         <form action="Menu.php" method="POST">

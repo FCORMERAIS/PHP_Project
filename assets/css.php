@@ -987,12 +987,11 @@ h1 {
   border-radius: 10px;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
+.bodyRecap{
+  background-color: hsl(210, 30%, 20%);
+  text-align:center;
 }
 
-
-.bodyRecap{
-  background-color:linear-gradient(to right, hsl(210, 30%, 20%), hsl(255, 30%, 25%))
+.blockRecapHabit{
+  border : 
 }
