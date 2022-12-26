@@ -167,24 +167,63 @@ Class Actions extends DB{
        
         $user = $this->SQLREQUEST($sqlQuery,$name,"fetch");
     
-        $sqlQuery = 'SELECT * FROM user WHERE idGroup = 32';
-        $groupsStatement = $db->prepare($sqlQuery);
-        $groupsStatement->execute();
-        $users = $groupsStatement->fetchAll();
+        $sqlQuery = 'SELECT * FROM user WHERE idGroup = :idGroup';
+        $users = $this->SQLREQUEST($sqlQuery,$user['idGroup'],"fetchAll");
+
         $nbUser = count($users);
     
         $sqlQuery = 'SELECT * FROM activity WHERE groups = :idGroup';
         $habits = $this->SQLREQUEST($sqlQuery,$user['idGroup'],"fetchAll");
-    
-        $sqlQuery = 'SELECT * FROM groups WHERE id = :idGroup';
-        $group = $this->SQLREQUEST($sqlQuery,$user['idGroup'],"fetch");
+        
         foreach($habits as $habit){
-            if(strtotime($habit['lastTimeDo'])<time()){
-                if($nbUser==count(explode(" ",$habit['checkList']))){
-                    //TODO SCORE POSITIF
-                }else{
-                    //TODO SCORE NEGATIF
+            if(strtotime($habit['lastTimeDo'])<time()){ 
+                foreach($users as $userGroup){
+                    $sqlQuery = 'SELECT * FROM groups WHERE id = :idGroup';
+                    $group = $this->SQLREQUEST($sqlQuery,$user['idGroup'],"fetch");
+                    if(in_array($userGroup["Name"],explode(" ",$habit['checkList']))){
+                        switch ($habit["difficulty"]){
+                            case "S":
+                                $score= 100+$group["score"];
+                                break;
+                            case "A":
+                                $score= 60+$group["score"];
+                                break;
+                            case "B":
+                                $score= 50+$group["score"];
+                                break;
+                            case "C":
+                                $score= 30+$group["score"];
+                                break;
+                            case "D":
+                                $score= 10+$group["score"];
+                                break;
+                        }
+                    }else{
+                        switch ($habit["difficulty"]){
+                            case "S":
+                                $score= $group["score"]-100;
+                                break;
+                            case "A":
+                                $score= $group["score"]-60;
+                                break;
+                            case "B":
+                                $score= $group["score"]-50;
+                                break;
+                            case "C":
+                                $score= $group["score"]-30;
+                                break;
+                            case "D":
+                                $score= $group["score"]-10;
+                                break;
+                            default:
+                                break;
+                        }   
+                    
+                    }
+                    $sqlQuery = 'UPDATE groups SET score = :score WHERE id = :idGroup';
+                    $this->SQLREQUEST($sqlQuery,$score,$user['idGroup']);
                 }
+                
                 
                 $time="";
                 switch ($habit["periodicity"]){
@@ -210,7 +249,7 @@ Class Actions extends DB{
                 }
                 $sqlQuery = 'UPDATE activity SET lastTimeDo = :time , checkList = :checkList , lastCheckList = :lastCheckList WHERE id = :idHabit';
                 $this->SQLREQUEST($sqlQuery,$time,null,$habit['checkList'], $habit['id']);
-    
+                
                 
             }
         }
